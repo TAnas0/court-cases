@@ -1,4 +1,4 @@
-def get_search_page_by_hearing_date(session, date, page):
+def get_search_page_by_hearing_date(session, date, last_index):
     url = "https://eapps.courts.state.va.us/ocis-rest/api/public/search"
     headers = {
         "Accept": "application/json, text/plain, */*",
@@ -12,12 +12,13 @@ def get_search_page_by_hearing_date(session, date, page):
         "searchString": [
             date
         ],
-        "searchBy": "HD"
+        "searchBy": "HD",
+        "endingIndex": last_index,
     }
     res = session.post(url, headers=headers, json=data)
     if res.status_code == 200:
         res = res.json()["context"]["entity"]["payload"]
-        return res["searchResults"], res["hasMoreRecords"] == "N"
+        return res["searchResults"], res.get("hasMoreRecords", None) != "Y", res.get("lastResponseIndex", None)
     else:
         raise Exception()
 
@@ -25,8 +26,9 @@ def search_by_hearing_date(session, date):
     all_results = []
     page = 1
     last_page = False
+    last_index = 0
     while not last_page:
-        results, last_page = get_search_page_by_hearing_date(session, date, page)
+        results, last_page, last_index = get_search_page_by_hearing_date(session, date, last_index)
         all_results += results
         page += 1
 
