@@ -1,4 +1,6 @@
 import requests
+from constants.main import courts
+
 
 def accept_terms_and_conditions():
     session = requests.Session()
@@ -10,3 +12,6 @@ def accept_terms_and_conditions():
     )
 
     return session
+
+def get_court_name_by_fips(fipsCode4):
+    return list(filter(lambda d: d["fipsCode4"] == fipsCode4, courts))[0]["courtName"]
