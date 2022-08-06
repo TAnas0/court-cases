@@ -1,9 +1,23 @@
-import requests
+from collections import OrderedDict
+# from datetime import timedelta
+import requests_cache
 from constants.main import courts
 
 
 def accept_terms_and_conditions():
-    session = requests.Session()
+    # TODO Get session creation out of here!
+    session = requests_cache.CachedSession(
+        'demo_cache1',
+        allowable_codes=[200, 400], # ! The API can return 200 responses on failures
+        allowable_methods=["POST"],  # Excludes GET request to accept terms and conditions
+        # urls_expire_after={
+        #     "eapps.courts.state.va.us/ocis-rest/api/public/termsAndCondAccepted": requests_cache.DO_NOT_CACHE,
+        #     "*": timedelta(days=1),
+        #     # "*": requests_cache.DO_NOT_CACHE,
+        #     # "eapps.courts.state.va.us/ocis-rest/api/public/getCaseDetails": 0,
+        # }
+        stale_if_error=False,
+    )
     session.get(
         url="https://eapps.courts.state.va.us/ocis-rest/api/public/termsAndCondAccepted",
         headers={
