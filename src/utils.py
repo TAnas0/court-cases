@@ -2,6 +2,7 @@ from collections import OrderedDict
 # from datetime import timedelta
 import requests_cache
 from constants.main import courts
+from datetime import timedelta
 
 
 def accept_terms_and_conditions():
@@ -106,3 +107,8 @@ def format_case_details(case_details):
         print(e)
 
     return data
+
+def date_range(start_date, end_date):
+    # https://stackoverflow.com/a/1060330/4017403
+    for n in range(int((end_date - start_date).days)):
+        yield start_date + timedelta(n)
