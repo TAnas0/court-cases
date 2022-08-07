@@ -57,14 +57,14 @@ def format_case_details(case_details):
 
         data["Case Number"] = case_details["formattedCaseNumber"]
         data["Filed Date"] = case_details["caseCharge"]["chargeFilingDate"] # !
-        data["Locality"] = case_details["locality"]["localityName"]
+        data["Locality"] = case_details["locality"].get("localityName", case_details.get("localityCode", None))
         data["Name"] = case_details["name"]
         data["Status"] = None # !
         data["Defense Attorney"] = None # !
         data["Address"] = def_address # TODO deconstruct into city/state/postalcode
         data["AKA1"] = None
         data["AKA2"] = None
-        data["Gender"] = defendant["personalDetails"]["gender"] # TODO transform
+        data["Gender"] = defendant["personalDetails"].get("gender", None) # TODO transform
         data["Race"] = defendant["personalDetails"].get("race", None) # TODO transformr
         data["DOB"] = defendant["personalDetails"].get("maskedBirthDate", "") + "/****"
         if data["DOB"] == "/****":
