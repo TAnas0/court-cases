@@ -1,8 +1,11 @@
 from collections import OrderedDict
 from datetime import timedelta
+import logging
 import requests_cache
 from constants.main import courts
 
+
+logger = logging.getLogger(__name__)
 
 def accept_terms_and_conditions():
     # TODO Get session creation out of here!
@@ -102,7 +105,8 @@ def format_case_details(case_details):
         data["searchDate"] = None
         data["Court"] = get_court_name_by_fips(case_details["qualifiedFips"])
     except Exception as e:
-        print(e)
+        logger.error(f"Error during formatting of case {case_details['formattedCaseNumber']}")
+        logger.error(e)
 
     return data
 

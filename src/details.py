@@ -1,6 +1,11 @@
 # Get a case's details
+import logging
+
+
+logger = logging.getLogger(__name__)
+
 def get_case_details(session, fips, court_level, division_type, case_number):
-    # print(f"Getting details for {fips}, {court_level}, {division_type}, {case_number}")
+    logger.debug(f"Getting details for {fips}/{court_level}/{division_type}/{case_number}")
     url = "https://eapps.courts.state.va.us/ocis-rest/api/public/getCaseDetails"
     data = {
         "qualifiedFips": fips,
