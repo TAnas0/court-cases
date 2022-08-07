@@ -41,5 +41,5 @@ def search_by_hearing_date(session, date):
         all_results += results
         page += 1
     print(f"Search requests count {count}")
-    print(f"Found a total of {len(results)} court cases for date {date}")
+    print(f"Found a total of {len(all_results)} court cases for date {date}")
     return all_results    
