@@ -1,14 +1,14 @@
 from collections import OrderedDict
-# from datetime import timedelta
+from datetime import timedelta
 import requests_cache
 from constants.main import courts
-from datetime import timedelta
 
 
 def accept_terms_and_conditions():
     # TODO Get session creation out of here!
     session = requests_cache.CachedSession(
         'demo_cache1',
+        expire_after=timedelta(days=3),
         allowable_codes=[200, 400], # ! The API can return 200 responses on failures
         allowable_methods=["POST"],  # Excludes GET request to accept terms and conditions
         # urls_expire_after={
@@ -40,8 +40,6 @@ def format_case_details(case_details):
     Returns:
         dict: _description_
     """
-    if case_details["formattedCaseNumber"] == "GT20000008-00":
-        print()
     participants = case_details["caseParticipant"]
     defendant = None
     complainant = None
