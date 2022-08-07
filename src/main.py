@@ -24,9 +24,12 @@ for d in date_range(start_date, end_date): # ! Last day not included
     start_time = time.time()
     print(f"Getting case details for date {d}")
     for case in results:
-        case_details = get_case_details(session, case["qualifiedFips"], case["courtLevel"], case["divisionType"], case["caseNumber"])
-        case_formatted = format_case_details(case | case_details)  # Merging search results with details response
-        details.append(case_formatted)
+        try:
+            case_details = get_case_details(session, case["qualifiedFips"], case["courtLevel"], case["divisionType"], case["caseNumber"])
+            case_formatted = format_case_details(case | case_details)  # Merging search results with details response
+            details.append(case_formatted)
+        except Exception as e:
+            print(e)
     print(f"Getting details took {time.time() - start_time} seconds")
 
     df = pd.DataFrame(details)

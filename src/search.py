@@ -19,8 +19,12 @@ def get_search_page_by_hearing_date(session, date, last_index):
     }
     res = session.post(url, headers=headers, json=data)
     if res.status_code == 200:
-        res = res.json()["context"]["entity"]["payload"]
-        return res["searchResults"], res.get("hasMoreRecords", None) != "Y", res.get("lastResponseIndex", None)
+        try:
+            res = res.json()["context"]["entity"].get("payload", None)
+            return res.get("searchResults", None), res.get("hasMoreRecords", None) != "Y", res.get("lastResponseIndex", None)
+        except KeyError as e:
+            print("Unexpected Error")
+            print(e)
     else:
         raise Exception()
 
