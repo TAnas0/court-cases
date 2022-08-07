@@ -10,6 +10,7 @@ from details import get_case_details
 
 logging.basicConfig(
     filename='app.log',
+    level=logging.DEBUG,
     # filemode='w',
     # format='%(name)s - %(levelname)s - %(message)s'
 )
