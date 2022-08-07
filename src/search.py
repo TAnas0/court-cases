@@ -1,4 +1,5 @@
 def get_search_page_by_hearing_date(session, date, last_index):
+    print(f"Searching court cases after last index: {last_index}")
     url = "https://eapps.courts.state.va.us/ocis-rest/api/public/search"
     headers = {
         "Accept": "application/json, text/plain, */*",
@@ -8,6 +9,7 @@ def get_search_page_by_hearing_date(session, date, last_index):
         "divisions": [
             "Criminal/Traffic"
         ],
+        # "selectedCourts": ["003G"],
         "selectedCourts": [],
         "searchString": [
             date
@@ -23,13 +25,17 @@ def get_search_page_by_hearing_date(session, date, last_index):
         raise Exception()
 
 def search_by_hearing_date(session, date):
+    count = 0
+    print(f"Searchin date {date}")
     all_results = []
     page = 1
     last_page = False
     last_index = 0
     while not last_page:
+        count += 1
         results, last_page, last_index = get_search_page_by_hearing_date(session, date, last_index)
         all_results += results
         page += 1
-
+    print(f"Search requests count {count}")
+    print(f"Found a total of {len(results)} court cases for date {date}")
     return all_results    

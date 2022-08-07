@@ -1,8 +1,6 @@
 # Get a case's details
-from utils import accept_terms_and_conditions
-
 def get_case_details(session, fips, court_level, division_type, case_number):
-    print(f"Getting details for {fips}, {court_level}, {division_type}, {case_number}")
+    # print(f"Getting details for {fips}, {court_level}, {division_type}, {case_number}")
     url = "https://eapps.courts.state.va.us/ocis-rest/api/public/getCaseDetails"
     data = {
         "qualifiedFips": fips,
@@ -20,4 +18,3 @@ def get_case_details(session, fips, court_level, division_type, case_number):
             raise Exception()
     else:
         raise Exception()
-

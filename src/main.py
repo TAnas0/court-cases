@@ -21,13 +21,13 @@ for d in date_range(start_date, end_date): # ! Last day not included
     results = search_by_hearing_date(session, d.strftime("%m/%d/%Y"))
 
     details = []
+    start_time = time.time()
+    print(f"Getting case details for date {d}")
     for case in results:
-        print(f"Getting case details for date {d}")
-        start_time = time.time()
         case_details = get_case_details(session, case["qualifiedFips"], case["courtLevel"], case["divisionType"], case["caseNumber"])
         case_formatted = format_case_details(case | case_details)  # Merging search results with details response
         details.append(case_formatted)
-        print(f"Getting details took {start_time - time.time()} seconds")
+    print(f"Getting details took {time.time() - start_time} seconds")
 
     df = pd.DataFrame(details)
     df.to_csv(
