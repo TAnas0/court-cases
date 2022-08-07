@@ -12,7 +12,6 @@ def get_case_details(session, fips, court_level, division_type, case_number):
     if res.status_code == 200:
         result = res.json()
         if result["context"]["entity"]["status"] == "SUCCESS":
-            print()
             return result["context"]["entity"]["payload"]
         else:
             raise Exception()

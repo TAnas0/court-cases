@@ -1,5 +1,5 @@
 def get_search_page_by_hearing_date(session, date, last_index):
-    print(f"Searching court cases after last index: {last_index}")
+    # print(f"Searching court cases after last index: {last_index}")
     url = "https://eapps.courts.state.va.us/ocis-rest/api/public/search"
     headers = {
         "Accept": "application/json, text/plain, */*",
