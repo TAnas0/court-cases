@@ -25,7 +25,10 @@ def get_search_page_by_hearing_date(session, date, last_index):
     if res.status_code == 200:
         try:
             res = res.json()["context"]["entity"].get("payload", None)
-            return res.get("searchResults", None), res.get("hasMoreRecords", None) != "Y", res.get("lastResponseIndex", None)
+            if res:
+                return res.get("searchResults", None), res.get("hasMoreRecords", None) != "Y", res.get("lastResponseIndex", None)
+            else:
+                return None
         except KeyError as e:
             logger.error("Unexpected Error in search request. Returned status code was 200, but processing failed")
             logger.error(e)
