@@ -106,7 +106,7 @@ def format_case_details(case_details):
         data["Court"] = get_court_name_by_fips(case_details["qualifiedFips"])
     except Exception as e:
         logger.error(f"Error during formatting of case {case_details['formattedCaseNumber']}")
-        logger.error(e)
+        logger.exception(e)
 
     return data
 

@@ -44,8 +44,9 @@ for d in date_range(start_date, end_date): # ! Last day not included
             case_details = get_case_details(session, case["qualifiedFips"], case["courtLevel"], case["divisionType"], case["caseNumber"])
             case_formatted = format_case_details(case | case_details)  # Merging search results with details response
             details.append(case_formatted)
+            # raise KeyError
         except Exception as e:
-            logger.error(e)
+            logger.exception(e)
     logger.info(f"Getting details of {len(results)} court cases took {(time.time() - start_time)/60} minutes")
 
     df = pd.DataFrame(details)

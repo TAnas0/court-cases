@@ -31,7 +31,7 @@ def get_search_page_by_hearing_date(session, date, last_index):
                 return None
         except KeyError as e:
             logger.error("Unexpected Error in search request. Returned status code was 200, but processing failed")
-            logger.error(e)
+            logger.exception(e)
             raise e
     else:
         logger.debug(res)
@@ -47,7 +47,7 @@ def search_by_hearing_date(session, date):
     last_index = 0
     while not last_page:
         count += 1
-        if count and count % 10 == 0:
+        if count and count % 50 == 0:
             logger.debug(f"Searching court cases after last index: {last_index}")
         results, last_page, last_index = get_search_page_by_hearing_date(session, date, last_index)
         all_results += results
