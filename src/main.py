@@ -14,6 +14,7 @@ logging.basicConfig(
     # filemode='w',
     # format='%(name)s - %(levelname)s - %(message)s'
 )
+logging.getLogger('requests_cache').setLevel('INFO')
 
 logger = logging.getLogger(__name__)
 
@@ -29,7 +30,7 @@ end_date = date(2020, 8, 9)
 
 logger.info(f"Scraping start from {start_date} to {end_date}")
 for d in date_range(start_date, end_date): # ! Last day not included
-    logger.info(f"\nScraping court cases for date {d}")
+    logger.info(f"Scraping court cases for date {d}")
     start_time = time.time()
     results = search_by_hearing_date(session, d.strftime("%m/%d/%Y"))
     logger.info(f"Found a total of {len(results)} search results for date {d}")
