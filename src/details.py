@@ -19,6 +19,12 @@ def get_case_details(session, fips, court_level, division_type, case_number):
         if result["context"]["entity"]["status"] == "SUCCESS":
             return result["context"]["entity"]["payload"]
         else:
-            raise Exception()
+            logger.debug(res)
+            logger.debug(res.status_code)
+            logger.debug(res.json())
+            raise Exception("Details response indicated as FAILURE. PLease inspect the above.")
     else:
-        raise Exception()
+        logger.debug(res)
+        logger.debug(res.status_code)
+        logger.debug(res.json())
+        raise Exception("Details response status code is not 200. Please inspect the above.")

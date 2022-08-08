@@ -32,8 +32,12 @@ def get_search_page_by_hearing_date(session, date, last_index):
         except KeyError as e:
             logger.error("Unexpected Error in search request. Returned status code was 200, but processing failed")
             logger.error(e)
+            raise e
     else:
-        raise Exception()
+        logger.debug(res)
+        logger.debug(res.status_code)
+        logger.debug(res.json())
+        raise Exception("Details response status code is not 200. Please inspect the above.")
 
 def search_by_hearing_date(session, date):
     count = 0
