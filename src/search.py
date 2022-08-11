@@ -50,7 +50,8 @@ def search_by_hearing_date(session, date):
         if count and count % 50 == 0:
             logger.debug(f"Searching court cases after last index: {last_index}")
         results, last_page, last_index = get_search_page_by_hearing_date(session, date, last_index)
-        all_results += results
+        if results:
+            all_results += results
         page += 1
     logger.debug(f"Getting all search results for date {date} required {count} network requests")
     return all_results    
