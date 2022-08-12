@@ -11,7 +11,7 @@ def accept_terms_and_conditions():
     # TODO Get session creation out of here!
     session = requests_cache.CachedSession(
         'demo_cache1',
-        expire_after=timedelta(days=3),
+        expire_after=timedelta(days=30),
         allowable_codes=[200, 400], # ! The API can return 200 responses on failures
         allowable_methods=["POST"],  # Excludes GET request to accept terms and conditions
         # urls_expire_after={
@@ -46,11 +46,23 @@ def format_case_details(case_details):
     participants = case_details["caseParticipant"]
     defendant = None
     complainant = None
+    defendant_attorney = None
     data = OrderedDict()
     try:
+        hearings = case_details.get("caseHearing")
+        last_hearing = hearings[0]
+        search_date = case_details.get("hearingDate", "").split(",")[0]
+        current_hearing = filter(lambda h: h.get("courtActivityScheduleDay", {}).get("scheduleDate") == search_date, hearings)
+        current_hearing = list(current_hearing)[0]
+        defendant_attorney = None
+        sentencing_information = case_details.get("sentencingInformation", {})
+        # sentence_time = # Parse years, months, days
         for p in participants:
             if p["participantCode"] == "DEF":
                 defendant = p
+                defendant_attorney = defendant.get("attorneyDetails", "")
+                if defendant_attorney:
+                    defendant_attorney = defendant_attorney[0].get("attorneyName", {}).get("fullName")
                 addr = defendant["contactInformation"].get("primaryAddress", None)
                 def_address = ""
                 if addr is not None:
@@ -60,50 +72,55 @@ def format_case_details(case_details):
         data["Filed Date"] = case_details["caseCharge"]["chargeFilingDate"] # !
         data["Locality"] = case_details["locality"].get("localityName", case_details.get("localityCode", None))
         data["Name"] = case_details["name"]
-        data["Status"] = None # !
-        data["Defense Attorney"] = None # !
+        data["Defendant Status"] = None # ! Where is it?
+        data["Defense Attorney"] = defendant_attorney
         data["Address"] = def_address # TODO deconstruct into city/state/postalcode
         data["AKA1"] = None
         data["AKA2"] = None
         data["Gender"] = defendant["personalDetails"].get("gender", None) # TODO transform
         data["Race"] = defendant["personalDetails"].get("race", None) # TODO transformr
-        data["DOB"] = defendant["personalDetails"].get("maskedBirthDate", "") + "/****"
-        if data["DOB"] == "/****":
-            data["DOB"] == None
+        data["DOB"] = defendant["personalDetails"].get("maskedBirthDate", "")
+        if data["DOB"]:
+            data["DOB"] += "/****"
         data["Charge"] = case_details["chargeDesc"]
         data["Code Section"] = case_details["codeSection"]
         data["Case Type"] = case_details["caseType"] # ! To transform: Felony/Misdemeanor/Infraction/Capias/Show Cause
         data["Class"] = None
         data["Offense Date"] = case_details["offenseDate"]
-        data["Arrest Date"] = None
+        data["Arrest Date"] = case_details.get("caseCharge", {}).get("arrestDate")
+        data["Offense Date"] = case_details.get("caseCharge", {}).get("offenseDate")
         data["Complainant"] = None
         data["Amended Charge"] = None
         data["Amended Code"] = None
         data["Amended Case Type"] = None
-        data["Date"] = None
-        data["Time"] = None
-        data["Result"] = None
-        data["Hearing Type"] = None
+        data["Date"] = current_hearing.get("courtActivityScheduleDay", {}).get("scheduleDate")
+        data["Time"] = current_hearing.get("courtActivityScheduleDay", {}).get("scheduleDayStartTime", {}).get("time")
+        data["Result"] = current_hearing.get("hearingResult")
+        data["Hearing Type"] = current_hearing.get("hearingType")
         data["Courtroom"] = None
-        data["Plea"] = None
+        data["Plea"] = current_hearing.get("plea")
         data["Continuance Code"] = None
-        data["Final Disposition"] = None
-        data["Sentence Time"] = None
-        data["Sentence Suspended Time"] = None
-        data["Probation Type"] = None
-        data["Probation Time"] = None
-        data["Probation Starts"] = None
+        data["Final Disposition"] = case_details.get("disposition", {}).get("dispositionInfo", {}).get("dispositionText")
+        data["Disposition Date"] = case_details.get("disposition", {}).get("dispositionInfo", {}).get("dispositionDate")
+        data["Sentence Time"] = sentencing_information.get("sentence", {}).get("years") # ! To be parsed right
+        data["Sentence Suspended Time"] = sentencing_information.get("sentenceSuspended", {}).get("years")
+        data["Probation Type"] = case_details.get("disposition", {}).get("probationInfo", {}).get("probationType")
+        data["Probation Starts"] = case_details.get("disposition", {}).get("probationInfo", {}).get("probationStart")
+        data["Probation Time"] = case_details.get("disposition", {}).get("probationInfo", {}).get("duration")
         data["Operator License Suspension Time"] = None
         data["Restriction Effective Date"] = None
         data["Operator License Restriction Codes"] = None
-        data["Fine"] = None
-        data["Costs"] = None
-        data["Fine/Costs Due"] = None
-        data["Fine/Costs Paid"] = None
-        data["Fine/Costs Paid Date"] = None
+        data["Fine"] = case_details.get("financialInformation", {}).get("fines", {}).get("amount", {}).get("decimal")
+        data["Costs"] = case_details.get("financialInformation", {}).get("costs", {}).get("amount", {}).get("decimal")
+        data["Fine/Costs Due"] = case_details.get("financialInformation", {}).get("fines", {}).get("amount", {}).get("decimal") # ! separate fines and costs
+        data["Fine/Costs Paid"] = case_details.get("financialInformation", {}).get("fines", {}).get("paidIndicator") # ! separate costs and fines
+        data["Fine Paid Date"] = case_details.get("financialInformation", {}).get("fines", {}).get("paidDate", {}).get("date")
+        data["Costs Paid Date"] = case_details.get("financialInformation", {}).get("costs", {}).get("paidDate", {}).get("date")
         data["VASAP"] = None
-        data["searchDate"] = None
+        data["searchDate"] = search_date
+        data["Traffic Fatality"] = case_details.get("dmvInformation", {}).get("trafficFatality")
         data["Court"] = get_court_name_by_fips(case_details["qualifiedFips"])
+        # data["pleadings"] = case_details["pleadingAndOrder"] # To Be saved separately
     except Exception as e:
         logger.error(f"Error during formatting of case {case_details['formattedCaseNumber']}")
         logger.exception(e)
