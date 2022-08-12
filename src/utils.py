@@ -67,7 +67,8 @@ def format_case_details(case_details):
                 def_address = ""
                 if addr is not None:
                     def_address = f"{addr.get('locationCityName', '')} {addr.get('locationState', '')}, {addr.get('locationPostalCode', '')}"
-
+            if p["participantCode"] == "CMP":
+                complainant = p
         data["Case Number"] = case_details["formattedCaseNumber"]
         data["Filed Date"] = case_details["caseCharge"]["chargeFilingDate"] # !
         data["Locality"] = case_details["locality"].get("localityName", case_details.get("localityCode", None))
@@ -75,8 +76,8 @@ def format_case_details(case_details):
         data["Defendant Status"] = None # ! Where is it?
         data["Defense Attorney"] = defendant_attorney
         data["Address"] = def_address # TODO deconstruct into city/state/postalcode
-        data["AKA1"] = None
-        data["AKA2"] = None
+        data["AKA1"] = defendant.get("contactInformation", {}).get("additionalName", [{}, {}])[0].get("additionalName")
+        data["AKA2"] = defendant.get("contactInformation", {}).get("additionalName", [{}, {}])[1].get("additionalName")
         data["Gender"] = defendant["personalDetails"].get("gender", None) # TODO transform
         data["Race"] = defendant["personalDetails"].get("race", None) # TODO transformr
         data["DOB"] = defendant["personalDetails"].get("maskedBirthDate", "")
@@ -89,17 +90,17 @@ def format_case_details(case_details):
         data["Offense Date"] = case_details["offenseDate"]
         data["Arrest Date"] = case_details.get("caseCharge", {}).get("arrestDate")
         data["Offense Date"] = case_details.get("caseCharge", {}).get("offenseDate")
-        data["Complainant"] = None
-        data["Amended Charge"] = None
-        data["Amended Code"] = None
-        data["Amended Case Type"] = None
+        data["Complainant"] = complainant.get("contactInformation", {}).get("fullName")
+        data["Amended Charge"] = case_details.get("caseCharge", {}).get("amendedCharge", {}).get("chargeDescriptionText")
+        data["Amended Code"] = case_details.get("caseCharge", {}).get("amendedCharge", {}).get("codeSection")
+        data["Amended Case Type"] = case_details.get("caseCharge", {}).get("amendedCharge", {}).get("caseTypeCode")
         data["Date"] = current_hearing.get("courtActivityScheduleDay", {}).get("scheduleDate")
         data["Time"] = current_hearing.get("courtActivityScheduleDay", {}).get("scheduleDayStartTime", {}).get("time")
         data["Result"] = current_hearing.get("hearingResult")
         data["Hearing Type"] = current_hearing.get("hearingType")
-        data["Courtroom"] = None
+        data["Courtroom"] = last_hearing.get("courtRoom")
         data["Plea"] = current_hearing.get("plea")
-        data["Continuance Code"] = None
+        data["Continuance Code"] = current_hearing.get("continuanceCode")
         data["Final Disposition"] = case_details.get("disposition", {}).get("dispositionInfo", {}).get("dispositionText")
         data["Disposition Date"] = case_details.get("disposition", {}).get("dispositionInfo", {}).get("dispositionDate")
         data["Sentence Time"] = sentencing_information.get("sentence", {}).get("years") # ! To be parsed right
