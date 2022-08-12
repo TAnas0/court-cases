@@ -15,7 +15,9 @@ logging.basicConfig(
     # filemode='w',
     # format='%(name)s - %(levelname)s - %(message)s'
 )
-logging.getLogger('requests_cache').setLevel('INFO')
+logging.getLogger('requests_cache').setLevel(logging.INFO)
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 logger = logging.getLogger(__name__)
 
