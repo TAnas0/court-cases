@@ -4,7 +4,7 @@ from datetime import date
 import logging
 import pandas as pd
 
-from utils import accept_terms_and_conditions, format_case_details, date_range
+from utils import accept_terms_and_conditions, format_case_details, date_range, merge_dictionaries, get_csv_path
 from search import search_by_hearing_date
 from details import get_case_details
 
@@ -33,6 +33,7 @@ end_date = date(2020, 2, 1)
 
 logger.info(f"Scraping start from {start_date} to {end_date}")
 for d in date_range(start_date, end_date): # ! Last day not included
+    csv_path = get_csv_path(d)
     logger.info(f"Scraping court cases for date {d}")
     start_time = time.time()
     results = search_by_hearing_date(session, d.strftime("%m/%d/%Y"))
@@ -56,7 +57,7 @@ for d in date_range(start_date, end_date): # ! Last day not included
                 path = f"output/{d.strftime('%Y')}/{d.strftime('%m')}/{d.strftime('%d')}.csv"
                 df = pd.DataFrame(details)
                 df.to_csv(
-                    f"{path}",
+                    f"{csv_path}",
                     index=False,
                     header=False,
                     mode="a",

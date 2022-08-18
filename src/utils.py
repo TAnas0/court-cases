@@ -132,3 +132,7 @@ def date_range(start_date, end_date):
     # https://stackoverflow.com/a/1060330/4017403
     for n in range(int((end_date - start_date).days)):
         yield start_date + timedelta(n)
+
+
+def get_csv_path(d):
+    return f"output/{d.strftime('%Y')}/{d.strftime('%m')}/{d.strftime('%d')}.csv"
