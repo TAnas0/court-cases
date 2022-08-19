@@ -128,7 +128,8 @@ def format_case_details(case_details):
         data["Court"] = get_court_name_by_fips(case_details["qualifiedFips"])
 
         data["Alcohol Safety Action Code"] = case_details.get("dmvInformation", {}).get("alcoholSafetyActionCode")
-        # data["pleadings"] = case_details["pleadingAndOrder"] # To Be saved separately
+        data["url"] = get_court_case_url(case_details)
+        # data["pleadings"] = case_details["pleadingAndOrder"] # ! To Be saved separately
     except Exception as e:
         logger.error(f"Error during formatting of case {case_details['formattedCaseNumber']}")
         logger.exception(e)
@@ -143,3 +144,6 @@ def date_range(start_date, end_date):
 
 def get_csv_path(d):
     return f"output/{d.strftime('%Y')}/{d.strftime('%m')}/{d.strftime('%d')}.csv"
+
+def get_court_case_url(case):
+    return f"https://eapps.courts.state.va.us/ocis/details;fromOcis=true;fullcaseNumber={case['qualifiedFips']}{case['divisionType']}{case['caseNumber']}"
