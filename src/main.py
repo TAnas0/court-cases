@@ -37,8 +37,8 @@ def scrape_day_court_cases(session, date):
     csv_path = get_csv_path(date)
     start_time = time.time()
     results = search_by_hearing_date(session, date.strftime("%m/%d/%Y"))
-    logger.info(f"Found a total of {len(results)} search results for date {d}")
-    logger.info(f"Getting search results of date {d} took {(time.time() - start_time)/60} minutes")
+    logger.info(f"Found a total of {len(results)} search results for date {date}")
+    logger.info(f"Getting search results of date {date} took {(time.time() - start_time)/60} minutes")
 
     start_time = time.time()
     details = []
@@ -86,13 +86,15 @@ def prepare_csv_file_location(date): # TODO rename
         previous_results = pd.read_csv(csv_path)
         # TODO handle cache of a day
     except FileNotFoundError:
-        logger.info(f"No scraped data found for date {d}. Creating CSV file with header...")
+        logger.info(f"No scraped data found for date {date}. Creating CSV file with header...")
         with open(csv_path, "w") as f:
             sample_court_case = get_sample_court_case(session)
             f.write(f"{','.join(list(sample_court_case.keys()))}\n")
             return
 
 logger.info(f"Scraping start from {start_date} to {end_date}")
-for d in date_range(start_date, end_date): # ! Last day not included
-    prepare_csv_file_location(d)
-    scrape_day_court_cases(session, d)
+
+if __name__ == "__main__":
+    for d in date_range(start_date, end_date): # ! Last day not included
+        prepare_csv_file_location(d)
+        scrape_day_court_cases(session, d)
