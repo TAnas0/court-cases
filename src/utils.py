@@ -3,6 +3,8 @@ from datetime import timedelta
 import logging
 import requests_cache
 from constants.main import courts
+from details import get_case_details
+from search import get_search_page_by_hearing_date
 
 
 logger = logging.getLogger(__name__)
@@ -67,7 +69,7 @@ def format_case_details(case_details):
                     defendant_attorney = defendant_attorney[0].get("attorneyName", {}).get("fullName")
                 addr = defendant["contactInformation"].get("primaryAddress", None)
                 def_address = ""
-                if addr is not None:
+                if addr:
                     def_address = f"{addr.get('locationCityName', '')} {addr.get('locationState', '')}, {addr.get('locationPostalCode', '')}"
             if p["participantCode"] == "CMP":
                 complainant = p
@@ -113,7 +115,7 @@ def format_case_details(case_details):
         data["Probation Type"] = case_details.get("disposition", {}).get("probationInfo", {}).get("probationType")
         data["Probation Starts"] = case_details.get("disposition", {}).get("probationInfo", {}).get("probationStart")
         data["Probation Time"] = case_details.get("disposition", {}).get("probationInfo", {}).get("duration")
-        data["Operator License Suspension Time"] = case_details.get("dmvInformation", {}).get("driverLicense", {}).get("licenseLoss", {}) # ! format date
+        data["Operator License Suspension Time"] = case_details.get("dmvInformation", {}).get("driverLicense", {}).get("licenseLoss")
         data["Restriction Effective Date"] = case_details.get("dmvInformation", {}).get("driverLicense", {}).get("licenseRestrictions", {}).get("startDate")
         data["Operator License Restriction Codes"] = case_details.get("dmvInformation", {}).get("driverLicense", {}).get("licenseLoss", {}).get("licenseSurrenderCode")
         data["Fine"] = case_details.get("financialInformation", {}).get("fines", {}).get("amount", {}).get("decimal")
@@ -147,3 +149,16 @@ def get_csv_path(d):
 
 def get_court_case_url(case):
     return f"https://eapps.courts.state.va.us/ocis/details;fromOcis=true;fullcaseNumber={case['qualifiedFips']}{case['divisionType']}{case['caseNumber']}"
+
+def get_sample_court_case(session):
+    """
+    Gets a sample court case object
+    Used to determine columns of the CSVs/Pandas
+    """
+    search = get_search_page_by_hearing_date(session, "01/01/2021", 0)
+    search_results = search[0]
+    case = search_results[0]
+    # Get case details of the first case in the search results
+    case_details = get_case_details(session, "770C", "C", "R", "2100000100")
+    # case_details = get_case_details(session, case["qualifiedFips"], case["courtLevel"], case["divisionType"], case["caseNumber"])
+    return format_case_details(case_details | case)

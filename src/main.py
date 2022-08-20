@@ -8,7 +8,6 @@ from utils import (
     accept_terms_and_conditions,
     format_case_details,
     date_range,
-    merge_dictionaries,
     get_csv_path,
     get_sample_court_case,
 )
