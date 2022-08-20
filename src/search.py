@@ -28,7 +28,8 @@ def get_search_page_by_hearing_date(session, date, last_index):
             if res:
                 return res.get("searchResults", None), res.get("hasMoreRecords", None) != "Y", res.get("lastResponseIndex", None)
             else:
-                return None
+                logger.info(f"Error response getting search page for date {date} and last_index {last_index}")
+                return None, None, None
         except KeyError as e:
             logger.error("Unexpected Error in search request. Returned status code was 200, but processing failed")
             logger.exception(e)
