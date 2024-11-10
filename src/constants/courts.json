@@ -1,185 +1,5 @@
 [
   {
-    "courtTypeCode": "J",
-    "fipsCode": "043",
-    "fipsCode4": "043J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-05-21T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "069",
-    "fipsCode4": "069J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-05-21T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "087",
-    "fipsCode4": "087J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2012-03-10T00:00:00-05:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "153",
-    "fipsCode4": "153J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-05-21T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "165",
-    "fipsCode4": "165J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-11-05T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "171",
-    "fipsCode4": "171J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-05-21T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "173",
-    "fipsCode4": "173J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-08-27T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "187",
-    "fipsCode4": "187J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-05-21T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "191",
-    "fipsCode4": "191J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-08-27T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "520",
-    "fipsCode4": "520J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-08-27T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "550",
-    "fipsCode4": "550J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-10-15T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "650",
-    "fipsCode4": "650J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-10-15T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "700",
-    "fipsCode4": "700J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-10-15T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "710",
-    "fipsCode4": "710J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-10-15T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "740",
-    "fipsCode4": "740J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-10-15T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "760",
-    "fipsCode4": "760J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-04-03T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "810",
-    "fipsCode4": "810J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-10-15T00:00:00-04:00"
-  },
-  {
-    "courtTypeCode": "J",
-    "fipsCode": "840",
-    "fipsCode4": "840J",
-    "ocisCivilOptOut": "N",
-    "ocisCriminalOptOut": "N",
-    "ocisEnabled": "Y",
-    "vdbcOptInFlg": "Y",
-    "javaConversionDt": "2011-05-21T00:00:00-04:00"
-  },
-  {
     "courtTypeCode": "C",
     "fipsCode": "001",
     "courtName": "Accomack Circuit Court",
@@ -189,6 +9,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-02-02T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "001",
+    "courtName": "ACCOMACK COUNTY J&DR COURT",
+    "fipsCode4": "001J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -213,6 +44,17 @@
     "javaConversionDt": "2010-12-15T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "003",
+    "courtName": "ALBEMARLE COUNTY J&DR COURT",
+    "fipsCode4": "003J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "003",
     "courtName": "Albemarle General District Court",
@@ -230,8 +72,9 @@
     "fipsCode4": "510C",
     "ocisCivilOptOut": "N",
     "ocisCriminalOptOut": "N",
-    "ocisEnabled": "N",
-    "vdbcOptInFlg": "N"
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "N",
+    "javaConversionDt": "2024-09-01T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -245,6 +88,17 @@
     "javaConversionDt": "2019-08-11T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "510",
+    "courtName": "ALEXANDRIA J&DR COURT",
+    "fipsCode4": "510J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-01-22T00:00:00-05:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "005",
     "courtName": "Alleghany Circuit Court",
@@ -254,6 +108,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-09-22T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "005",
+    "courtName": "ALLEGHANY COUNTY J&DR COURT",
+    "fipsCode4": "005J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -278,6 +143,17 @@
     "javaConversionDt": "2011-03-16T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "007",
+    "courtName": "AMELIA COUNTY J&DR COURT",
+    "fipsCode4": "007J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "007",
     "courtName": "Amelia General District Court",
@@ -300,6 +176,17 @@
     "javaConversionDt": "2011-04-06T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "009",
+    "courtName": "AMHERST COUNTY J&DR COURT",
+    "fipsCode4": "009J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-04-03T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "009",
     "courtName": "Amherst General District Court",
@@ -320,6 +207,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-01-19T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "011",
+    "courtName": "APPOMATTOX COUNTY J&DR COURT",
+    "fipsCode4": "011J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-04-03T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -355,6 +253,17 @@
     "javaConversionDt": "2019-07-21T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "013",
+    "courtName": "ARLINGTON J&DR COURT",
+    "fipsCode4": "013J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "015",
     "courtName": "Augusta Circuit Court",
@@ -363,6 +272,18 @@
     "ocisCriminalOptOut": "N",
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "015",
+    "courtName": "AUGUSTA COUNTY J&DR COURT",
+    "fipsCode4": "015J",
+    "publicAccessDate": "2013-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -388,6 +309,17 @@
     "javaConversionDt": "2011-03-02T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "017",
+    "courtName": "BATH COUNTY J&DR COURT",
+    "fipsCode4": "017J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "017",
     "courtName": "Bath General District Court",
@@ -408,6 +340,18 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-04-06T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "019",
+    "courtName": "BEDFORD COUNTY J&DR COURT",
+    "fipsCode4": "019J",
+    "publicAccessDate": "2017-01-02T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-04-03T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -432,6 +376,18 @@
     "javaConversionDt": "2010-10-23T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "021",
+    "courtName": "BLAND COUNTY J&DR COURT",
+    "fipsCode4": "021J",
+    "publicAccessDate": "2023-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "021",
     "courtName": "Bland General District Court",
@@ -452,6 +408,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "N",
     "javaConversionDt": "2010-09-22T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "023",
+    "courtName": "BOTETOURT COUNTY J&DR COURT",
+    "fipsCode4": "023J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -486,6 +453,17 @@
     "javaConversionDt": "2019-09-21T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "520",
+    "courtName": "BRISTOL J&DR COURT",
+    "fipsCode4": "520J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "025",
     "courtName": "Brunswick Circuit Court",
@@ -495,6 +473,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-03-30T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "025",
+    "courtName": "BRUNSWICK COUNTY J&DR COURT",
+    "fipsCode4": "025J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -519,6 +508,17 @@
     "javaConversionDt": "2010-10-23T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "027",
+    "courtName": "BUCHANAN COUNTY J&DR COURT",
+    "fipsCode4": "027J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "027",
     "courtName": "Buchanan General District Court",
@@ -539,6 +539,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-01-19T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "029",
+    "courtName": "BUCKINGHAM COUNTY J&DR COURT",
+    "fipsCode4": "029J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -574,6 +585,18 @@
     "javaConversionDt": "2019-02-24T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "530",
+    "courtName": "BUENA VISTA J&DR COURT",
+    "fipsCode4": "530J",
+    "publicAccessDate": "2017-07-28T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "031",
     "courtName": "Campbell Circuit Court",
@@ -583,6 +606,18 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-04-06T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "031",
+    "courtName": "CAMPBELL COUNTY J&DR COURT",
+    "fipsCode4": "031J",
+    "publicAccessDate": "2021-03-03T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-04-03T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -607,6 +642,17 @@
     "javaConversionDt": "2010-10-02T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "033",
+    "courtName": "CAROLINE COUNTY J&DR COURT",
+    "fipsCode4": "033J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "033",
     "courtName": "Caroline General District Court",
@@ -627,6 +673,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-10-23T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "035",
+    "courtName": "CARROLL COUNTY J&DR COURT",
+    "fipsCode4": "035J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -651,6 +708,18 @@
     "javaConversionDt": "2010-08-22T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "036",
+    "courtName": "CHARLES CITY COUNTY J&DR COURT",
+    "fipsCode4": "036J",
+    "publicAccessDate": "2023-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "036",
     "courtName": "Charles City General District Court",
@@ -671,6 +740,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-01-26T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "037",
+    "courtName": "CHARLOTTE COUNTY J&DR COURT",
+    "fipsCode4": "037J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -706,6 +786,17 @@
     "javaConversionDt": "2019-07-21T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "540",
+    "courtName": "CHARLOTTESVILLE J&DR COURT",
+    "fipsCode4": "540J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "550",
     "courtName": "Chesapeake Circuit Court",
@@ -728,6 +819,17 @@
     "javaConversionDt": "2019-03-09T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "550",
+    "courtName": "CHESAPEAKE J&DR COURT",
+    "fipsCode4": "550J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "041",
     "courtName": "Chesterfield Circuit Court",
@@ -738,6 +840,18 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-10-23T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "041",
+    "courtName": "CHESTERFIELD COUNTY J&DR COURT",
+    "fipsCode4": "041J",
+    "publicAccessDate": "2017-07-28T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -762,6 +876,17 @@
     "javaConversionDt": "2010-09-08T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "043",
+    "courtName": "CLARKE COUNTY J&DR COURT",
+    "fipsCode4": "043J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "043",
     "courtName": "Clarke General District Court",
@@ -782,6 +907,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "N",
     "javaConversionDt": "2011-02-09T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "560",
+    "courtName": "CLIFTON FORGE J&DR COURT",
+    "fipsCode4": "560J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-19T00:00:00-05:00"
   },
   {
     "courtTypeCode": "C",
@@ -806,6 +942,17 @@
     "javaConversionDt": "2019-04-28T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "570",
+    "courtName": "COLONIAL HEIGHTS J&DR COURT",
+    "fipsCode4": "570J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-04-03T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "045",
     "courtName": "Craig Circuit Court",
@@ -815,6 +962,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "N",
     "javaConversionDt": "2010-10-06T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "045",
+    "courtName": "CRAIG COUNTY J&DR COURT",
+    "fipsCode4": "045J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -839,6 +997,17 @@
     "javaConversionDt": "2010-12-15T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "047",
+    "courtName": "CULPEPER COUNTY J&DR COURT",
+    "fipsCode4": "047J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "047",
     "courtName": "Culpeper General District Court",
@@ -859,6 +1028,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-01-19T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "049",
+    "courtName": "CUMBERLAND COUNTY J&DR COURT",
+    "fipsCode4": "049J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -894,6 +1074,17 @@
     "javaConversionDt": "2019-08-18T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "590",
+    "courtName": "DANVILLE J&DR COURT",
+    "fipsCode4": "590J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "051",
     "courtName": "Dickenson Circuit Court",
@@ -902,6 +1093,17 @@
     "ocisCriminalOptOut": "N",
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "051",
+    "courtName": "DICKENSON COUNTY J&DR COURT",
+    "fipsCode4": "051J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -926,6 +1128,17 @@
     "javaConversionDt": "2011-03-23T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "053",
+    "courtName": "DINWIDDIE COUNTY J&DR COURT",
+    "fipsCode4": "053J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "053",
     "courtName": "Dinwiddie General District Court",
@@ -948,6 +1161,17 @@
     "javaConversionDt": "2018-12-12T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "595",
+    "courtName": "EMPORIA J&DR COURT",
+    "fipsCode4": "595J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "057",
     "courtName": "Essex Circuit Court",
@@ -957,6 +1181,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-10-06T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "057",
+    "courtName": "ESSEX COUNTY J&DR COURT",
+    "fipsCode4": "057J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1002,6 +1237,18 @@
     "javaConversionDt": "2019-09-28T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "059",
+    "courtName": "FAIRFAX COUNTY J&DR COURT",
+    "fipsCode4": "059J",
+    "publicAccessDate": "2017-03-20T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2012-03-10T00:00:00-05:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "610",
     "courtName": "Falls Church General District Court",
@@ -1013,6 +1260,17 @@
     "javaConversionDt": "2019-02-24T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "610",
+    "courtName": "FALLS CHURCH J&DR COURT",
+    "fipsCode4": "610J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "061",
     "courtName": "Fauquier Circuit Court",
@@ -1022,6 +1280,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-08-11T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "061",
+    "courtName": "FAUQUIER COUNTY J&DR COURT",
+    "fipsCode4": "061J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1046,6 +1315,17 @@
     "javaConversionDt": "2010-10-27T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "063",
+    "courtName": "FLOYD COUNTY J&DR COURT",
+    "fipsCode4": "063J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "063",
     "courtName": "Floyd General District Court",
@@ -1066,6 +1346,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-01-12T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "065",
+    "courtName": "FLUVANNA COUNTY J&DR COURT",
+    "fipsCode4": "065J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1101,6 +1392,18 @@
     "javaConversionDt": "2019-02-02T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "620",
+    "courtName": "FRANKLIN CITY J&DR COURT",
+    "fipsCode4": "620J",
+    "publicAccessDate": "2017-07-28T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "067",
     "courtName": "Franklin County General District Court",
@@ -1112,6 +1415,17 @@
     "javaConversionDt": "2019-08-18T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "067",
+    "courtName": "FRANKLIN COUNTY J&DR COURT",
+    "fipsCode4": "067J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "069",
     "courtName": "Frederick Circuit Court",
@@ -1121,6 +1435,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-10-16T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "069",
+    "courtName": "FREDERICK COUNTY J&DR COURT",
+    "fipsCode4": "069J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1156,6 +1481,17 @@
     "javaConversionDt": "2019-05-19T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "630",
+    "courtName": "FREDERICKSBURG J&DR COURT",
+    "fipsCode4": "630J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "640",
     "courtName": "Galax General District Court",
@@ -1167,6 +1503,17 @@
     "javaConversionDt": "2019-02-24T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "640",
+    "courtName": "GALAX J&DR COURT",
+    "fipsCode4": "640J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "071",
     "courtName": "Giles Circuit Court",
@@ -1176,6 +1523,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-10-27T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "071",
+    "courtName": "GILES COUNTY J&DR COURT",
+    "fipsCode4": "071J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1200,6 +1558,18 @@
     "javaConversionDt": "2010-09-22T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "073",
+    "courtName": "GLOUCESTER COUNTY J&DR COURT",
+    "fipsCode4": "073J",
+    "publicAccessDate": "2017-09-01T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-03-05T00:00:00-05:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "073",
     "courtName": "Gloucester General District Court",
@@ -1220,6 +1590,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-01-12T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "075",
+    "courtName": "GOOCHLAND COUNTY J&DR COURT",
+    "fipsCode4": "075J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1244,6 +1625,17 @@
     "javaConversionDt": "2010-10-23T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "077",
+    "courtName": "GRAYSON COUNTY J&DR COURT",
+    "fipsCode4": "077J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "077",
     "courtName": "Grayson General District Court",
@@ -1264,6 +1656,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-12-15T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "079",
+    "courtName": "GREENE COUNTY J&DR COURT",
+    "fipsCode4": "079J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1288,6 +1691,17 @@
     "javaConversionDt": "2011-03-30T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "081",
+    "courtName": "GREENSVILLE COUNTY J&DR COURT",
+    "fipsCode4": "081J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "081",
     "courtName": "Greensville General District Court",
@@ -1308,6 +1722,18 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-01-26T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "083",
+    "courtName": "HALIFAX COUNTY J&DR COURT",
+    "fipsCode4": "083J",
+    "publicAccessDate": "2022-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1343,6 +1769,18 @@
     "javaConversionDt": "2019-04-20T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "650",
+    "courtName": "HAMPTON J&DR COURT",
+    "fipsCode4": "650J",
+    "publicAccessDate": "2017-07-28T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "085",
     "courtName": "Hanover Circuit Court",
@@ -1353,6 +1791,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-10-02T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "085",
+    "courtName": "HANOVER COUNTY J&DR COURT",
+    "fipsCode4": "085J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1377,6 +1826,17 @@
     "javaConversionDt": "2019-05-19T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "165",
+    "courtName": "HARRISONBURG/ROCKINGHAM J&DR COURT",
+    "fipsCode4": "165J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "087",
     "courtName": "Henrico Circuit Court",
@@ -1387,6 +1847,18 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-03-26T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "087",
+    "courtName": "HENRICO COUNTY J&DR COURT",
+    "fipsCode4": "087J",
+    "publicAccessDate": "2017-07-28T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2012-03-10T00:00:00-05:00"
   },
   {
     "courtTypeCode": "G",
@@ -1411,6 +1883,17 @@
     "javaConversionDt": "2010-12-15T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "089",
+    "courtName": "HENRY COUNTY J&DR COURT",
+    "fipsCode4": "089J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "089",
     "courtName": "Henry General District Court",
@@ -1431,6 +1914,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-09-19T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "091",
+    "courtName": "HIGHLAND COUNTY J&DR COURT",
+    "fipsCode4": "091J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1466,6 +1960,17 @@
     "javaConversionDt": "2019-02-02T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "670",
+    "courtName": "HOPEWELL J&DR COURT",
+    "fipsCode4": "670J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "093",
     "courtName": "Isle of Wight Circuit Court",
@@ -1475,6 +1980,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-10-16T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "093",
+    "courtName": "ISLE OF WIGHT COUNTY J&DR COURT",
+    "fipsCode4": "093J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1499,6 +2015,17 @@
     "javaConversionDt": "2010-08-22T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "097",
+    "courtName": "KING AND QUEEN COUNTY J&DR COURT",
+    "fipsCode4": "097J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-03-05T00:00:00-05:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "097",
     "courtName": "King and Queen General District Court",
@@ -1519,6 +2046,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "N",
     "javaConversionDt": "2010-10-23T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "099",
+    "courtName": "KING GEORGE COUNTY J&DR COURT",
+    "fipsCode4": "099J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1543,6 +2081,17 @@
     "javaConversionDt": "2010-09-22T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "101",
+    "courtName": "KING WILLIAM COUNTY J&DR COURT",
+    "fipsCode4": "101J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-03-05T00:00:00-05:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "101",
     "courtName": "King William General District Court",
@@ -1565,6 +2114,17 @@
     "javaConversionDt": "2010-10-06T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "103",
+    "courtName": "LANCASTER COUNTY J&DR COURT",
+    "fipsCode4": "103J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "103",
     "courtName": "Lancaster General District Court",
@@ -1584,6 +2144,17 @@
     "ocisCriminalOptOut": "N",
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "105",
+    "courtName": "LEE COUNTY J&DR COURT",
+    "fipsCode4": "105J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1608,6 +2179,18 @@
     "javaConversionDt": "2019-08-24T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "163",
+    "courtName": "LEXINGTON/ROCKBRIDGE J&DR COURT",
+    "fipsCode4": "163J",
+    "publicAccessDate": "2013-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "107",
     "courtName": "Loudoun Circuit Court",
@@ -1617,6 +2200,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "N",
     "javaConversionDt": "2011-03-16T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "107",
+    "courtName": "LOUDOUN COUNTY J&DR COURT",
+    "fipsCode4": "107J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-19T00:00:00-05:00"
   },
   {
     "courtTypeCode": "G",
@@ -1641,6 +2235,18 @@
     "javaConversionDt": "2011-01-12T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "109",
+    "courtName": "LOUISA COUNTY J&DR COURT",
+    "fipsCode4": "109J",
+    "publicAccessDate": "2018-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "109",
     "courtName": "Louisa General District Court",
@@ -1661,6 +2267,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-01-26T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "111",
+    "courtName": "LUNENBURG COUNTY J&DR COURT",
+    "fipsCode4": "111J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1696,6 +2313,17 @@
     "javaConversionDt": "2019-08-24T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "680",
+    "courtName": "LYNCHBURG J&DR COURT",
+    "fipsCode4": "680J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-04-03T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "113",
     "courtName": "Madison Circuit Court",
@@ -1705,6 +2333,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-12-15T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "113",
+    "courtName": "MADISON COUNTY J&DR COURT",
+    "fipsCode4": "113J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1740,6 +2379,17 @@
     "javaConversionDt": "2019-08-11T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "690",
+    "courtName": "MARTINSVILLE J&DR COURT",
+    "fipsCode4": "690J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "115",
     "courtName": "Mathews Circuit Court",
@@ -1750,6 +2400,18 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-08-25T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "115",
+    "courtName": "MATHEWS COUNTY J&DR COURT",
+    "fipsCode4": "115J",
+    "publicAccessDate": "2017-09-01T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-03-05T00:00:00-05:00"
   },
   {
     "courtTypeCode": "G",
@@ -1775,6 +2437,17 @@
     "javaConversionDt": "2011-01-26T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "117",
+    "courtName": "MECKLENBURG COUNTY J&DR COURT",
+    "fipsCode4": "117J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "117",
     "courtName": "Mecklenburg General District Court",
@@ -1797,6 +2470,18 @@
     "javaConversionDt": "2010-09-22T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "119",
+    "courtName": "MIDDLESEX COUNTY J&DR COURT",
+    "fipsCode4": "119J",
+    "publicAccessDate": "2017-09-01T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-03-05T00:00:00-05:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "119",
     "courtName": "Middlesex General District Court",
@@ -1817,6 +2502,29 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-10-27T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "121",
+    "courtName": "MONTGOMERY COUNTY J&DR COURT",
+    "fipsCode4": "121J",
+    "publicAccessDate": "2018-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "122",
+    "courtName": "MONTGOMERY-BLACKSBURG J&DR COURT",
+    "fipsCode4": "122J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1852,6 +2560,17 @@
     "javaConversionDt": "2011-03-09T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "125",
+    "courtName": "NELSON COUNTY J&DR COURT",
+    "fipsCode4": "125J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "125",
     "courtName": "Nelson General District Court",
@@ -1874,6 +2593,17 @@
     "javaConversionDt": "2010-08-22T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "127",
+    "courtName": "NEW KENT COUNTY J&DR COURT",
+    "fipsCode4": "127J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-03-05T00:00:00-05:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "127",
     "courtName": "New Kent General District Court",
@@ -1894,6 +2624,18 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-02-27T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "700",
+    "courtName": "NEWPORT NEWS J&DR COURT",
+    "fipsCode4": "700J",
+    "publicAccessDate": "2017-07-28T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -1984,6 +2726,17 @@
     "javaConversionDt": "2019-04-13T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "710",
+    "courtName": "NORFOLK J&DR COURT",
+    "fipsCode4": "710J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "131",
     "courtName": "Northampton Circuit Court",
@@ -1993,6 +2746,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-02-02T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "131",
+    "courtName": "NORTHAMPTON COUNTY J&DR COURT",
+    "fipsCode4": "131J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2017,6 +2781,17 @@
     "javaConversionDt": "2010-10-06T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "133",
+    "courtName": "NORTHUMBERLAND COUNTY J&DR COURT",
+    "fipsCode4": "133J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "133",
     "courtName": "Northumberland General District Court",
@@ -2037,6 +2812,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-03-16T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "135",
+    "courtName": "NOTTOWAY COUNTY J&DR COURT",
+    "fipsCode4": "135J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2061,6 +2847,17 @@
     "javaConversionDt": "2011-03-09T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "137",
+    "courtName": "ORANGE COUNTY J&DR COURT",
+    "fipsCode4": "137J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "137",
     "courtName": "Orange General District Court",
@@ -2083,6 +2880,17 @@
     "javaConversionDt": "2010-09-01T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "139",
+    "courtName": "PAGE COUNTY J&DR COURT",
+    "fipsCode4": "139J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "139",
     "courtName": "Page General District Court",
@@ -2103,6 +2911,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "N",
     "javaConversionDt": "2010-12-01T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "141",
+    "courtName": "PATRICK COUNTY J&DR COURT",
+    "fipsCode4": "141J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2138,6 +2957,17 @@
     "javaConversionDt": "2019-04-28T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "730",
+    "courtName": "PETERSBURG J&DR COURT",
+    "fipsCode4": "730J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "143",
     "courtName": "Pittsylvania Circuit Court",
@@ -2147,6 +2977,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-12-11T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "143",
+    "courtName": "PITTSYLVANIA COUNTY J&DR COURT",
+    "fipsCode4": "143J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2182,6 +3023,17 @@
     "javaConversionDt": "2019-03-16T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "740",
+    "courtName": "PORTSMOUTH J&DR COURT",
+    "fipsCode4": "740J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "145",
     "courtName": "Powhatan Circuit Court",
@@ -2191,6 +3043,18 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-03-16T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "145",
+    "courtName": "POWHATAN COUNTY J&DR COURT",
+    "fipsCode4": "145J",
+    "publicAccessDate": "2020-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2215,6 +3079,17 @@
     "javaConversionDt": "2011-01-19T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "147",
+    "courtName": "PRINCE EDWARD COUNTY J&DR COURT",
+    "fipsCode4": "147J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "147",
     "courtName": "Prince Edward General District Court",
@@ -2235,6 +3110,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-03-23T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "149",
+    "courtName": "PRINCE GEORGE COUNTY J&DR COURT",
+    "fipsCode4": "149J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2259,6 +3145,18 @@
     "javaConversionDt": "2010-09-01T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "153",
+    "courtName": "PRINCE WILLIAM COUNTY J&DR COURT",
+    "fipsCode4": "153J",
+    "publicAccessDate": "2017-07-28T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "153",
     "courtName": "Prince William General District Court",
@@ -2279,6 +3177,18 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-12-01T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "155",
+    "courtName": "PULASKI COUNTY J&DR COURT",
+    "fipsCode4": "155J",
+    "publicAccessDate": "2019-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2314,6 +3224,17 @@
     "javaConversionDt": "2019-02-24T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "750",
+    "courtName": "RADFORD J&DR COURT",
+    "fipsCode4": "750J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "157",
     "courtName": "Rappahannock Circuit Court",
@@ -2323,6 +3244,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-08-22T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "157",
+    "courtName": "RAPPAHANNOCK COUNTY J&DR COURT",
+    "fipsCode4": "157J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2358,6 +3290,17 @@
     "javaConversionDt": "2021-12-16T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "760",
+    "courtName": "RICHMOND CITY J&DR COURT",
+    "fipsCode4": "760J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-04-03T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "159",
     "courtName": "Richmond County Circuit Court",
@@ -2378,6 +3321,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2019-02-09T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "159",
+    "courtName": "RICHMOND COUNTY J&DR COURT",
+    "fipsCode4": "159J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2446,6 +3400,18 @@
     "javaConversionDt": "2019-08-18T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "770",
+    "courtName": "ROANOKE CITY J&DR COURT",
+    "fipsCode4": "770J",
+    "publicAccessDate": "2020-07-01T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "161",
     "courtName": "Roanoke County Circuit Court",
@@ -2466,6 +3432,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2019-08-18T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "161",
+    "courtName": "ROANOKE COUNTY J&DR COURT",
+    "fipsCode4": "161J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2010-12-11T00:00:00-05:00"
   },
   {
     "courtTypeCode": "C",
@@ -2501,6 +3478,17 @@
     "javaConversionDt": "2010-10-23T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "167",
+    "courtName": "RUSSELL COUNTY J&DR COURT",
+    "fipsCode4": "167J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-29T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "167",
     "courtName": "Russell General District Court",
@@ -2534,6 +3522,17 @@
     "javaConversionDt": "2019-02-09T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "775",
+    "courtName": "SALEM J&DR COURT",
+    "fipsCode4": "775J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "169",
     "courtName": "Scott Circuit Court",
@@ -2542,6 +3541,17 @@
     "ocisCriminalOptOut": "N",
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "169",
+    "courtName": "SCOTT COUNTY J&DR COURT",
+    "fipsCode4": "169J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2566,6 +3576,17 @@
     "javaConversionDt": "2010-09-01T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "171",
+    "courtName": "SHENANDOAH COUNTY J&DR COURT",
+    "fipsCode4": "171J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "171",
     "courtName": "Shenandoah General District Court",
@@ -2586,6 +3607,17 @@
     "ocisCriminalOptOut": "N",
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "173",
+    "courtName": "SMYTH COUNTY J&DR COURT",
+    "fipsCode4": "173J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2610,6 +3642,18 @@
     "javaConversionDt": "2011-03-02T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "175",
+    "courtName": "SOUTHAMPTON COUNTY J&DR COURT",
+    "fipsCode4": "175J",
+    "publicAccessDate": "2017-07-28T00:00:00-04:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "175",
     "courtName": "Southampton General District Court",
@@ -2632,6 +3676,17 @@
     "javaConversionDt": "2010-10-02T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "177",
+    "courtName": "SPOTSYLVANIA COUNTY J&DR COURT",
+    "fipsCode4": "177J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "177",
     "courtName": "Spotsylvania General District Court",
@@ -2652,6 +3707,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-10-02T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "179",
+    "courtName": "STAFFORD COUNTY J&DR COURT",
+    "fipsCode4": "179J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2687,6 +3753,18 @@
     "javaConversionDt": "2019-08-24T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "790",
+    "courtName": "STAUNTON J&DR COURT",
+    "fipsCode4": "790J",
+    "publicAccessDate": "2013-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "800",
     "courtName": "Suffolk Circuit Court",
@@ -2710,6 +3788,17 @@
     "javaConversionDt": "2019-03-09T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "800",
+    "courtName": "SUFFOLK J&DR COURT",
+    "fipsCode4": "800J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "181",
     "courtName": "Surry Circuit Court",
@@ -2719,6 +3808,18 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2011-03-23T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "181",
+    "courtName": "SURRY COUNTY J&DR COURT",
+    "fipsCode4": "181J",
+    "publicAccessDate": "2013-01-02T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-17T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2743,6 +3844,17 @@
     "javaConversionDt": "2011-03-30T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "183",
+    "courtName": "SUSSEX COUNTY J&DR COURT",
+    "fipsCode4": "183J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "183",
     "courtName": "Sussex General District Court",
@@ -2763,6 +3875,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-01-23T00:00:00-05:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "185",
+    "courtName": "TAZEWELL COUNTY J&DR COURT",
+    "fipsCode4": "185J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-01-22T00:00:00-05:00"
   },
   {
     "courtTypeCode": "G",
@@ -2798,6 +3921,18 @@
     "javaConversionDt": "2019-01-07T00:00:00-05:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "810",
+    "courtName": "VIRGINIA BEACH J&DR COURT",
+    "fipsCode4": "810J",
+    "publicAccessDate": "2019-01-01T00:00:00-05:00",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-10-15T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "187",
     "courtName": "Warren Circuit Court",
@@ -2807,6 +3942,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2010-10-16T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "187",
+    "courtName": "WARREN COUNTY J&DR COURT",
+    "fipsCode4": "187J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2828,6 +3974,17 @@
     "ocisCriminalOptOut": "N",
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "N"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "191",
+    "courtName": "WASHINGTON COUNTY J&DR COURT",
+    "fipsCode4": "191J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2863,6 +4020,17 @@
     "javaConversionDt": "2019-08-24T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "820",
+    "courtName": "WAYNESBORO J&DR COURT",
+    "fipsCode4": "820J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-11-05T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "193",
     "courtName": "Westmoreland Circuit Court",
@@ -2872,6 +4040,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "N",
     "javaConversionDt": "2010-10-06T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "193",
+    "courtName": "WESTMORELAND COUNTY J&DR COURT",
+    "fipsCode4": "193J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2906,6 +4085,17 @@
     "javaConversionDt": "2019-04-20T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "830",
+    "courtName": "WILLIAMSBURG/JAMES CITY COUNTY J&DR COURT",
+    "fipsCode4": "830J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-03-05T00:00:00-05:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "840",
     "courtName": "Winchester Circuit Court",
@@ -2928,6 +4118,17 @@
     "javaConversionDt": "2019-09-08T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "840",
+    "courtName": "WINCHESTER J&DR COURT",
+    "fipsCode4": "840J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-05-21T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "C",
     "fipsCode": "195",
     "courtName": "Wise Circuit Court",
@@ -2936,6 +4137,17 @@
     "ocisCriminalOptOut": "N",
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "195",
+    "courtName": "WISE COUNTY/ CITY OF NORTON J&DR COURT",
+    "fipsCode4": "195J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
   },
   {
     "courtTypeCode": "G",
@@ -2960,6 +4172,17 @@
     "javaConversionDt": "2010-10-23T00:00:00-04:00"
   },
   {
+    "courtTypeCode": "J",
+    "fipsCode": "197",
+    "courtName": "WYTHE COUNTY J&DR COURT",
+    "fipsCode4": "197J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-08-27T00:00:00-04:00"
+  },
+  {
     "courtTypeCode": "G",
     "fipsCode": "197",
     "courtName": "Wythe General District Court",
@@ -2969,6 +4192,17 @@
     "ocisEnabled": "Y",
     "vdbcOptInFlg": "Y",
     "javaConversionDt": "2019-09-21T00:00:00-04:00"
+  },
+  {
+    "courtTypeCode": "J",
+    "fipsCode": "199",
+    "courtName": "YORK COUNTY J&DR COURT",
+    "fipsCode4": "199J",
+    "ocisCivilOptOut": "N",
+    "ocisCriminalOptOut": "N",
+    "ocisEnabled": "Y",
+    "vdbcOptInFlg": "Y",
+    "javaConversionDt": "2011-03-05T00:00:00-05:00"
   },
   {
     "courtTypeCode": "C",
