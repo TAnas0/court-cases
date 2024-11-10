@@ -36,6 +36,9 @@ def accept_terms_and_conditions():
 def get_court_name_by_fips(fipsCode4):
     return list(filter(lambda d: d["fipsCode4"] == fipsCode4, courts))[0]["courtName"]
 
+def get_court_by_fips(fipsCode4):
+    return list(filter(lambda d: d["fipsCode4"] == fipsCode4, courts))[0]
+
 def format_case_details(case_details):
     """Turn a Case details into the final format
 
