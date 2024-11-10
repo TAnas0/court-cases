@@ -2,9 +2,9 @@ from collections import OrderedDict
 from datetime import timedelta
 import logging
 import requests_cache
-from constants.main import courts
-from details import get_case_details
-from search import get_search_page_by_hearing_date
+from src.constants.main import courts
+from src.details import get_case_details
+from src.search import get_search_page_by_hearing_date
 
 
 logger = logging.getLogger(__name__)
