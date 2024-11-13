@@ -13,8 +13,10 @@ class Court(Base):
     id = mapped_column(Integer, primary_key=True)
     name = Column(String, nullable=False)
     court_type = Column(String)
-    location = Column(String)
     fips_code = Column(String)
+    fips_code_4 = Column(String)  # 4-letter FIPS code. Includes the court type
+    location = Column(String)
+    url = Column(String)
 
     cases: Mapped[List["Case"]] = relationship(back_populates="court")
     # cases = relationship("Case", back_populates="court")
