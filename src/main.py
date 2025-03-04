@@ -33,7 +33,7 @@ sample_court_case = get_sample_court_case(session)
 start_date = date(2021, 1, 1)
 end_date = date(2021, 2, 1)
 
-def scrape_day_court_cases(session, date):
+def scrape_day_court_cases(date):
     csv_path = get_csv_path(date)
     start_time = time.time()
     results = search_by_hearing_date(session, date.strftime("%m/%d/%Y"))
@@ -97,4 +97,4 @@ logger.info(f"Scraping start from {start_date} to {end_date}")
 if __name__ == "__main__":
     for d in date_range(start_date, end_date): # ! Last day not included
         prepare_csv_file_location(d)
-        scrape_day_court_cases(session, d)
+        scrape_day_court_cases(d)
