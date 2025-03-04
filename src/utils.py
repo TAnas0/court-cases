@@ -29,6 +29,7 @@ def accept_terms_and_conditions():
         headers={
             "Content-Type": "application/json;charset=UTF-8",
         },
+        verify=False,
     )
 
     return session
