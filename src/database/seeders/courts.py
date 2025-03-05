@@ -1,6 +1,4 @@
 import os
-import sys
-import json
 from src.database.main import SessionLocal
 from src.models import Court
 import pandas as pd
@@ -38,7 +36,6 @@ def seed_courts():
 
     finally:
         db.close()
-
 
 
 if __name__ == "__main__":
