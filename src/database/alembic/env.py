@@ -8,6 +8,7 @@ from alembic import context
 #
 # from src.database import Base
 from src.models.base import Base
+from src.models import Case
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -33,7 +34,7 @@ target_metadata = Base.metadata
 # Limit Models included in migrations
 def include_object(object, name, type_, reflected, compare_to):
     # Only include the "courts" table for migration
-    if type_ == "table" and name in ["courts"]:
+    if type_ == "table" and name in ["courts", "cases", "charges", "case_charges"]:
         return True
     return False
 
@@ -85,6 +86,9 @@ def run_migrations_online() -> None:
         with context.begin_transaction():
             context.run_migrations()
 
+
+from sqlalchemy.orm import configure_mappers
+configure_mappers()
 
 if context.is_offline_mode():
     run_migrations_offline()
