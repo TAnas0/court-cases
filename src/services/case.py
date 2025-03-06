@@ -76,3 +76,11 @@ def normalize_cases_dataframe(df):
         "disposition_dispositionInfo"
     ])
 
+    # Normalize date/datetimes columns
+    df["appeal_date"] = pd.to_datetime(df["appeal_date"], format="%m/%d/%Y").dt.date
+    df["charge_filing_date"] = pd.to_datetime(df["charge_filing_date"], format="%m/%d/%Y").dt.date
+    df["offense_date"] = pd.to_datetime(df["offense_date"], format="%m/%d/%Y").dt.date
+    df["arrest_date"] = pd.to_datetime(df["arrest_date"], format="%m/%d/%Y").dt.date
+    df["disposition_date"] = pd.to_datetime(df["disposition_date"], format="%m/%d/%Y").dt.date
+    df["hearing_date"] = pd.to_datetime(df["hearing_date"], format="%m/%d/%Y, %I:%M %p")
+
