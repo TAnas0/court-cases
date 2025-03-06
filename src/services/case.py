@@ -90,3 +90,12 @@ def normalize_cases_dataframe(df):
     df["is_traffic_fatality"] = df["is_traffic_fatality"].map({"Y": True, "N": False})
     df["is_dmv_alcohol_safety_action_code"] = df["is_dmv_alcohol_safety_action_code"].map({"Y": True, "N": False})
 
+    # Convert nullable values of dmv_driver_license_loss_restrictions to None
+    df["dmv_driver_license_loss_restrictions"] = df["dmv_driver_license_loss_restrictions"].apply(
+        lambda x: None if x in [
+            {},
+            {"licenseLoss": {}},
+            {"licenseLoss": {"days": 0, "months": 0, "years": 0}, "licenseRestrictions": {}},
+        ] else x
+    )
+
