@@ -69,3 +69,10 @@ def normalize_cases_dataframe(df):
         "caseCharge_summonsNumber": "summons_number",
     })
 
+    # Removing duplicate, and processed top-level, columns
+    df = df.drop(columns=[
+        "caseCharge_offenseDate",
+        "sentencingInformation",
+        "disposition_dispositionInfo"
+    ])
+
