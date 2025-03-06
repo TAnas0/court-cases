@@ -84,3 +84,9 @@ def normalize_cases_dataframe(df):
     df["disposition_date"] = pd.to_datetime(df["disposition_date"], format="%m/%d/%Y").dt.date
     df["hearing_date"] = pd.to_datetime(df["hearing_date"], format="%m/%d/%Y, %I:%M %p")
 
+    # Normalize nullable boolean values
+    df["is_active"] = df["is_active"].map({"Y": True, "N": False})
+    df["is_criminal"] = df["is_criminal"].map({"Y": True, "N": False})
+    df["is_traffic_fatality"] = df["is_traffic_fatality"].map({"Y": True, "N": False})
+    df["is_dmv_alcohol_safety_action_code"] = df["is_dmv_alcohol_safety_action_code"].map({"Y": True, "N": False})
+
