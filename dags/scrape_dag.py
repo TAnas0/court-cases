@@ -3,13 +3,14 @@ from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 from airflow.models import Variable  # For user-defined variables
 from airflow.models.param import Param, ParamsDict
-
+import pandas as pd
 
 import sys
 from pathlib import Path
 # Add the src directory to the Python path
 sys.path.append(str(Path(__file__).resolve().parent.parent / 'src'))
-from main import scrape_day_court_cases, prepare_csv_file_location
+from main import scrape_day_court_cases
+from services.case import normalize_cases_dataframe, save_cases_dataframe_to_db
 
 
 default_args = {
@@ -26,7 +27,6 @@ def scrape_court_cases(start_date, end_date):
 
     while date <= end_date:
         print(date)
-        prepare_csv_file_location(date)
         scrape_day_court_cases(date)
         date += timedelta(days=1)
     pass
@@ -56,6 +56,20 @@ def scrape_entire_year(year, **kwargs):
         end_date = (start_date + timedelta(days=30)).replace(day=1) - timedelta(days=1)
         scrape_court_cases(start_date, end_date)
 
+
+def load_and_insert_db(**context):
+    path = context['ti'].xcom_pull(key='jsonl_path')
+
+    df = pd.read_json(path, lines=True)
+    df = normalize_cases_dataframe(df)
+    save_cases_dataframe_to_db(df)
+    # Load JSONL file into DF
+    # Normalize DF
+    # Load into models
+    # Save into DB
+
+    return
+
 # Defining the DAG
 with DAG(
     'court_case_scraper',
@@ -65,10 +79,9 @@ with DAG(
     start_date=datetime(2024, 1, 1),
     catchup=False,
     params={
-        "start_date": Param("2024-01-01", type="string"),
-        "end_date": Param("2024-01-07", type="string"),
+        "start_date": Param("2024-05-01", type="string"),
+        "end_date": Param("2024-05-02", type="string"),
     },
-
 ) as dag:
 
     print(dag.params)
@@ -86,8 +99,14 @@ with DAG(
         #     'end_date': Variable.get("end_date", default_var="2024-01-07"),
         # }
     )
+    
+    
+    ingest = PythonOperator(
+        task_id="ingest_to_db",
+        python_callable=load_and_insert_db
+    )
 
-    scrape_custom_range
+    scrape_custom_range >> ingest
 
 
 
