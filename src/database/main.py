@@ -1,8 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import os
-from src.models import Case, Charge
+from sqlalchemy.dialects.postgresql import insert
+from src.models import Case, Charge, Court
 
 # Configuration for PostgreSQL database
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://airflow:airflow@localhost:5432/virginia_court_cases")  # TODO use separate database/user than airflow
@@ -32,6 +32,26 @@ def get_court_by_qualified_fips(qualified_fips):
     """
     court = session.query(Court).filter_by(fips_code_4=qualified_fips).first()
     return court
+
+def upsert_cases(cases_instances):
+    
+    cases_data_list = [instance.__dict__ for instance in cases_instances]
+
+    # Remove SQLAlchemy internal attributes (e.g., _sa_instance_state)
+    for case_data in cases_data_list:
+        case_data.pop('_sa_instance_state', None)
+        
+    statement = insert(Case).values(cases_data_list)
+    
+    # Specify conflict handling on composite unique constraint
+    statement = statement.on_conflict_do_update(
+        index_elements=['case_number', 'code_section', 'is_appeal', 'commenced_by'],
+        set_={col.name: getattr(statement.excluded, col.name) for col in Case.__table__.columns} # Update all columns
+    )
+
+    # Execute the statement to insert or update
+    session.execute(statement)
+    session.commit()
 
 def get_case_by_id(id):
     case = session.query(Case).filter_by(id=id).first()
