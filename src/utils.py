@@ -47,8 +47,8 @@ def date_range(start_date, end_date):
         yield start_date + timedelta(n)
 
 
-def get_csv_path(d):
-    return f"output/{d.strftime('%Y')}/{d.strftime('%m')}/{d.strftime('%d')}.csv"
+def get_json_path(d):
+    return f"output/{d.strftime('%Y')}/{d.strftime('%m')}/{d.strftime('%d')}.json"
 
 def get_court_case_url(case):
     return f"https://eapps.courts.state.va.us/ocis/details;fromOcis=true;fullcaseNumber={case['qualifiedFips']}{case['divisionType']}{case['caseNumber']}"

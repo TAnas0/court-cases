@@ -7,7 +7,7 @@ import pandas as pd
 from utils import (
     accept_terms_and_conditions,
     date_range,
-    get_csv_path,
+    get_json_path,
     get_sample_court_case,
 )
 from search import search_by_hearing_date
@@ -29,11 +29,9 @@ session = accept_terms_and_conditions()
 
 sample_court_case = get_sample_court_case(session)
 
-start_date = date(2021, 1, 1)
-end_date = date(2021, 2, 1)
 
 def scrape_day_court_cases(date):
-    csv_path = get_csv_path(date)
+    json_path = get_json_path(date)
     start_time = time.time()
     results = search_by_hearing_date(session, date.strftime("%m/%d/%Y"))
     logger.info(f"Found a total of {len(results)} search results for date {date}")
