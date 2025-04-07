@@ -2,6 +2,10 @@ from collections import OrderedDict
 from datetime import timedelta
 import logging
 import requests_cache
+from inflection import underscore
+
+import json
+import ast
 from src.constants.main import courts
 from src.details import get_case_details
 from src.search import get_search_page_by_hearing_date
@@ -64,4 +68,28 @@ def get_sample_court_case(session):
     # Get case details of the first case in the search results
     case_details = get_case_details(session, "770C", "C", "R", "2100000100")
     # case_details = get_case_details(session, case["qualifiedFips"], case["courtLevel"], case["divisionType"], case["caseNumber"])
-    return format_case_details(case_details | case)
+    return case_details | case
+
+
+
+def to_snake_case(s):
+    return underscore(s.strip()  # Remove leading/trailing spaces
+            .replace(" ", "_")  # Replace spaces with underscores
+            .replace("-", "_")  # Replace dashes with underscores
+            .replace("/", "_"))  # Replace slashes with underscores
+
+
+def try_json_loads(val):
+    if not isinstance(val, str):
+        return val
+    val = val.strip()
+    if not val or not val.startswith(("{", "[", "\"", "'")):
+        return val
+    try:
+        return json.loads(val)
+    except (json.JSONDecodeError, TypeError):
+        pass
+    try:
+        return ast.literal_eval(val)  # Fallback for single-quoted dicts
+    except (ValueError, SyntaxError):
+        return val
