@@ -27,6 +27,12 @@ def get_db():
 
 session = SessionLocal()
 
+def get_court_by_qualified_fips(qualified_fips):
+    """
+    """
+    court = session.query(Court).filter_by(fips_code_4=qualified_fips).first()
+    return court
+
 def get_case_by_id(id):
     case = session.query(Case).filter_by(id=id).first()
     return case
