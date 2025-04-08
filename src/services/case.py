@@ -1,5 +1,4 @@
 import pandas as pd
-from .court import get_all_courts
 from ..utils import try_json_loads, to_snake_case
 from src.models.case import Case
 from src.database.main import session, get_court_by_qualified_fips, upsert_cases
