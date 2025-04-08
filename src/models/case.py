@@ -4,7 +4,6 @@ from sqlalchemy.orm import relationship
 from .base import Base
 from sqlalchemy import UniqueConstraint
 from sqlalchemy.orm import Mapped
-from sqlalchemy.orm import mapped_column
 
 from typing import List
 
@@ -25,7 +24,7 @@ class Case(Base):
         UniqueConstraint('case_number', 'code_section', 'is_appeal', 'commenced_by', name='uq_case_key'),
     )
 
-    id = mapped_column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     case_number = Column(String, nullable=False)
     formatted_case_number = Column(String, nullable=False)
     charge_amended = Column(Boolean, default=False)
@@ -42,8 +41,8 @@ class Case(Base):
     commenced_by = Column(String)
     
     # Relationships
-    court_id = mapped_column(ForeignKey("courts.id"))
-    court: Mapped["Court"] = relationship(back_populates="cases")
+    # court_id = Column(ForeignKey("courts.id"))
+    court: Mapped["Court"] = relationship("Court", back_populates="cases")
 
 
     # case_charges: Mapped[List["CaseCharge"]] = relationship(back_populates="case")

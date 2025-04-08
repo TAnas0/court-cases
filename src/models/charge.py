@@ -3,13 +3,12 @@ from sqlalchemy import Column, Date, String, Integer, ForeignKey, Boolean
 from sqlalchemy.orm import relationship, backref
 from .base import Base
 from .case import Case
-from sqlalchemy.orm import mapped_column
 
 
 class Charge(Base):
     __tablename__ = 'charges'
 
-    id = mapped_column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     code_section = Column(String, unique=True, nullable=False, index=True)  # Code section of the charge (unique)
     description = Column(String, nullable=False)  # Description of the charge
     # case_charges = relationship("CaseCharge", back_populates="charge")
@@ -20,7 +19,7 @@ class CaseCharge(Base):
     """
     __tablename__ = 'case_charges'
 
-    id = mapped_column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True)
     case_type_code = Column(String, nullable=True)
     class_code = Column(String, nullable=True)
     filling_date = Column(Date, nullable=False)  # *original* charge filing date
