@@ -1,4 +1,3 @@
-import os
 import time
 from datetime import date
 import logging
@@ -37,9 +36,8 @@ def scrape_day_court_cases(date):
     logger.info(f"Found a total of {len(results)} search results for date {date}")
     logger.info(f"Getting search results of date {date} took {(time.time() - start_time)/60} minutes")
 
-    start_time = time.time()
     details = []
-    for case in results:
+    for index, case in enumerate(results):
         try:
             case_details = get_case_details(
                 session,
@@ -52,13 +50,13 @@ def scrape_day_court_cases(date):
             details.append(case_formatted)
             if (details and len(details) % 100 == 0) or case == results[-1]:
                 df = pd.DataFrame(details)
-                df.to_csv(
-                    f"{csv_path}",
-                    index=False,
-                    header=False,
+                df.to_json(
+                    json_path,
+                    orient="records",
+                    lines=True,
                     mode="a",
-                    columns=sample_court_case.keys(),
                 )
+                print(f"Saved {index} court cases details for {date}")
                 details = []
 
         except Exception as e:
