@@ -1,8 +1,9 @@
 from airflow import DAG
-from airflow.operators.python import PythonOperator
+from airflow.providers.standard.operators.python import PythonOperator
 from datetime import datetime, timedelta
 from airflow.models import Variable  # For user-defined variables
-from airflow.models.param import Param, ParamsDict
+from airflow.sdk.definitions.param import ParamsDict
+from airflow.sdk import Param
 import pandas as pd
 
 import sys
