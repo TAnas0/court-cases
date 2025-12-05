@@ -1,7 +1,7 @@
 import pandas as pd
 from src.utils import try_json_loads, to_snake_case
 from src.models.case import Case
-from src.database.main import session, get_court_by_qualified_fips, upsert_cases
+from src.database.main import get_court_by_qualified_fips, upsert_cases
 
 def normalize_cases_dataframe(df):
     """
@@ -72,65 +72,137 @@ def normalize_cases_dataframe(df):
     df = df.where(pd.notnull(df), None)  # Replace NaN, NaT, and other nullable Pandas value to None
     return df
 
+def normalize_case_participants_df(df):
+    """
+    """
+    # make sure it references the case/hearing in question
+    # Process case participants
+    return
+
+def normalize_case_participants_df_2(df):
+    participants_df = pd.json_normalize(df.explode('case_participants')['case_participants'])
+    participants_df['case_number'] = df.explode('case_participants')['case_number'].values
+    participants_df = participants_df.rename(columns={
+        "participantCode": "code",
+        # "attorneyDetails": "",
+        "participantStatus": "status",
+        # "sequenceNumber.identificationID": "",
+        "contactInformation.primaryAddress.locationCityName": "city",
+        "contactInformation.primaryAddress.locationState": "state",
+        "contactInformation.primaryAddress.locationCountry": "country",
+        "contactInformation.primaryAddress.locationPostalCode": "postal_code",
+
+        "contactInformation.secondaryAddress.locationCityName": "city_secondary",
+        "contactInformation.secondaryAddress.locationState": "state_secondary",
+        "contactInformation.secondaryAddress.locationCountry": "country_secondary",
+        "contactInformation.secondaryAddress.locationPostalCode": "postal_code_secondary",
+        
+        "contactInformation.personName.personGivenName": "given_name",
+        "contactInformation.personName.personMiddleName": "middle_name",
+        "contactInformation.personName.personSurName": "surname",
+        "contactInformation.personName.fullName": "full_name",
+        
+        "personalDetails.race": "race",
+        "personalDetails.gender": "gender",
+        "personalDetails.maskedBirthDate": "birth_date_masked",
+        
+        "contactInformation.personName.personNameSuffixText": "name_suffix_text",
+        "contactInformation.businessName.businessName": "business_name",
+        "contactInformation.additionalName": "additional_name",
+        
+        "attorneyDetails": "attorney_details"
+    })
+    # TODO extract attorney details: column attorneyDetails
+    df = df.drop(columns=["case_participants"]) # Remove case_particpants from court dataframe
+    participants_df = participants_df.drop(columns=["sequenceNumber.identificationID"])
+
+    # TODO process attorney_details
+    # Can there be multiple attorneys? If multiple, is there an order (primary attorney)?
+
+    # TODO keep reference for each participant to the court case, or hearing
+
+    # TODO Handle columns with lists of arbitrary lengths, and referencing a foreign key
+    # case_participant
+    # case_hearings
+    # pleading_and_order
+    # service_info
+
+    return
+
+
+def process_case_charges(df):
+    return
+
+
+def process_case_participants(df):
+    return
+
+
+def process_case_hearings(df):
+    return
+
+
 def save_cases_dataframe_to_db(df):
-    db_session = session
-    df_cases = df[
-        [
-            "qualified_fips",
-            "case_number",
-            "formatted_case_number",
-            "charge_amended",
-            "code_section",
-            "case_type",
-            "offense_date",
-            "arrest_date",
-            "is_criminal",
-            "case_category_code",
-            "case_sub_category_code",
-            "is_appeal",
-            "appeal_date",
-            "is_active",
-            "commenced_by",
-            "case_tracking_id",
+    from src.database.main import get_session
+    
+    with get_session() as db_session:
+        df_cases = df[
+            [
+                "qualified_fips",
+                "case_number",
+                "formatted_case_number",
+                "charge_amended",
+                "code_section",
+                "case_type",
+                "offense_date",
+                "arrest_date",
+                "is_criminal",
+                "case_category_code",
+                "case_sub_category_code",
+                "is_appeal",
+                "appeal_date",
+                "is_active",
+                "commenced_by",
+                "case_tracking_id",
+            ]
         ]
-    ]
-    
-    # Deduplicate based on composite unique constraint, while keeping the last
-    df_cases = df_cases.drop_duplicates(subset=['case_number', 'code_section', 'is_appeal', 'commenced_by'], keep='last')
-    
-    cases_models = []
+        
+        # Deduplicate based on composite unique constraint, while keeping the last
+        df_cases = df_cases.drop_duplicates(subset=['case_number', 'code_section', 'is_appeal', 'commenced_by'], keep='last')
+        
+        cases_models = []
 
-    for index, row in df_cases.iterrows():
+        for index, row in df_cases.iterrows():
+            try:
+                case_data = row.to_dict()
+                
+                court_id = get_court_by_qualified_fips(db_session, case_data["qualified_fips"]).id
+                case = Case(
+                    case_number=case_data["case_number"],
+                    formatted_case_number=case_data["formatted_case_number"],
+                    charge_amended=case_data["charge_amended"],
+                    code_section=case_data["code_section"],
+                    case_type=case_data["case_type"],
+                    offense_date=case_data["offense_date"],
+                    arrest_date=case_data["arrest_date"],
+                    is_criminal=case_data["is_criminal"],
+                    category=case_data["case_category_code"],
+                    sub_category=case_data["case_sub_category_code"],
+                    #is_appeal=case_data["is_appeal"],
+                    appeal_date=case_data["appeal_date"],
+                    is_active=case_data["is_active"],
+                    commenced_by=case_data["commenced_by"],
+                    court_id=court_id,
+                )
+                cases_models.append(case)
+
+            except Exception as e:
+                print(f"Error saving row {index}: {e}")
+
         try:
-            case_data = row.to_dict()
-            
-            court_id = get_court_by_qualified_fips(case_data["qualified_fips"]).id
-            case = Case(
-                case_number=case_data["case_number"],
-                formatted_case_number=case_data["formatted_case_number"],
-                charge_amended=case_data["charge_amended"],
-                code_section=case_data["code_section"],
-                case_type=case_data["case_type"],
-                offense_date=case_data["offense_date"],
-                arrest_date=case_data["arrest_date"],
-                is_criminal=case_data["is_criminal"],
-                category=case_data["case_category_code"],
-                sub_category=case_data["case_sub_category_code"],
-                #is_appeal=case_data["is_appeal"],
-                appeal_date=case_data["appeal_date"],
-                is_active=case_data["is_active"],
-                commenced_by=case_data["commenced_by"],
-                court_id=court_id,
-            )
-            cases_models.append(case)
-
-        except Exception as e:
-            print(f"Error saving row {index}: {e}")
-
-    try:
-        upsert_cases(cases_models)
-    except Exception as commit_exception:
-        db_session.rollback()
-        print(f"DB commit failed: {commit_exception}")
-        raise
+            upsert_cases(db_session, cases_models)
+        except Exception as commit_exception:
+            db_session.rollback()
+            print(f"DB commit failed: {commit_exception}")
+            raise
     return

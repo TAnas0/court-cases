@@ -71,6 +71,6 @@ class Hearing(Base):
     court_room = Column(String(10), nullable=True)
     continuance_code = Column(String(10), nullable=True)
     plea = Column(String(5), nullable=True)
-    sequence_number = Column(Integer, nullable=False)
+    # sequence_number = Column(Integer, nullable=False)
     
     # case = relationship("Case", back_populates="hearings")

@@ -1,5 +1,5 @@
 from queue import Queue
-from main import scrape_day_court_cases, prepare_csv_file_location
+from main import scrape_day_court_cases
 from utils import date_range, accept_terms_and_conditions
 from threading import Thread
 from datetime import date, time
@@ -20,8 +20,8 @@ session = accept_terms_and_conditions()
 def scraper_worker(q):
     while not q.empty():
         date = q.get()
-        prepare_csv_file_location(date)
-        scrape_day_court_cases(session, date)
+        # prepare_csv_file_location(date)
+        scrape_day_court_cases(date, session)
         q.task_done()
 
 q = Queue()

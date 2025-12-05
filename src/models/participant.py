@@ -10,8 +10,10 @@ class Participant(Base):
     full_name = Column(String, nullable=False)
     case_id = Column(Integer, ForeignKey('cases.id')) # TODO Many-to-many relationship as a particpant can be defendant in a case, and complainant in another
 
+    # TODO address
+
     # Relationships
-    case = relationship("Case", back_populates="participants")
+    # case = relationship("Case", back_populates="participants")
 
     def __repr__(self):
         return f"<Participant(full_name='{self.full_name}', participant_code='{self.participant_code}')>"

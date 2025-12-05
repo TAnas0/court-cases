@@ -13,23 +13,21 @@ from search import search_by_hearing_date
 from details import get_case_details
 
 
-logging.basicConfig(
-    filename='app.log',
-    level=logging.DEBUG,
-)
-logging.getLogger('requests_cache').setLevel(logging.INFO)
-logging.getLogger("requests").setLevel(logging.WARNING)
-logging.getLogger("urllib3").setLevel(logging.WARNING)
+def setup_logging():
+    logging.basicConfig(
+        filename='app.log',
+        level=logging.DEBUG,
+    )
+    logging.getLogger('requests_cache').setLevel(logging.INFO)
+    logging.getLogger("requests").setLevel(logging.WARNING)
+    logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 logger = logging.getLogger(__name__)
 
-# Agree to the terms and conditions
-session = accept_terms_and_conditions()
-
-sample_court_case = get_sample_court_case(session)
-
-
-def scrape_day_court_cases(date):
+def scrape_day_court_cases(date, session=None):
+    if session is None:
+        session = accept_terms_and_conditions()
+        
     json_path = get_json_path(date)
     start_time = time.time()
     results = search_by_hearing_date(session, date.strftime("%m/%d/%Y"))
@@ -63,13 +61,21 @@ def scrape_day_court_cases(date):
             logger.exception(e)
             raise e
     logger.info(f"Getting details of {len(results)} court cases took {(time.time() - start_time)/60} minutes")
+    return json_path
     
 
-start_date = date(2021, 1, 1)
-end_date = date(2021, 2, 1)
+def main():
+    setup_logging()
+    start_date = date(2021, 1, 1)
+    end_date = date(2021, 2, 1)
 
-logger.info(f"Scraping start from {start_date} to {end_date}")
+    logger.info(f"Scraping start from {start_date} to {end_date}")
+    
+    session = accept_terms_and_conditions()
+    # sample_court_case = get_sample_court_case(session)
+
+    for d in date_range(start_date, end_date): # ! Last day not included
+        scrape_day_court_cases(d, session)
 
 if __name__ == "__main__":
-    for d in date_range(start_date, end_date): # ! Last day not included
-        scrape_day_court_cases(d)
+    main()

@@ -6,6 +6,11 @@ from inflection import underscore
 
 import json
 import ast
+import sys
+from pathlib import Path
+# Add the src directory to the Python path
+sys.path.append(str(Path(__file__).resolve().parent.parent / 'src'))
+
 from src.constants.main import courts
 from src.details import get_case_details
 from src.search import get_search_page_by_hearing_date
@@ -70,6 +75,16 @@ def get_sample_court_case(session):
     # case_details = get_case_details(session, case["qualifiedFips"], case["courtLevel"], case["divisionType"], case["caseNumber"])
     return case_details | case
 
+
+def normalize_nullable_values(value, nullable_values, null_value):
+    """
+    Normalize nullable values.
+    If `value` is in `nullable_values`, return `null_value`. Else return `value`.
+    """
+    if value not in nullable_values:
+        return value
+    else:
+        return null_value
 
 
 def to_snake_case(s):
