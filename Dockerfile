@@ -1,4 +1,4 @@
-FROM apache/airflow:latest
+FROM apache/airflow:3.1.3
 
 USER root
 RUN apt-get update && apt-get install -y ca-certificates
