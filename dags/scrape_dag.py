@@ -75,7 +75,7 @@ with DAG(
     'court_case_scraper',
     default_args=default_args,
     description='Scrape court cases with customizable date ranges',
-    schedule_interval=None,
+    schedule=None,
     start_date=datetime(2024, 1, 1),
     catchup=False,
     params={
@@ -130,7 +130,7 @@ def generate_monthly_tasks(year):
 with DAG(
     "yearly_scrape_split_to_months",
     default_args=default_args,
-    schedule_interval=None,  # Trigger manually
+    schedule=None,  # Trigger manually
 ) as dag:
 
     year = 2023  # Example: change as needed or make it dynamic
