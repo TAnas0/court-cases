@@ -24,17 +24,27 @@ def setup_logging():
 
 logger = logging.getLogger(__name__)
 
+from pathlib import Path
+
 def scrape_day_court_cases(date, session=None):
     if session is None:
         session = accept_terms_and_conditions()
         
     json_path = get_json_path(date)
+    # Ensure directory exists
+    Path(json_path).parent.mkdir(parents=True, exist_ok=True)
+    
     start_time = time.time()
     results = search_by_hearing_date(session, date.strftime("%m/%d/%Y"))
     logger.info(f"Found a total of {len(results)} search results for date {date}")
     logger.info(f"Getting search results of date {date} took {(time.time() - start_time)/60} minutes")
 
+    if not results:
+        logger.info(f"No results found for date {date}")
+        return json_path
+
     details = []
+    failure_count = 0
     for index, case in enumerate(results):
         try:
             case_details = get_case_details(
@@ -58,8 +68,13 @@ def scrape_day_court_cases(date, session=None):
                 details = []
 
         except Exception as e:
-            logger.exception(e)
-            raise e
+            failure_count += 1
+            logger.error(f"Failed to process case {case.get('caseNumber')}: {e}")
+            # Continue to next case instead of crashing
+            continue
+            
+    if failure_count > 0:
+        logger.warning(f"Encountered {failure_count} failures while processing {len(results)} cases for date {date}")
     logger.info(f"Getting details of {len(results)} court cases took {(time.time() - start_time)/60} minutes")
     return json_path
     
