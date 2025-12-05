@@ -39,6 +39,7 @@ def accept_terms_and_conditions():
             "Content-Type": "application/json;charset=UTF-8",
         },
         verify=False,
+        timeout=30,
     )
 
     return session

@@ -13,7 +13,11 @@ def get_case_details(session, fips, court_level, division_type, case_number):
         "divisionType": division_type,
         "caseNumber": case_number,
     }
-    res = session.post(url, json=data)
+    try:
+        res = session.post(url, json=data, timeout=30)
+    except Exception as e:
+        logger.error(f"Details request failed for {case_number}: {e}")
+        raise e
     if res.status_code == 200:
         result = res.json()
         if result["context"]["entity"]["status"] == "SUCCESS":

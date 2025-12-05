@@ -21,7 +21,14 @@ def get_search_page_by_hearing_date(session, date, last_index):
         "searchBy": "HD",
         "endingIndex": last_index,
     }
-    res = session.post(url, headers=headers, json=data)
+    logger.debug(f"Fetching search page for date {date}, last_index {last_index}")
+    try:
+        res = session.post(url, headers=headers, json=data, timeout=30)
+    except Exception as e:
+        logger.error(f"Request failed for date {date}, last_index {last_index}: {e}")
+        raise e
+        
+    logger.debug(f"Received response status: {res.status_code}")
     if res.status_code == 200:
         try:
             res = res.json()["context"]["entity"].get("payload", None)
