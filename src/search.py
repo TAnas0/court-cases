@@ -53,6 +53,7 @@ def search_by_hearing_date(session, date):
     page = 1
     last_page = False
     last_index = 0
+    logger.debug(f"Starting search for date {date}")
     while not last_page:
         count += 1
         if count and count % 50 == 0:
@@ -60,6 +61,7 @@ def search_by_hearing_date(session, date):
         results, last_page, last_index = get_search_page_by_hearing_date(session, date, last_index)
         if results:
             all_results += results
+        logger.debug(f"Page {page}: Found {len(results) if results else 0} results. Total so far: {len(all_results)}")
         page += 1
     logger.debug(f"Getting all search results for date {date} required {count} network requests")
     return all_results    
