@@ -11,28 +11,34 @@ from sklearn.impute import SimpleImputer
 
 # Import utility
 from src.analysis.utils.data_loader import load_and_preprocess
+import src.analysis.visualize as visualize
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Analyze court case data with advanced statistical methods.')
     parser.add_argument('file_path', nargs='?', default='/home/bob/github/tanas0/portfolio/court-cases/output/2024/05/01.json',
                         help='Path to the JSONL data file.')
+    parser.add_argument('--output-dir', default='output/plots',
+                        help='Directory to save the generated plots.')
     return parser.parse_args()
 
-def print_descriptive_stats(df):
+
+def print_descriptive_stats(df, output_dir):
     print("\n" + "="*50)
-    print("  DESCRIPTIVE STATISTICS (Robust Measures)")
+    print("  DESCRIPTIVE STATISTICS  ")
     print("="*50)
-    
+
     # --- 1. Central Tendency & Dispersion ---
     # Mathematical Concept: Median vs. Mean
     # Legal data (fines, sentences) is typically "Right-Skewed" (long tail of high values).
     # The Mean is sensitive to outliers (e.g., one life sentence pulls up the average significantly).
     # The Median (50th percentile) is robust and represents the "typical" defendant.
     # The IQR (Interquartile Range, 75th - 25th percentile) measures the spread of the middle 50% of data.
-    
-    for col, name in [('daysToDisposition', 'Time to Disposition (Days)'), 
-                      ('netSentenceDays', 'Net Active Sentence (Days)'), 
-                      ('totalFinancial', 'Total Financial Impact ($)')]:
+
+    columns_to_plot = [('daysToDisposition', 'Time to Disposition (Days)'), 
+                       ('netSentenceDays', 'Net Active Sentence (Days)'), 
+                       ('totalFinancial', 'Total Financial Impact ($)')]
+
+    for col, name in columns_to_plot:
         data = df[col].dropna()
         if data.empty: continue
         
@@ -42,14 +48,17 @@ def print_descriptive_stats(df):
         q3 = data.quantile(0.75)
         iqr = q3 - q1
         skew = data.skew()
-        
+
         print(f"\n--- {name} ---")
         print(f"  Mean:   {mean_val:8.2f} (Sensitive to outliers)")
         print(f"  Median: {median_val:8.2f} (Robust measure of central tendency)")
         print(f"  IQR:    {iqr:8.2f} (Spread of middle 50%)")
         print(f"  Skew:   {skew:8.2f} (Positive = Right-skewed/Long tail)")
+    
+    # Generate Plots
+    visualize.plot_distributions(df, columns_to_plot, output_dir)
 
-def perform_hypothesis_tests(df):
+def perform_hypothesis_tests(df, output_dir):
     print("\n" + "="*50)
     print("  STATISTICAL HYPOTHESIS TESTING")
     print("="*50)
@@ -68,9 +77,9 @@ def perform_hypothesis_tests(df):
     
     # Filter for major demographic groups to ensure sufficient sample size
     # Small sample sizes violate Chi-Square assumptions (expected count < 5).
-    top_races = df['race'].value_counts().nlargest(3).index
+    top_races = df['race'].value_counts().nlargest(3).index # TODO Filter by count > 5
     df_race = df[df['race'].isin(top_races)].dropna(subset=['race'])
-    
+
     contingency_table = pd.crosstab(df_race['race'], df_race['is_dismissed'])
     chi2, p, dof, expected = stats.chi2_contingency(contingency_table)
     
@@ -81,6 +90,9 @@ def perform_hypothesis_tests(df):
         print("  >> RESULT: Statistically Significant Association detected.")
     else:
         print("  >> RESULT: No significant association detected (could be due to chance).")
+    
+    # Plot Association
+    visualize.plot_categorical_association(df_race, 'race', 'is_dismissed', output_dir)
 
     # --- Test 2: Mann-Whitney U Test (Attorney Type vs. Sentence Length) ---
     # Mathematical Concept: Mann-Whitney U Test
@@ -107,7 +119,7 @@ def perform_hypothesis_tests(df):
     else:
         print("  >> Insufficient data for Mann-Whitney test.")
 
-def perform_multivariate_analysis(df):
+def perform_multivariate_analysis(df, output_dir):
     print("\n" + "="*50)
     print("  MULTIVARIATE ANALYSIS (Logistic Regression)")
     print("="*50)
@@ -171,6 +183,9 @@ def perform_multivariate_analysis(df):
     print("  (Controlled for all other factors in the table)")
     print("-" * 70)
     print(results.to_markdown(index=False, floatfmt=".2f"))
+    
+    # Plot Odds Ratios
+    visualize.plot_odds_ratios(results, output_dir)
 
 def main():
     args = parse_arguments()
@@ -178,14 +193,17 @@ def main():
     # 1. Load (from utility)
     df = load_and_preprocess(args.file_path)
     
+    # Set style
+    visualize.setup_style()
+    
     # 2. Descriptive Stats (Robust)
-    print_descriptive_stats(df)
+    print_descriptive_stats(df, args.output_dir)
     
     # 3. Hypothesis Testing
-    perform_hypothesis_tests(df)
+    perform_hypothesis_tests(df, args.output_dir)
     
     # 4. Multivariate Analysis
-    perform_multivariate_analysis(df)
+    perform_multivariate_analysis(df, args.output_dir)
 
 if __name__ == "__main__":
     main()
