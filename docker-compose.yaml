@@ -334,5 +334,25 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
+  jupyter:
+    image: jupyter/scipy-notebook:latest
+    ports:
+      - "8888:8888"
+    volumes:
+      - ${AIRFLOW_PROJ_DIR:-.}/src:/home/jovyan/work/src
+      - ${AIRFLOW_PROJ_DIR:-.}/output:/home/jovyan/work/output
+      - ${AIRFLOW_PROJ_DIR:-.}/notebooks:/home/jovyan/work/notebooks
+      - duckdb-data:/home/jovyan/work/duckdb_data
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    # command: start-notebook.sh --NotebookApp.token=''
+    user: root # To allow installing packages if needed, or better to use a custom image. But for now, we can install in the notebook or use requirements.
+    # Actually, we need to install pygwalker and duckdb. 
+    # Let's use a command to install them on startup or use a custom build.
+    # For simplicity, I'll just install them on startup.
+    command: >
+      bash -c "pip install duckdb pygwalker pandas && start-notebook.sh --NotebookApp.token=''"
+
 volumes:
   postgres-db-volume:
+  duckdb-data:
