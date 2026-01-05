@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # Database connection
-DB_PATH = "/home/app/duckdb_data/court_cases.duckdb"
+DB_PATH = "/home/app/court_cases.duckdb"
 
 @st.cache_resource
 def get_connection():
