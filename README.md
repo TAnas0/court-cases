@@ -4,7 +4,7 @@ This is a scraper for court cases of Virginia's [Online Case Information System 
 The data extraction is orchestrated using Apache Airflow using Docker and Docker Compose.
 
 
-## Getting started
+## Get started
 
 First, setup some requirements for Airflow: `bash setup_airflow.sh`. This makes sure the folders `dag`, `logs`, `plugins`,  and `config`. It also creates an environment variable `AIRFLOW_UID` set to the UID of the current user.
 
@@ -42,3 +42,6 @@ export PYTHONPATH="$(pwd):$PYTHONPATH"
 python src/database/seeders/courts.py
 ```
 
+## Tests
+
+`python -m pytest`

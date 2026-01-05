@@ -40,7 +40,7 @@ def scrape_data(start_date_str: str, end_date_str: str):
         print(f"Scraping {current_date}")
         path = scrape_day_court_cases(current_date, session)
         if path:
-             # Ensure path is string for XCom
+            # Ensure path is string for XCom
             json_paths.append(str(path))
         current_date += timedelta(days=1)
         
@@ -62,7 +62,7 @@ def ingest_data(json_paths: list):
             else:
                 print(f"File {path} is empty.")
         except ValueError as e:
-             print(f"Error reading {path}: {e}")
+            print(f"Error reading {path}: {e}")
 
 with DAG(
     'court_case_scraper_v2',
