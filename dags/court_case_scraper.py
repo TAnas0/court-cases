@@ -1,5 +1,4 @@
 from airflow import DAG
-from airflow import DAG
 from airflow.sdk import task
 from datetime import datetime, timedelta
 from airflow.sdk import Param
@@ -65,9 +64,9 @@ def ingest_data(json_paths: list):
             print(f"Error reading {path}: {e}")
 
 with DAG(
-    'court_case_scraper_v2',
+    'court_case_scraper_workflow',
     default_args=default_args,
-    description='Scrape court cases with customizable date ranges (TaskFlow)',
+    description='Scrape court cases with customizable date ranges',
     schedule=None,
     start_date=datetime(2024, 1, 1),
     catchup=False,
