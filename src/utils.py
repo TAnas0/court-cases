@@ -6,10 +6,7 @@ from inflection import underscore
 
 import json
 import ast
-import sys
 from pathlib import Path
-# Add the src directory to the Python path
-sys.path.append(str(Path(__file__).resolve().parent.parent / 'src'))
 
 from src.constants.main import courts
 from src.details import get_case_details

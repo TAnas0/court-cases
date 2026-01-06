@@ -4,7 +4,6 @@ import pytest
 from airflow.models import DagBag
 
 # Ensure local modules can be imported if needed by DAGs
-sys.path.append(os.path.join(os.path.dirname(__file__), "../"))
 
 def test_dag_import_errors():
     """Verify that there are no errors when importing DAGs."""

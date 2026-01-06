@@ -3,16 +3,9 @@ from airflow.sdk import task
 from datetime import datetime, timedelta
 from airflow.sdk import Param
 import pandas as pd
-import sys
-from pathlib import Path
-
-# Add the src directory to the Python path
-# This is still needed unless we package the code properly
-sys.path.append(str(Path(__file__).resolve().parent.parent / 'src'))
-
-from main import scrape_day_court_cases
-from services.case import normalize_cases_dataframe, save_cases_dataframe_to_db
-from utils import accept_terms_and_conditions, date_range
+from src.main import scrape_day_court_cases
+from src.services.case import normalize_cases_dataframe, save_cases_dataframe_to_db
+from src.utils import accept_terms_and_conditions, date_range
 
 default_args = {
     'owner': 'anas',

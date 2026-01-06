@@ -3,14 +3,14 @@ from datetime import date
 import logging
 import pandas as pd
 
-from utils import (
+from src.utils import (
     accept_terms_and_conditions,
     date_range,
     get_json_path,
     get_sample_court_case,
 )
-from search import search_by_hearing_date
-from details import get_case_details
+from src.search import search_by_hearing_date
+from src.details import get_case_details
 
 
 def setup_logging():
