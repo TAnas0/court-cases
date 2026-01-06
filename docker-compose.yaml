@@ -347,23 +347,18 @@ services:
     environment:
       - JUPYTER_ENABLE_LAB=yes
     # command: start-notebook.sh --NotebookApp.token=''
-    user: root # To allow installing packages if needed, or better to use a custom image. But for now, we can install in the notebook or use requirements.
-    # Actually, we need to install pygwalker and duckdb. 
-    # Let's use a command to install them on startup or use a custom build.
-    # For simplicity, I'll just install them on startup.
-    command: >
-      bash -c "pip install duckdb pygwalker pandas && start-notebook.sh --NotebookApp.token=''"
+    command: start-notebook.sh --NotebookApp.token=''
 
   duckdb-ui:
-    image: python:3.9-slim
+    <<: *airflow-common
+    depends_on: []
     ports:
       - "8501:8501"
     volumes:
-      - ${AIRFLOW_PROJ_DIR:-.}/src:/home/app/src
-      - duckdb-data:/home/app/duckdb_data
-    working_dir: /home/app
-    command: >
-      bash -c "pip install streamlit duckdb pandas && streamlit run src/analysis/app.py"
+      - ${AIRFLOW_PROJ_DIR:-.}/src:/opt/airflow/src
+      - duckdb-data:/opt/airflow/duckdb_data
+    working_dir: /opt/airflow
+    command: streamlit run src/analysis/app.py
 
 volumes:
   postgres-db-volume:
