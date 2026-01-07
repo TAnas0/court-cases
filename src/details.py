@@ -28,7 +28,4 @@ def get_case_details(session, fips, court_level, division_type, case_number):
             logger.debug(res.json())
             raise Exception("Details response indicated as FAILURE. PLease inspect the above.")
     else:
-        logger.debug(res)
-        logger.debug(res.status_code)
-        logger.debug(res.json())
-        raise Exception("Details response status code is not 200. Please inspect the above.")
+        raise Exception(f"Details request failed with status {res.status_code}: {res.text}")

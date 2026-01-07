@@ -22,17 +22,11 @@ def scrape_data(start_date_str: str, end_date_str: str):
     session = accept_terms_and_conditions()
     json_paths = []
     
-    # Iterate through the date range
-    # Note: date_range generator in utils might need adjustment if it doesn't include end_date
-    # For now assuming it works as intended or we adjust here.
-    # The original code used: while date <= end_date: ... date += timedelta(days=1)
-    
     current_date = start_date
     while current_date <= end_date:
         print(f"Scraping {current_date}")
         path = scrape_day_court_cases(current_date, session)
         if path:
-            # Ensure path is string for XCom
             json_paths.append(str(path))
         current_date += timedelta(days=1)
         
@@ -41,20 +35,20 @@ def scrape_data(start_date_str: str, end_date_str: str):
 @task
 def ingest_data(json_paths: list):
     if not json_paths:
-        print("No data to ingest.")
+        print("No paths provided for ingestion.")
         return
 
     for path in json_paths:
-        print(f"Ingesting file: {path}")
+        print(f"Ingesting: {path}")
         try:
             df = pd.read_json(path, lines=True)
             if not df.empty:
                 df = normalize_cases_dataframe(df)
                 save_cases_dataframe_to_db(df)
             else:
-                print(f"File {path} is empty.")
+                print(f"Warning: File {path} is empty.")
         except ValueError as e:
-            print(f"Error reading {path}: {e}")
+            print(f"Error processing {path}: {e}")
 
 with DAG(
     'court_case_scraper_workflow',
@@ -69,21 +63,6 @@ with DAG(
     },
 ) as dag:
     
-    # Get params from DAG run context
-    # Note: In TaskFlow, we can pass params directly if we access them from context or use Jinja templates
-    # But for simplicity in this refactor, we'll pass them as arguments to the task
-    
-    # We need to retrieve the params. 
-    # One way is to use a python_callable that gets context, but with decorators it's slightly different.
-    # We can use '{{ params.start_date }}' if we want to rely on templates, 
-    # but here we are calling the python function directly.
-    
-    # Let's use a wrapper task or just pass the values if we can.
-    # Actually, standard way with TaskFlow is to just call the task.
-    # The arguments will be resolved at runtime if we use templates, 
-    # OR we can just access kwargs in the function if we accept **kwargs.
-    
-    # Let's try passing the templates.
     scraped_files = scrape_data(
         start_date_str='{{ params.start_date }}', 
         end_date_str='{{ params.end_date }}'

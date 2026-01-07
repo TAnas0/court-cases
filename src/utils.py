@@ -1,4 +1,3 @@
-from collections import OrderedDict
 from datetime import timedelta
 import logging
 import requests_cache
@@ -16,18 +15,12 @@ from src.search import get_search_page_by_hearing_date
 logger = logging.getLogger(__name__)
 
 def accept_terms_and_conditions():
-    # TODO Get session creation out of here!
+    # TODO: Relocate session initialization to a dedicated service
     session = requests_cache.CachedSession(
         'demo_cache1',
         expire_after=timedelta(days=30),
-        allowable_codes=[200, 400], # ! The API can return 200 responses on failures
-        allowable_methods=["POST"],  # Excludes GET request to accept terms and conditions
-        # urls_expire_after={
-        #     "eapps.courts.state.va.us/ocis-rest/api/public/termsAndCondAccepted": requests_cache.DO_NOT_CACHE,
-        #     "*": timedelta(days=1),
-        #     # "*": requests_cache.DO_NOT_CACHE,
-        #     # "eapps.courts.state.va.us/ocis-rest/api/public/getCaseDetails": 0,
-        # }
+        allowable_codes=[200, 400], # Note: API may return 200 OK even for application-level failures
+        allowable_methods=["POST"],
         stale_if_error=False,
     )
     session.get(
@@ -68,9 +61,8 @@ def get_sample_court_case(session):
     search = get_search_page_by_hearing_date(session, "01/01/2021", 0)
     search_results = search[0]
     case = search_results[0]
-    # Get case details of the first case in the search results
+    # Fetch details for a specific known case for validation
     case_details = get_case_details(session, "770C", "C", "R", "2100000100")
-    # case_details = get_case_details(session, case["qualifiedFips"], case["courtLevel"], case["divisionType"], case["caseNumber"])
     return case_details | case
 
 

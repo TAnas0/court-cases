@@ -88,9 +88,9 @@ def main():
     logger.info(f"Scraping start from {start_date} to {end_date}")
     
     session = accept_terms_and_conditions()
-    # sample_court_case = get_sample_court_case(session)
 
-    for d in date_range(start_date, end_date): # ! Last day not included
+    # Note: date_range excludes the end_date
+    for d in date_range(start_date, end_date):
         scrape_day_court_cases(d, session)
 
 if __name__ == "__main__":

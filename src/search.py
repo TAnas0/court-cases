@@ -26,26 +26,21 @@ def get_search_page_by_hearing_date(session, date, last_index):
         res = session.post(url, headers=headers, json=data, timeout=30)
     except Exception as e:
         logger.error(f"Request failed for date {date}, last_index {last_index}: {e}")
-        raise e
+        raise
         
-    logger.debug(f"Received response status: {res.status_code}")
     if res.status_code == 200:
         try:
-            res = res.json()["context"]["entity"].get("payload", None)
-            if res:
-                return res.get("searchResults", None), res.get("hasMoreRecords", None) != "Y", res.get("lastResponseIndex", None)
+            payload = res.json()["context"]["entity"].get("payload")
+            if payload:
+                return payload.get("searchResults"), payload.get("hasMoreRecords") != "Y", payload.get("lastResponseIndex")
             else:
-                logger.info(f"Error response getting search page for date {date} and last_index {last_index}")
+                logger.info(f"Empty payload for date {date}, last_index {last_index}")
                 return None, None, None
         except KeyError as e:
-            logger.error("Unexpected Error in search request. Returned status code was 200, but processing failed")
-            logger.exception(e)
-            raise e
+            logger.error("Failed to parse search response: context.entity.payload missing")
+            raise
     else:
-        logger.debug(res)
-        logger.debug(res.status_code)
-        logger.debug(res.json())
-        raise Exception("Details response status code is not 200. Please inspect the above.")
+        raise Exception(f"Search request failed with status {res.status_code}: {res.text}")
 
 def search_by_hearing_date(session, date):
     count = 0
