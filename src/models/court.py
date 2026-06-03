@@ -1,7 +1,7 @@
 
 from sqlalchemy import Column, String, Integer
 from .base import Base
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, Mapped
 from typing import List
 
 
@@ -16,8 +16,7 @@ class Court(Base):
     location = Column(String)
     url = Column(String)
 
-    # cases: Mapped[List["Case"]] = relationship(back_populates="court")
-    # cases = relationship("Case", back_populates="court")
+    cases: Mapped[List["Case"]] = relationship(back_populates="court")
 
     def __repr__(self):
         return f"<Court(name='{self.name}', court_type='{self.court_type}')>"

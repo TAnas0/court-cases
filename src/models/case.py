@@ -41,7 +41,7 @@ class Case(Base):
     commenced_by = Column(String)
     
     # Relationships
-    # court_id = Column(ForeignKey("courts.id"))
+    court_id = Column(Integer, ForeignKey("courts.id"))
     court: Mapped["Court"] = relationship("Court", back_populates="cases")
 
 
@@ -53,7 +53,7 @@ class Case(Base):
     # financial_information = relationship("FinancialInformation", back_populates="case")
 
     def __repr__(self):
-        return f"<Case(case_number='{self.case_number}', name='{self.name}')>"
+        return f"<Case(case_number='{self.case_number}', type='{self.case_type}')>"
 
     # TODO calculated attribute to point to the case web page: for virginia, https://eapps.courts.state.va.us/ocis/details;fromOcis=true;fullcaseNumber=680JA0400120500
 
