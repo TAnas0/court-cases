@@ -1,11 +1,11 @@
 from src.models import Court
-from src.models.base import Base
-from src.database.main import get_db
+from src.database.main import SessionLocal
 
-
-db = get_db()
 
 def get_all_courts():
-    # Get all Courts from database
-    with next(get_db()) as db:
-        return db.query(Court).all()
+    """Get all Courts from database."""
+    session = SessionLocal()
+    try:
+        return session.query(Court).all()
+    finally:
+        session.close()
