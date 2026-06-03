@@ -10,7 +10,7 @@ def normalize_cases_dataframe(df):
     Extracts Case, Hearings, Charges, Participants, Dispositions, etc. as Pandas dataframe ready to be saved to the DB.
     """
 
-    df = df.applymap(try_json_loads)  # Convert JSON-like strings into JSON
+    df = df.map(try_json_loads)  # Convert JSON-like strings into JSON
     df = pd.json_normalize(df.to_dict(orient="records"), sep="_")
 
     # Rename columns to snake case
