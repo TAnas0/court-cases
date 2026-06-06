@@ -15,7 +15,7 @@ import src.analysis.visualize as visualize
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Analyze court case data with advanced statistical methods.')
-    parser.add_argument('file_path', nargs='?', default='/home/bob/github/tanas0/portfolio/court-cases/output/2024/05/01.json',
+    parser.add_argument('file_path', nargs='?', default='output/2024/05/01.json',
                         help='Path to the JSONL data file.')
     parser.add_argument('--output-dir', default='output/plots',
                         help='Directory to save the generated plots.')

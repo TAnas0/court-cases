@@ -6,7 +6,7 @@ from sqlalchemy.dialects.postgresql import insert
 from src.models import Case, Charge, Court
 
 # Configuration for PostgreSQL database
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://airflow:airflow@localhost:5432/virginia_court_cases")  # TODO use separate database/user than airflow
+DATABASE_URL = os.environ["DATABASE_URL"]  # Fail explicitly if not set
 
 # Create the SQLAlchemy engine
 engine = create_engine(DATABASE_URL, echo=True)  # echo=True logs SQL statements; set to False in production

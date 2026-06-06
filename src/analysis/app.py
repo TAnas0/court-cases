@@ -11,7 +11,7 @@ st.set_page_config(
 )
 
 # Database connection
-DB_PATH = "/home/app/court_cases.duckdb"
+DB_PATH = os.getenv("DUCKDB_PATH", "output/gold/court_analytics.duckdb")
 
 @st.cache_resource
 def get_connection():
