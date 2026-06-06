@@ -335,31 +335,6 @@ services:
       airflow-init:
         condition: service_completed_successfully
 
-  jupyter:
-    image: jupyter/scipy-notebook:latest
-    ports:
-      - "8888:8888"
-    volumes:
-      - ${AIRFLOW_PROJ_DIR:-.}/src:/home/jovyan/work/src
-      - ${AIRFLOW_PROJ_DIR:-.}/output:/home/jovyan/work/output
-      - ${AIRFLOW_PROJ_DIR:-.}/notebooks:/home/jovyan/work/notebooks
-      - duckdb-data:/home/jovyan/work/duckdb_data
-    environment:
-      - JUPYTER_ENABLE_LAB=yes
-    # command: start-notebook.sh --NotebookApp.token=''
-    command: start-notebook.sh --NotebookApp.token=''
-
-  duckdb-ui:
-    <<: *airflow-common
-    depends_on: []
-    ports:
-      - "8501:8501"
-    volumes:
-      - ${AIRFLOW_PROJ_DIR:-.}/src:/opt/airflow/src
-      - duckdb-data:/opt/airflow/duckdb_data
-    working_dir: /opt/airflow
-    command: streamlit run src/analysis/app.py
-
 volumes:
   postgres-db-volume:
   duckdb-data:
