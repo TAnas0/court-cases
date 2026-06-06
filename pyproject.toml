@@ -22,8 +22,14 @@ dependencies = [
     "pygwalker==0.4.9.11",
     "matplotlib==3.10.8",
     "seaborn==0.13.2",
-    "streamlit",
+    "plotly==6.5.1",
+    "streamlit==1.52.2"
+]
+
+[project.optional-dependencies]
+dev = [
     "pytest",
+    "ruff"
 ]
 
 [tool.setuptools.packages.find]
