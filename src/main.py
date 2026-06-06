@@ -65,7 +65,7 @@ def scrape_day_court_cases(date, session=None):
                     lines=True,
                     mode="a",
                 )
-                print(f"Saved {index} court cases details for {date}")
+                logger.info(f"Saved {index} court cases details for {date}")
                 details = []
 
         except Exception as e:

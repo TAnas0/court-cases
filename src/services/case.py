@@ -1,7 +1,10 @@
+import logging
 import pandas as pd
 from src.utils import try_json_loads, to_snake_case
 from src.models.case import Case
 from src.database.main import get_court_by_qualified_fips, upsert_cases
+
+logger = logging.getLogger(__name__)
 
 def normalize_cases_dataframe(df):
     """
@@ -197,12 +200,12 @@ def save_cases_dataframe_to_db(df):
                 cases_models.append(case)
 
             except Exception as e:
-                print(f"Error saving row {index}: {e}")
+                logger.error(f"Error saving row {index}: {e}")
 
         try:
             upsert_cases(db_session, cases_models)
         except Exception as commit_exception:
             db_session.rollback()
-            print(f"DB commit failed: {commit_exception}")
+            logger.error(f"DB commit failed: {commit_exception}")
             raise
     return

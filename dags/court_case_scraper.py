@@ -1,7 +1,10 @@
+import logging
 from airflow import DAG
 from airflow.sdk import task
 from datetime import datetime, timedelta
 from airflow.sdk import Param
+
+logger = logging.getLogger(__name__)
 import pandas as pd
 from src.main import scrape_day_court_cases
 from src.services.case import normalize_cases_dataframe, save_cases_dataframe_to_db
@@ -24,7 +27,7 @@ def scrape_data(start_date_str: str, end_date_str: str):
     
     current_date = start_date
     while current_date <= end_date:
-        print(f"Scraping {current_date}")
+        logger.info(f"Scraping {current_date}")
         path = scrape_day_court_cases(current_date, session)
         if path:
             json_paths.append(str(path))
@@ -35,20 +38,20 @@ def scrape_data(start_date_str: str, end_date_str: str):
 @task
 def ingest_data(json_paths: list):
     if not json_paths:
-        print("No paths provided for ingestion.")
+        logger.warning("No paths provided for ingestion.")
         return
 
     for path in json_paths:
-        print(f"Ingesting: {path}")
+        logger.info(f"Ingesting: {path}")
         try:
             df = pd.read_json(path, lines=True)
             if not df.empty:
                 df = normalize_cases_dataframe(df)
                 save_cases_dataframe_to_db(df)
             else:
-                print(f"Warning: File {path} is empty.")
+                logger.warning(f"File {path} is empty.")
         except ValueError as e:
-            print(f"Error processing {path}: {e}")
+            logger.error(f"Error processing {path}: {e}")
 
 with DAG(
     'court_case_scraper_workflow',
