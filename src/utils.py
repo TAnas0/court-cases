@@ -1,6 +1,7 @@
 from datetime import timedelta
 import logging
 import requests_cache
+from requests_ratelimiter import LimiterMixin
 from inflection import underscore
 
 import json
@@ -14,14 +15,36 @@ from src.search import get_search_page_by_hearing_date
 
 logger = logging.getLogger(__name__)
 
-def accept_terms_and_conditions():
+class RateLimitedCachedSession(LimiterMixin, requests_cache.CachedSession):
+    """A requests_cache.CachedSession with built-in rate limiting via requests-ratelimiter.
+
+    LimiterMixin is placed first in the MRO so it intercepts send() and
+    enforces the configured rate limit before the cache/network layer fires.
+    """
+
+
+def accept_terms_and_conditions(
+    per_second: float = 2.0,
+    per_minute: float = 60.0,
+):
+    """Create a cached + rate-limited session and accept the court portal T&C.
+
+    Args:
+        per_second: Maximum requests per second (default 2 — conservative for a
+            government API that has no published rate-limit policy).
+        per_minute: Hard cap per minute as a secondary guard.
+    """
     # TODO: Relocate session initialization to a dedicated service
-    session = requests_cache.CachedSession(
+    session = RateLimitedCachedSession(
+        # requests_cache kwargs
         'demo_cache1',
         expire_after=timedelta(days=30),
-        allowable_codes=[200, 400], # Note: API may return 200 OK even for application-level failures
+        allowable_codes=[200, 400],  # Note: API may return 200 OK even for application-level failures
         allowable_methods=["POST"],
         stale_if_error=False,
+        # requests-ratelimiter kwargs
+        per_second=per_second,
+        per_minute=per_minute,
     )
     session.get(
         url="https://eapps.courts.state.va.us/ocis-rest/api/public/termsAndCondAccepted",
