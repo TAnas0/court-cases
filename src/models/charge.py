@@ -32,4 +32,3 @@ class CaseCharge(Base):
     case = relationship('Case', backref=backref('case_charges', cascade='all, delete-orphan'))
     charge_id = Column(Integer, ForeignKey('charges.id'), nullable=False)
     charge = relationship('Charge')
-    # charge = relationship('Charge', backref=backref('case_charges', cascade='all, delete-orphan'))
