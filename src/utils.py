@@ -36,8 +36,7 @@ def accept_terms_and_conditions(
     """
     # TODO: Relocate session initialization to a dedicated service
     session = RateLimitedCachedSession(
-        # requests_cache kwargs
-        '.ocis_cache',
+        cache_name='.ocis_cache',
         expire_after=timedelta(days=30),
         allowable_codes=[200, 400],  # Note: API may return 200 OK even for application-level failures
         allowable_methods=["POST"],
