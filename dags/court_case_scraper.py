@@ -31,6 +31,8 @@ def generate_dates(start_date_str: str, end_date_str: str) -> list:
         current_date += timedelta(days=1)
     return date_list
 
+# @task(pool="court_website_pool") # Pool to be created and configured
+@task(max_active_tis_per_dag=10)
 def scrape_data(date_str: str, cookies: dict):
     """Scrapes a single day of court cases using the pre-established session cookies."""
     current_date = datetime.strptime(date_str, "%Y-%m-%d").date()
