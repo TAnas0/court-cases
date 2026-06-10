@@ -95,9 +95,9 @@ with DAG(
 
     session_cookies = establish_session()
     
-    scraped_files = scrape_data.expand(date_str=date_array).override(
-        partial=dict(cookies=session_cookies)
-    )
+    scraped_files = scrape_data.override(
+        task_id="dynamic_scrape"
+    ).expand(date_str=date_array)
     
     valid_files = filter_valid_paths(scraped_files)
     
