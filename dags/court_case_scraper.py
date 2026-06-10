@@ -4,6 +4,7 @@ from airflow.decorators import task
 from datetime import datetime, timedelta
 from airflow.models.param import Param
 import pandas as pd
+import requests
 from src.main import scrape_day_court_cases
 from src.services.case import normalize_cases_dataframe, save_cases_dataframe_to_db
 from src.utils import accept_terms_and_conditions
@@ -30,14 +31,14 @@ def generate_dates(start_date_str: str, end_date_str: str) -> list:
         current_date += timedelta(days=1)
     return date_list
 
-@task
-def scrape_data(date_str: str):
-    """Scrapes a single day of court cases."""
+def scrape_data(date_str: str, cookies: dict):
+    """Scrapes a single day of court cases using the pre-established session cookies."""
     current_date = datetime.strptime(date_str, "%Y-%m-%d").date()
     logger.info(f"Scraping {current_date}")
     
-    # Session setup inside the task so each worker can authenticate independently
-    session = accept_terms_and_conditions()
+    session = requests.Session()
+    session.cookies = requests.utils.cookiejar_from_dict(cookies)
+
     path = scrape_day_court_cases(current_date, session)
     
     # Return the path if found, or None if empty
@@ -62,6 +63,17 @@ def ingest_data(path: str):
     except ValueError as e:
         logger.error(f"Error processing {path}: {e}")
 
+
+@task
+def establish_session() -> dict:
+    """Runs once to authenticate and capture the session cookies."""
+    logger.info("Establishing master session and accepting terms...")
+    session = accept_terms_and_conditions()
+    
+    # Extract cookies as a dictionary to pass via XCom
+    session_cookies = requests.utils.dict_from_cookiejar(session.cookies)
+    return session_cookies
+
 with DAG(
     'court_case_scraper_workflow',
     default_args=default_args,
@@ -74,13 +86,16 @@ with DAG(
         "end_date": Param("2024-05-02", type="string"),
     },
 ) as dag:
-    
     date_array = generate_dates(
         start_date_str='{{ params.start_date }}', 
         end_date_str='{{ params.end_date }}'
     )
+
+    session_cookies = establish_session()
     
-    scraped_files = scrape_data.expand(date_str=date_array)
+    scraped_files = scrape_data.expand(date_str=date_array).override(
+        partial=dict(cookies=session_cookies)
+    )
     
     valid_files = filter_valid_paths(scraped_files)
     
