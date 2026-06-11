@@ -25,7 +25,8 @@ dependencies = [
     "plotly==6.5.1",
     "streamlit==1.52.2",
     "tenacity",
-    "requests-ratelimiter"
+    "requests-ratelimiter",
+    "pydantic-settings==2.14.1"
 ]
 
 [project.optional-dependencies]
