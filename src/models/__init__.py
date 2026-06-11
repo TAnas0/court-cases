@@ -1,12 +1,14 @@
-from .case import Case
+from .court_case import CourtCase
 from .hearing import Hearing
 from .court import Court
 from .judge import Judge
 from .participant import Participant
-from .charge import Charge, CaseCharge
+from .charge import Charge
+from .case_charge import CaseCharge
 
 __all__ = [
-    "Case",
+    "CourtCase",
+    "CaseCharge",
     "Hearing",
     "Court",
     "Judge",

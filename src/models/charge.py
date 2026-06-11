@@ -1,34 +1,25 @@
 from datetime import date
-from sqlalchemy import Column, Date, String, Integer, ForeignKey, Boolean
+from sqlalchemy import Column, Date, String, Integer, ForeignKey, Boolean, UniqueConstraint
 from sqlalchemy.orm import relationship, backref
 from .base import Base
-from .case import Case
+from .case_charge import CaseCharge
 
+
+from typing import List
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 class Charge(Base):
-    __tablename__ = 'charges'
+    __tablename__ = "charges"
+    __table_args__ = (
+        UniqueConstraint("code_section", name="uq_charge_code_section"),
+    )
 
-    id = Column(Integer, primary_key=True)
-    code_section = Column(String, unique=True, nullable=False, index=True)  # Code section of the charge (unique)
-    description = Column(String, nullable=False)  # Description of the charge
-    # case_charges = relationship("CaseCharge", back_populates="charge")
-
-class CaseCharge(Base):
-    """
-    Links a Case to Charge
-    """
-    __tablename__ = 'case_charges'
-
-    id = Column(Integer, primary_key=True)
-    case_type_code = Column(String, nullable=True)
-    class_code = Column(String, nullable=True)
-    filling_date = Column(Date, nullable=False)  # *original* charge filing date
-    is_original = Column(Boolean, default=False)
-    is_amended = Column(Boolean, default=False)
-    # amended_by =  # TODO self-referential 1-to-many relationship to point to amendment charges
+    id: Mapped[int] = mapped_column(primary_key=True)
+    code_section: Mapped[str] = mapped_column(String(100), nullable=False, index=True)
+    description: Mapped[str] = mapped_column(String(500), nullable=False)
 
     # Relationships
-    case_id = Column(Integer, ForeignKey('cases.id', ondelete='CASCADE'), nullable=False)
-    case = relationship('Case', backref=backref('case_charges', cascade='all, delete-orphan'))
-    charge_id = Column(Integer, ForeignKey('charges.id'), nullable=False)
-    charge = relationship('Charge')
+    case_links: Mapped[List["CaseCharge"]] = relationship("CaseCharge", back_populates="charge")
+
+    def __repr__(self) -> str:
+        return f"<Charge(id={self.id}, code='{self.code_section}')>"

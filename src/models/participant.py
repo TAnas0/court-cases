@@ -8,7 +8,7 @@ class Participant(Base):
     id = Column(Integer, primary_key=True)
     participant_code = Column(String, nullable=False)
     full_name = Column(String, nullable=False)
-    case_id = Column(Integer, ForeignKey('cases.id')) # TODO Many-to-many relationship as a particpant can be defendant in a case, and complainant in another
+    # case_id = Column(Integer, ForeignKey('cases.id')) # TODO Many-to-many relationship as a particpant can be defendant in a case, and complainant in another
 
     # TODO address
 

@@ -6,7 +6,7 @@ try:
 except ImportError:
     DeclarativeBase = None
 from sqlalchemy.dialects.postgresql import insert
-from src.models import Case, Charge, Court
+from src.models import CourtCase, Charge, Court
 
 # Configuration for PostgreSQL database
 DATABASE_URL = os.environ["DATABASE_URL"]  # Fail explicitly if not set
@@ -64,7 +64,7 @@ def upsert_cases(session, cases_instances):
     # Specify conflict handling on composite unique constraint
     statement = statement.on_conflict_do_update(
         index_elements=['case_number', 'code_section', 'is_appeal', 'commenced_by'],
-        set_={col.name: getattr(statement.excluded, col.name) for col in Case.__table__.columns} # Update all columns
+        set_={col.name: getattr(statement.excluded, col.name) for col in CourtCase.__table__.columns} # Update all columns
     )
 
     # Execute the statement to insert or update
