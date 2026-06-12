@@ -7,8 +7,8 @@ from sqlalchemy import engine_from_config, pool
 
 # 1. Import your Pydantic/Config engine helper and your Declarative Base
 # Assuming a standard src/config.py and src/database/base.py structure
-from src.config import settings 
-from src.models.base import Base  
+from src.config import settings
+from src.models.base import Base
 
 # 2. CRITICAL: Import ALL models here so SQLAlchemy registers them onto Base.metadata
 from src.models.court import Court
@@ -27,10 +27,12 @@ if config.config_file_name is not None:
 # Target metadata for autogenerate support
 target_metadata = Base.metadata
 
+
 def get_url() -> str:
     """Dynamically fetches the database URL from environment variables."""
     # Prioritize a direct ENV override, otherwise fall back to your app settings
     return os.getenv("DATABASE_URL", settings.DATABASE_URL)
+
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
@@ -65,10 +67,7 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, 
-            target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()

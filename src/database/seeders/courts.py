@@ -5,13 +5,13 @@ import pandas as pd
 
 
 def seed_courts():
-    COURTS_JSON_PATH = os.path.join(os.path.dirname(__file__), 'courts.json')
-    COURTS_URLS_PATH = os.path.join(os.path.dirname(__file__), 'courts_urls.csv')
+    COURTS_JSON_PATH = os.path.join(os.path.dirname(__file__), "courts.json")
+    COURTS_URLS_PATH = os.path.join(os.path.dirname(__file__), "courts_urls.csv")
 
     courts_df = pd.read_json(COURTS_JSON_PATH, dtype={"fipsCode": str})
 
     courts_urls_df = pd.read_csv(COURTS_URLS_PATH)
-    courts_df = pd.merge(courts_df, courts_urls_df, on='fipsCode4', how='outer')
+    courts_df = pd.merge(courts_df, courts_urls_df, on="fipsCode4", how="outer")
     courts_df = courts_df.where(courts_df.notnull(), None)
 
     db = SessionLocal()

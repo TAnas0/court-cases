@@ -27,21 +27,14 @@ def sample_bronze_parquet(tmp_path):
             "locality": {"localityName": "Albemarle"},
             "caseParticipant": [
                 {
-                    "contactInformation": {
-                        "personName": {
-                            "fullName": "Jane Smith"
-                        }
-                    },
+                    "contactInformation": {"personName": {"fullName": "Jane Smith"}},
                     "participantCode": "WIT",
-                    "personalDetails": {
-                        "race": "W",
-                        "gender": "F"
-                    }
+                    "personalDetails": {"race": "W", "gender": "F"},
                 }
             ],
             "financialInformation": None,
             "caseHearing": None,
-            "disposition": None
+            "disposition": None,
         },
         # Duplicate record (should be deduplicated by distinct caseNumber, hearingDate)
         {
@@ -61,14 +54,14 @@ def sample_bronze_parquet(tmp_path):
             "caseParticipant": [],
             "financialInformation": None,
             "caseHearing": None,
-            "disposition": None
-        }
+            "disposition": None,
+        },
     ]
     jsonl_file = tmp_path / "raw.json"
     with open(jsonl_file, "w") as f:
         for record in data:
             f.write(json.dumps(record) + "\n")
-    
+
     bronze_output = str(tmp_path / "bronze" / "cases.parquet")
     build_bronze_layer(str(jsonl_file), bronze_output)
     return bronze_output
@@ -83,23 +76,26 @@ def test_silver_creates_parquet(sample_bronze_parquet, tmp_path):
 def test_silver_deduplicates_and_hashes_pii(sample_bronze_parquet, tmp_path):
     output = str(tmp_path / "silver" / "cases.parquet")
     build_silver_layer(sample_bronze_parquet, output)
-    
+
     con = duckdb.connect()
     res = con.execute(f"SELECT * FROM read_parquet('{output}')").fetchall()
     # Should be deduplicated to 1 record
     assert len(res) == 1
-    
+
     # Check that PII hashing works
     # Col 5 is defendant_name_hash in Silver layout
-    row = con.execute(f"SELECT defendant_name_hash, offense_date, hearing_timestamp, locality_name FROM read_parquet('{output}')").fetchone()
+    row = con.execute(
+        f"SELECT defendant_name_hash, offense_date, hearing_timestamp, locality_name FROM read_parquet('{output}')"
+    ).fetchone()
     defendant_hash, offense_date, hearing_timestamp, locality = row
-    
+
     # Check name is hashed and not "John Doe" or "John Doe Duplicate"
     assert defendant_hash is not None
     assert defendant_hash != "John Doe"
-    
+
     # Check parsed date and timestamp type/value
     import datetime
+
     assert isinstance(offense_date, datetime.date)
     assert offense_date == datetime.date(2024, 1, 10)
     assert isinstance(hearing_timestamp, datetime.datetime)

@@ -26,7 +26,9 @@ def _log_retry(retry_state):
     before_sleep=_log_retry,
 )
 def get_case_details(session, fips, court_level, division_type, case_number):
-    logger.debug(f"Getting details for {fips}/{court_level}/{division_type}/{case_number}")
+    logger.debug(
+        f"Getting details for {fips}/{court_level}/{division_type}/{case_number}"
+    )
     url = "https://eapps.courts.state.va.us/ocis-rest/api/public/getCaseDetails"
     data = {
         "qualifiedFips": fips,
@@ -47,6 +49,10 @@ def get_case_details(session, fips, court_level, division_type, case_number):
             logger.debug(res)
             logger.debug(res.status_code)
             logger.debug(res.json())
-            raise Exception("Details response indicated as FAILURE. PLease inspect the above.")
+            raise Exception(
+                "Details response indicated as FAILURE. PLease inspect the above."
+            )
     else:
-        raise Exception(f"Details request failed with status {res.status_code}: {res.text}")
+        raise Exception(
+            f"Details request failed with status {res.status_code}: {res.text}"
+        )

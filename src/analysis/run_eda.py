@@ -1,15 +1,16 @@
 import duckdb
 import pandas as pd
 
+
 def run_eda(parquet_path):
     con = duckdb.connect()
-    
-    print("\n" + "="*30)
+
+    print("\n" + "=" * 30)
     print("      GENERAL STATS")
-    print("="*30)
+    print("=" * 30)
     total_cases = con.execute(f"SELECT COUNT(*) FROM '{parquet_path}'").fetchone()[0]
     print(f"Total Cases: {total_cases:,}")
-    
+
     print("\n--- Top 10 Localities ---")
     locality_df = con.execute(f"""
         SELECT locality_name, COUNT(*) as count 
@@ -17,10 +18,10 @@ def run_eda(parquet_path):
         GROUP BY 1 ORDER BY 2 DESC LIMIT 10
     """).df()
     print(locality_df.to_string(index=False))
-    
-    print("\n" + "="*30)
+
+    print("\n" + "=" * 30)
     print("      DISTRIBUTION")
-    print("="*30)
+    print("=" * 30)
     print("--- Outcomes (Disposition) ---")
     outcome_df = con.execute(f"""
         SELECT 
@@ -42,9 +43,9 @@ def run_eda(parquet_path):
     """).df()
     print(roles_df.to_string(index=False))
 
-    print("\n" + "="*30)
+    print("\n" + "=" * 30)
     print("      DEMOGRAPHICS")
-    print("="*30)
+    print("=" * 30)
     print("--- Dismissal Rate by Race (Top 10 by Vol) ---")
     race_df = con.execute(f"""
         SELECT 
@@ -59,9 +60,9 @@ def run_eda(parquet_path):
     """).df()
     print(race_df.to_string(index=False))
 
-    print("\n" + "="*30)
+    print("\n" + "=" * 30)
     print("      FINANCIALS")
-    print("="*30)
+    print("=" * 30)
     print("--- Fine distribution (> $0) ---")
     fines_df = con.execute(f"""
         SELECT 
@@ -74,9 +75,9 @@ def run_eda(parquet_path):
     """).df()
     print(fines_df.to_string(index=False))
 
-    print("\n" + "="*30)
+    print("\n" + "=" * 30)
     print("      EFFICIENCY")
-    print("="*30)
+    print("=" * 30)
     print("--- Busiest Weekdays (Avg Cases) ---")
     weekday_df = con.execute(f"""
         SELECT 
@@ -88,7 +89,7 @@ def run_eda(parquet_path):
         GROUP BY 1, 2
         ORDER BY dow
     """).df()
-    print(weekday_df[['weekday', 'avg_cases']].to_string(index=False))
+    print(weekday_df[["weekday", "avg_cases"]].to_string(index=False))
 
     print("\n--- Avg Days to Hearing (Top 10 Charges) ---")
     efficiency_df = con.execute(f"""
@@ -104,9 +105,9 @@ def run_eda(parquet_path):
     """).df()
     print(efficiency_df.to_string(index=False))
 
-    print("\n" + "="*30)
+    print("\n" + "=" * 30)
     print("      LEGAL REPRESENTATION")
-    print("="*30)
+    print("=" * 30)
     lawyer_df = con.execute(f"""
         SELECT 
             CASE WHEN attorney_type IS NOT NULL THEN 'Attorney' ELSE 'No Attorney' END as representation,
@@ -117,9 +118,9 @@ def run_eda(parquet_path):
     """).df()
     print(lawyer_df.to_string(index=False))
 
-    print("\n" + "="*30)
+    print("\n" + "=" * 30)
     print("      CHARGE PROFILES (TOP 5)")
-    print("="*30)
+    print("=" * 30)
     charge_profile_df = con.execute(f"""
         WITH top_charges AS (
             SELECT chargeDesc FROM '{parquet_path}'
@@ -135,8 +136,15 @@ def run_eda(parquet_path):
         ORDER BY 1, 3 DESC
     """).df()
     # Using pivot for better readability of charge profiles
-    pivot_df = charge_profile_df.pivot(index='chargeDesc', columns='disposition_text', values='count').fillna(0).astype(int)
+    pivot_df = (
+        charge_profile_df.pivot(
+            index="chargeDesc", columns="disposition_text", values="count"
+        )
+        .fillna(0)
+        .astype(int)
+    )
     print(pivot_df.to_string())
+
 
 if __name__ == "__main__":
     run_eda("output/silver/2024/05/cases.parquet")

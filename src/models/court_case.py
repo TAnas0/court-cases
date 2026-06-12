@@ -1,4 +1,3 @@
-
 from .base import Base
 from datetime import date, datetime
 from typing import List, TYPE_CHECKING, Optional
@@ -10,6 +9,7 @@ if TYPE_CHECKING:
     from .hearing import Hearing
     from .case_charge import CaseCharge
 
+
 class CourtCase(Base):
     __tablename__ = "court_cases"
     __table_args__ = (
@@ -17,21 +17,27 @@ class CourtCase(Base):
     )
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    court_id: Mapped[int] = mapped_column(ForeignKey("courts.id", ondelete="CASCADE"), nullable=False)
+    court_id: Mapped[int] = mapped_column(
+        ForeignKey("courts.id", ondelete="CASCADE"), nullable=False
+    )
     case_number: Mapped[str] = mapped_column(String(100), nullable=False, index=True)
-    style_of_case: Mapped[str] = mapped_column(String(500), nullable=False) # e.g., State v. Smith
+    style_of_case: Mapped[str] = mapped_column(
+        String(500), nullable=False
+    )  # e.g., State v. Smith
     original_filing_date: Mapped[date] = mapped_column(Date, nullable=False)
     current_judge: Mapped[Optional[str]] = mapped_column(String(255), nullable=True)
 
     # Relationships
     court: Mapped["Court"] = relationship("Court", back_populates="cases")
     hearings: Mapped[List["Hearing"]] = relationship(
-        "Hearing", 
-        back_populates="court_case", 
+        "Hearing",
+        back_populates="court_case",
         cascade="all, delete-orphan",
-        order_by="Hearing.hearing_date.asc()"
+        order_by="Hearing.hearing_date.asc()",
     )
-    charges: Mapped[List["CaseCharge"]] = relationship("CaseCharge", back_populates="court_case", cascade="all, delete-orphan")
+    charges: Mapped[List["CaseCharge"]] = relationship(
+        "CaseCharge", back_populates="court_case", cascade="all, delete-orphan"
+    )
 
     # --- Smart Properties & Metrics ---
     @property
@@ -44,9 +50,9 @@ class CourtCase(Base):
         """Calculates average frequency (in days) between scheduled hearings."""
         if len(self.hearings) < 2:
             return None
-        
+
         intervals = [
-            (self.hearings[i].hearing_date - self.hearings[i-1].hearing_date).days
+            (self.hearings[i].hearing_date - self.hearings[i - 1].hearing_date).days
             for i in range(1, len(self.hearings))
         ]
         return sum(intervals) / len(intervals)

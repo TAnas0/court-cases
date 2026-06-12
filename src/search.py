@@ -31,14 +31,10 @@ def get_search_page_by_hearing_date(session, date, last_index):
     }
     data = {
         "courtLevels": [],
-        "divisions": [
-            "Criminal/Traffic"
-        ],
+        "divisions": ["Criminal/Traffic"],
         # "selectedCourts": ["003G"],
         "selectedCourts": [],
-        "searchString": [
-            date
-        ],
+        "searchString": [date],
         "searchBy": "HD",
         "endingIndex": last_index,
     }
@@ -53,15 +49,24 @@ def get_search_page_by_hearing_date(session, date, last_index):
         try:
             payload = res.json()["context"]["entity"].get("payload")
             if payload:
-                return payload.get("searchResults"), payload.get("hasMoreRecords") != "Y", payload.get("lastResponseIndex")
+                return (
+                    payload.get("searchResults"),
+                    payload.get("hasMoreRecords") != "Y",
+                    payload.get("lastResponseIndex"),
+                )
             else:
                 logger.info(f"Empty payload for date {date}, last_index {last_index}")
                 return None, None, None
         except KeyError as e:
-            logger.error("Failed to parse search response: context.entity.payload missing")
+            logger.error(
+                "Failed to parse search response: context.entity.payload missing"
+            )
             raise
     else:
-        raise Exception(f"Search request failed with status {res.status_code}: {res.text}")
+        raise Exception(
+            f"Search request failed with status {res.status_code}: {res.text}"
+        )
+
 
 def search_by_hearing_date(session, date):
     count = 0
@@ -74,10 +79,16 @@ def search_by_hearing_date(session, date):
         count += 1
         if count and count % 50 == 0:
             logger.debug(f"Searching court cases after last index: {last_index}")
-        results, last_page, last_index = get_search_page_by_hearing_date(session, date, last_index)
+        results, last_page, last_index = get_search_page_by_hearing_date(
+            session, date, last_index
+        )
         if results:
             all_results += results
-        logger.debug(f"Page {page}: Found {len(results) if results else 0} results. Total so far: {len(all_results)}")
+        logger.debug(
+            f"Page {page}: Found {len(results) if results else 0} results. Total so far: {len(all_results)}"
+        )
         page += 1
-    logger.debug(f"Getting all search results for date {date} required {count} network requests")
+    logger.debug(
+        f"Getting all search results for date {date} required {count} network requests"
+    )
     return all_results

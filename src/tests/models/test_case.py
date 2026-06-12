@@ -1,6 +1,7 @@
 import pytest
 from src.models import CourtCase
 
+
 def test_case_creation():
     case = CourtCase(
         case_number="CR2024-001",
@@ -12,6 +13,7 @@ def test_case_creation():
     )
     assert case.case_number == "CR2024-001"
     # assert case.is_criminal is True
+
 
 def test_case_repr():
     case = CourtCase(

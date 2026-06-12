@@ -27,6 +27,7 @@ def test_bronze_creates_parquet(sample_jsonl, tmp_path):
 
 def test_bronze_preserves_all_records(sample_jsonl, tmp_path):
     import duckdb
+
     output = str(tmp_path / "bronze" / "cases.parquet")
     build_bronze_layer(sample_jsonl, output)
     count = duckdb.execute(f"SELECT count(*) FROM '{output}'").fetchone()[0]

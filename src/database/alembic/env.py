@@ -31,12 +31,14 @@ target_metadata = Base.metadata
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
 
+
 # Limit Models included in migrations
 def include_object(object, name, type_, reflected, compare_to):
     # Only include the "courts" table for migration
     if type_ == "table" and name in ["courts", "cases", "charges", "case_charges"]:
         return True
     return False
+
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode.
@@ -88,6 +90,7 @@ def run_migrations_online() -> None:
 
 
 from sqlalchemy.orm import configure_mappers
+
 configure_mappers()
 
 if context.is_offline_mode():

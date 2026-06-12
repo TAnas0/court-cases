@@ -15,6 +15,7 @@ from src.search import get_search_page_by_hearing_date
 
 logger = logging.getLogger(__name__)
 
+
 class RateLimitedCachedSession(LimiterMixin, requests_cache.CachedSession):
     """A requests_cache.CachedSession with built-in rate limiting via requests-ratelimiter.
 
@@ -36,9 +37,12 @@ def accept_terms_and_conditions(
     """
     # TODO: Relocate session initialization to a dedicated service
     session = RateLimitedCachedSession(
-        cache_name='.ocis_cache',
+        cache_name=".ocis_cache",
         expire_after=timedelta(days=30),
-        allowable_codes=[200, 400],  # Note: API may return 200 OK even for application-level failures
+        allowable_codes=[
+            200,
+            400,
+        ],  # Note: API may return 200 OK even for application-level failures
         allowable_methods=["POST"],
         stale_if_error=False,
         # requests-ratelimiter kwargs
@@ -55,8 +59,10 @@ def accept_terms_and_conditions(
 
     return session
 
+
 def get_court_name_by_fips(fipsCode4):
     return list(filter(lambda d: d["fipsCode4"] == fipsCode4, courts))[0]["courtName"]
+
 
 def get_court_by_fips(fipsCode4):
     return list(filter(lambda d: d["fipsCode4"] == fipsCode4, courts))[0]
@@ -71,8 +77,10 @@ def date_range(start_date, end_date):
 def get_json_path(d):
     return f"output/{d.strftime('%Y')}/{d.strftime('%m')}/{d.strftime('%d')}.json"
 
+
 def get_court_case_url(case):
     return f"https://eapps.courts.state.va.us/ocis/details;fromOcis=true;fullcaseNumber={case['qualifiedFips']}{case['divisionType']}{case['caseNumber']}"
+
 
 def get_sample_court_case(session):
     """
@@ -99,17 +107,19 @@ def normalize_nullable_values(value, nullable_values, null_value):
 
 
 def to_snake_case(s):
-    return underscore(s.strip()  # Remove leading/trailing spaces
-            .replace(" ", "_")  # Replace spaces with underscores
-            .replace("-", "_")  # Replace dashes with underscores
-            .replace("/", "_"))  # Replace slashes with underscores
+    return underscore(
+        s.strip()  # Remove leading/trailing spaces
+        .replace(" ", "_")  # Replace spaces with underscores
+        .replace("-", "_")  # Replace dashes with underscores
+        .replace("/", "_")
+    )  # Replace slashes with underscores
 
 
 def try_json_loads(val):
     if not isinstance(val, str):
         return val
     val = val.strip()
-    if not val or not val.startswith(("{", "[", "\"", "'")):
+    if not val or not val.startswith(("{", "[", '"', "'")):
         return val
     try:
         return json.loads(val)
