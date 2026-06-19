@@ -1,0 +1,1116 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "qualifiedFips": {
+        "type": "string"
+      },
+      "courtLevel": {
+        "type": "string"
+      },
+      "divisionType": {
+        "type": "string"
+      },
+      "subDivisionType": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "caseNumber": {
+        "type": "string"
+      },
+      "formattedCaseNumber": {
+        "type": "string"
+      },
+      "name": {
+        "type": "string"
+      },
+      "offenseDate": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "chargeAmended": {
+        "type": "boolean"
+      },
+      "codeSection": {
+        "type": "string"
+      },
+      "chargeDesc": {
+        "type": "string"
+      },
+      "caseType": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "hearingDate": {
+        "type": "string"
+      },
+      "hearingType": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "hearingResult": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "locality": {
+        "type": "object",
+        "properties": {
+          "localityName": {
+            "type": "string"
+          },
+          "localityCode": {
+            "type": "string"
+          }
+        }
+      },
+      "caseTrackingID": {
+        "type": "string"
+      },
+      "caseCategory": {
+        "type": "object",
+        "properties": {
+          "caseCategoryCode": {
+            "type": "string"
+          },
+          "caseSubCategoryCode": {
+            "type": "string"
+          },
+          "criminalCaseIndicator": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "caseCategoryCode"
+        ]
+      },
+      "caseActiveIndicator": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "value"
+        ]
+      },
+      "caseCharge": {
+        "type": "object",
+        "properties": {
+          "chargeFilingDate": {
+            "type": "string"
+          },
+          "offenseDate": {
+            "type": "string"
+          },
+          "arrestDate": {
+            "type": "string"
+          },
+          "originalCharge": {
+            "type": "object",
+            "properties": {
+              "chargeDescriptionText": {
+                "type": "string"
+              },
+              "caseTypeCode": {
+                "type": "string"
+              },
+              "classCode": {
+                "type": "string"
+              },
+              "codeSection": {
+                "type": "string"
+              },
+              "modifierCode": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "chargeDescriptionText",
+              "codeSection"
+            ]
+          },
+          "offenseTrackingNumber": {
+            "type": "string"
+          },
+          "amendedCharge": {
+            "type": "object",
+            "properties": {
+              "chargeDescriptionText": {
+                "type": "string"
+              },
+              "caseTypeCode": {
+                "type": "string"
+              },
+              "codeSection": {
+                "type": "string"
+              },
+              "classCode": {
+                "type": "string"
+              },
+              "modifierCode": {
+                "type": "string"
+              }
+            }
+          },
+          "summonsNumber": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "chargeFilingDate",
+          "originalCharge"
+        ]
+      },
+      "caseCourt": {
+        "type": "object",
+        "properties": {
+          "courtCategoryCode": {
+            "type": "object",
+            "properties": {
+              "value": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "value"
+            ]
+          },
+          "fipsCode": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "courtCategoryCode",
+          "fipsCode"
+        ]
+      },
+      "caseOtherInfo": {
+        "type": "object",
+        "properties": {
+          "commencedByCode": {
+            "type": "string"
+          }
+        }
+      },
+      "disposition": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "dispositionInfo": {
+                "type": "object",
+                "properties": {
+                  "dispositionDate": {
+                    "type": "string"
+                  },
+                  "dispositionText": {
+                    "type": "string"
+                  }
+                }
+              },
+              "probationInfo": {
+                "type": "object",
+                "properties": {
+                  "duration": {
+                    "type": "object",
+                    "properties": {
+                      "years": {
+                        "type": "integer"
+                      },
+                      "months": {
+                        "type": "integer"
+                      },
+                      "days": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "probationType": {
+                    "type": "string"
+                  },
+                  "probationStart": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "duration"
+                ]
+              },
+              "transferToCourt": {
+                "type": "string"
+              },
+              "concludedByCode": {
+                "type": "string"
+              },
+              "programInfo": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "sequenceNumber": {
+                      "type": "object",
+                      "properties": {
+                        "identificationID": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "identificationID"
+                      ]
+                    },
+                    "programCode": {
+                      "type": "string"
+                    },
+                    "programGID": {
+                      "type": "object",
+                      "properties": {
+                        "dateTime": {
+                          "type": "integer"
+                        }
+                      },
+                      "required": [
+                        "dateTime"
+                      ]
+                    },
+                    "duration": {
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "duration",
+                    "programCode",
+                    "programGID",
+                    "sequenceNumber"
+                  ]
+                }
+              },
+              "sentencedBy": {
+                "type": "object",
+                "properties": {
+                  "code": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "code"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "dmvInformation": {
+        "type": "object",
+        "properties": {
+          "driverLicense": {
+            "type": "object",
+            "properties": {
+              "licenseLoss": {
+                "type": "object",
+                "properties": {
+                  "days": {
+                    "type": "integer"
+                  },
+                  "months": {
+                    "type": "integer"
+                  },
+                  "years": {
+                    "type": "integer"
+                  },
+                  "licenseSurrenderCode": {
+                    "type": "string"
+                  }
+                }
+              },
+              "licenseRestrictions": {
+                "type": "object",
+                "properties": {
+                  "restrictions": {
+                    "type": "string"
+                  },
+                  "startDate": {
+                    "type": "string"
+                  },
+                  "endDate": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "trafficFatality": {
+            "type": "string"
+          },
+          "alcoholSafetyActionCode": {
+            "type": "string"
+          }
+        }
+      },
+      "sentencingInformation": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "sentence": {
+                "type": "object",
+                "properties": {
+                  "months": {
+                    "type": "integer"
+                  },
+                  "days": {
+                    "type": "integer"
+                  },
+                  "hours": {
+                    "type": "integer"
+                  },
+                  "years": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "sentenceSuspended": {
+                "type": "object",
+                "properties": {
+                  "months": {
+                    "type": "integer"
+                  },
+                  "days": {
+                    "type": "integer"
+                  },
+                  "hours": {
+                    "type": "integer"
+                  },
+                  "years": {
+                    "type": "integer"
+                  }
+                }
+              },
+              "jailPenitentiaryTimeServedCode": {
+                "type": "string"
+              },
+              "concurrConsecCode": {
+                "type": "string"
+              },
+              "lifeDeathPenaltyCode": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "financialInformation": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "fines": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "object",
+                    "properties": {
+                      "decimal": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "decimal"
+                    ]
+                  },
+                  "amountSuspended": {
+                    "type": "object",
+                    "properties": {
+                      "decimal": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "decimal"
+                    ]
+                  },
+                  "paidIndicator": {
+                    "type": "string"
+                  },
+                  "imposedAmount": {
+                    "type": "object",
+                    "properties": {
+                      "decimal": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "decimal"
+                    ]
+                  },
+                  "dueDate": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "date"
+                    ]
+                  },
+                  "paidDate": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "date"
+                    ]
+                  }
+                }
+              },
+              "restitution": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "object",
+                    "properties": {
+                      "decimal": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "decimal"
+                    ]
+                  },
+                  "restitutionOrdered": {
+                    "type": "string"
+                  },
+                  "paidIndicator": {
+                    "type": "string"
+                  },
+                  "restitutionJoint": {
+                    "type": "string"
+                  },
+                  "dueDate": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "date"
+                    ]
+                  },
+                  "paidDate": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "date"
+                    ]
+                  }
+                }
+              },
+              "costs": {
+                "type": "object",
+                "properties": {
+                  "amount": {
+                    "type": "object",
+                    "properties": {
+                      "decimal": {
+                        "type": "number"
+                      }
+                    },
+                    "required": [
+                      "decimal"
+                    ]
+                  },
+                  "paidDate": {
+                    "type": "object",
+                    "properties": {
+                      "date": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "date"
+                    ]
+                  },
+                  "paidIndicator": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "amount"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "caseParticipant": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "sequenceNumber": {
+              "type": "object",
+              "properties": {
+                "identificationID": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "identificationID"
+              ]
+            },
+            "participantCode": {
+              "type": "string"
+            },
+            "contactInformation": {
+              "type": "object",
+              "properties": {
+                "primaryAddress": {
+                  "type": "object",
+                  "properties": {
+                    "locationCityName": {
+                      "type": "string"
+                    },
+                    "locationState": {
+                      "type": "string"
+                    },
+                    "locationCountry": {
+                      "type": "string"
+                    },
+                    "locationPostalCode": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "personName": {
+                  "type": "object",
+                  "properties": {
+                    "personGivenName": {
+                      "type": "string"
+                    },
+                    "personMiddleName": {
+                      "type": "string"
+                    },
+                    "personSurName": {
+                      "type": "string"
+                    },
+                    "fullName": {
+                      "type": "string"
+                    },
+                    "personNameSuffixText": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "fullName",
+                    "personSurName"
+                  ]
+                },
+                "businessName": {
+                  "type": "object",
+                  "properties": {
+                    "businessName": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "businessName"
+                  ]
+                },
+                "additionalName": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "sequenceNumber": {
+                        "type": "object",
+                        "properties": {
+                          "identificationID": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "identificationID"
+                        ]
+                      },
+                      "additionalName": {
+                        "type": "string"
+                      },
+                      "additionalNameType": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "additionalName",
+                      "additionalNameType",
+                      "id",
+                      "sequenceNumber"
+                    ]
+                  }
+                },
+                "secondaryAddress": {
+                  "type": "object",
+                  "properties": {
+                    "locationCityName": {
+                      "type": "string"
+                    },
+                    "locationState": {
+                      "type": "string"
+                    },
+                    "locationCountry": {
+                      "type": "string"
+                    },
+                    "locationPostalCode": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "locationCountry"
+                  ]
+                }
+              }
+            },
+            "attorneyDetails": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "judicialOfficialCategoryText": {
+                    "type": "string"
+                  },
+                  "id": {
+                    "type": "string"
+                  },
+                  "attorneyName": {
+                    "type": "object",
+                    "properties": {
+                      "personSurName": {
+                        "type": "string"
+                      },
+                      "fullName": {
+                        "type": "string"
+                      },
+                      "personGivenName": {
+                        "type": "string"
+                      },
+                      "personNameSuffixText": {
+                        "type": "string"
+                      },
+                      "personMiddleName": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "sequenceNumber": {
+                    "type": "object",
+                    "properties": {
+                      "identificationID": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "identificationID"
+                    ]
+                  },
+                  "attorneyBusinessName": {
+                    "type": "object",
+                    "properties": {
+                      "businessName": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "businessName"
+                    ]
+                  },
+                  "attorneyContactCGID": {
+                    "type": "object",
+                    "properties": {
+                      "dateTime": {
+                        "type": "integer"
+                      }
+                    },
+                    "required": [
+                      "dateTime"
+                    ]
+                  },
+                  "judicialOfficialBarMembership": {
+                    "type": "object",
+                    "properties": {
+                      "judicialOfficialBarIdentification": {
+                        "type": "object",
+                        "properties": {
+                          "identificationID": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "identificationID"
+                        ]
+                      }
+                    },
+                    "required": [
+                      "judicialOfficialBarIdentification"
+                    ]
+                  }
+                }
+              }
+            },
+            "personalDetails": {
+              "type": "object",
+              "properties": {
+                "race": {
+                  "type": "string"
+                },
+                "gender": {
+                  "type": "string"
+                },
+                "maskedBirthDate": {
+                  "type": "string"
+                },
+                "militaryServed": {
+                  "type": "string"
+                }
+              }
+            },
+            "participantStatus": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "contactInformation",
+            "participantCode",
+            "sequenceNumber"
+          ]
+        }
+      },
+      "caseHearing": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "courtActivityScheduleDay": {
+              "type": "object",
+              "properties": {
+                "scheduleDate": {
+                  "type": "string"
+                },
+                "scheduleDayStartTime": {
+                  "type": "object",
+                  "properties": {
+                    "time": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "time"
+                  ]
+                }
+              },
+              "required": [
+                "scheduleDate",
+                "scheduleDayStartTime"
+              ]
+            },
+            "courtRoom": {
+              "type": "string"
+            },
+            "hearingType": {
+              "type": "string"
+            },
+            "hearingResult": {
+              "type": "string"
+            },
+            "sequenceNumber": {
+              "type": "object",
+              "properties": {
+                "identificationID": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "identificationID"
+              ]
+            },
+            "continuanceCode": {
+              "type": "string"
+            },
+            "hearingStatus": {
+              "type": "string"
+            },
+            "plea": {
+              "type": "string"
+            },
+            "duration": {
+              "type": "object",
+              "properties": {
+                "days": {
+                  "type": "integer"
+                },
+                "hours": {
+                  "type": "integer"
+                },
+                "minutes": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "days"
+              ]
+            },
+            "juryImpaneled": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "courtActivityScheduleDay",
+            "sequenceNumber"
+          ]
+        }
+      },
+      "complainantName": {
+        "type": [
+          "null",
+          "string"
+        ]
+      },
+      "appealCase": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "appealDate": {
+                "type": "string"
+              },
+              "appealWithdrawnDate": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
+      "serviceInfo": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sequenceNumber": {
+                  "type": "object",
+                  "properties": {
+                    "identificationID": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "identificationID"
+                  ]
+                },
+                "noticeType": {
+                  "type": "string"
+                },
+                "dateIssued": {
+                  "type": "string"
+                },
+                "serviceContact": {
+                  "type": "object",
+                  "properties": {
+                    "personName": {
+                      "type": "object",
+                      "properties": {
+                        "personSurName": {
+                          "type": "string"
+                        },
+                        "fullName": {
+                          "type": "string"
+                        },
+                        "personGivenName": {
+                          "type": "string"
+                        },
+                        "personMiddleName": {
+                          "type": "string"
+                        },
+                        "personNameSuffixText": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "businessName": {
+                      "type": "object",
+                      "properties": {
+                        "businessName": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "businessName"
+                      ]
+                    }
+                  }
+                },
+                "hearingDate": {
+                  "type": "string"
+                },
+                "dateServed": {
+                  "type": "string"
+                },
+                "howServed": {
+                  "type": "string"
+                },
+                "dateReturned": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "noticeType",
+                "sequenceNumber",
+                "serviceContact"
+              ]
+            }
+          }
+        ]
+      },
+      "pleadingAndOrder": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "courtOrderIssuingDate": {
+                  "type": "string"
+                },
+                "sequenceNumber": {
+                  "type": "object",
+                  "properties": {
+                    "identificationID": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "identificationID"
+                  ]
+                },
+                "orderType": {
+                  "type": "string"
+                },
+                "party": {
+                  "type": "string"
+                },
+                "judge": {
+                  "type": "object",
+                  "properties": {
+                    "caseOfficialCaseIdentification": {
+                      "type": "object",
+                      "properties": {
+                        "identificationID": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "identificationID"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "caseOfficialCaseIdentification"
+                  ]
+                },
+                "courtOrderServiceDescriptionText": {
+                  "type": "string"
+                },
+                "documentRecord": {
+                  "type": "object",
+                  "properties": {
+                    "book": {
+                      "type": "string"
+                    },
+                    "page": {
+                      "type": "string"
+                    },
+                    "instrument": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "required": [
+                "courtOrderIssuingDate",
+                "orderType",
+                "sequenceNumber"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    "required": [
+      "caseActiveIndicator",
+      "caseCategory",
+      "caseCharge",
+      "caseCourt",
+      "caseHearing",
+      "caseNumber",
+      "caseOtherInfo",
+      "caseParticipant",
+      "caseTrackingID",
+      "caseType",
+      "chargeAmended",
+      "chargeDesc",
+      "codeSection",
+      "courtLevel",
+      "divisionType",
+      "dmvInformation",
+      "formattedCaseNumber",
+      "hearingDate",
+      "hearingResult",
+      "hearingType",
+      "locality",
+      "name",
+      "offenseDate",
+      "qualifiedFips"
+    ]
+  }
+}

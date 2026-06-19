@@ -42,7 +42,7 @@ The pipeline follows the **Medallion Architecture** (Bronze → Silver → Gold)
 ### Prerequisites
 
 - Docker ≥ 24 and Docker Compose v2
-- Python 3.9+ (for local runs / tests)
+- Python 3.11+ (for local runs / tests)
 
 ### 1 — Clone and configure
 
