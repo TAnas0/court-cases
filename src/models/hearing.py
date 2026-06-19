@@ -1,7 +1,6 @@
 from datetime import date
 from typing import TYPE_CHECKING, Any, Dict
-from sqlalchemy import UniqueConstraint, String, Date, ForeignKey
-from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy import UniqueConstraint, String, Date, ForeignKey, JSON
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from .base import Base
 
@@ -24,9 +23,9 @@ class Hearing(Base):
     hearing_date: Mapped[date] = mapped_column(Date, nullable=False, index=True)
     case_status: Mapped[str] = mapped_column(String(100), nullable=False)
 
-    # Comprehensive nested JSONB engine architecture matching Pydantic structural models
+    # Comprehensive nested JSON engine architecture matching Pydantic structural models
     case_details: Mapped[Dict[str, Any]] = mapped_column(
-        JSONB, nullable=False, default=dict
+        JSON, nullable=False, default=dict
     )
 
     # Relationships
