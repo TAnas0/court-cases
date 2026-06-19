@@ -1,7 +1,7 @@
 import logging
 import pandas as pd
 from src.utils import try_json_loads, to_snake_case
-from src.models.case import Case
+from src.models.court_case import CourtCase
 from src.database.main import get_court_by_qualified_fips, upsert_cases
 
 logger = logging.getLogger(__name__)
@@ -11,7 +11,7 @@ def normalize_cases_dataframe(df):
     """
     Preprocesses a dataframe of raw court cases.
     # Normalizes a dataframe of court cases that were read directly from raw scraped court cases data.
-    Extracts Case, Hearings, Charges, Participants, Dispositions, etc. as Pandas dataframe ready to be saved to the DB.
+    Extracts CourtCase, Hearings, Charges, Participants, Dispositions, etc. as Pandas dataframe ready to be saved to the DB.
     """
 
     df = df.map(try_json_loads)  # Convert JSON-like strings into JSON
@@ -116,11 +116,9 @@ def save_cases_dataframe_to_db(df):
         for index, row in df_cases.iterrows():
             try:
                 case_data = row.to_dict()
-
-                court_id = get_court_by_qualified_fips(
-                    db_session, case_data["qualified_fips"]
-                ).id
-                case = Case(
+                
+                court_id = get_court_by_qualified_fips(db_session, case_data["qualified_fips"]).id
+                case = CourtCase(
                     case_number=case_data["case_number"],
                     formatted_case_number=case_data["formatted_case_number"],
                     charge_amended=case_data["charge_amended"],

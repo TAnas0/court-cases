@@ -64,7 +64,7 @@ def upsert_cases(session, cases_instances):
     for case_data in cases_data_list:
         case_data.pop("_sa_instance_state", None)
 
-    statement = insert(Case).values(cases_data_list)
+    statement = insert(CourtCase).values(cases_data_list)
 
     # Specify conflict handling on composite unique constraint
     statement = statement.on_conflict_do_update(
@@ -81,19 +81,19 @@ def upsert_cases(session, cases_instances):
 
 
 def get_case_by_id(session, id):
-    case = session.query(Case).filter_by(id=id).first()
+    case = session.query(CourtCase).filter_by(id=id).first()
     return case
 
 
 def get_cases_by_ids(session, ids):
     """Retrieve cases by a list of IDs."""
-    cases = session.query(Case).filter(Case.id.in_(ids)).all()
+    cases = session.query(CourtCase).filter(CourtCase.id.in_(ids)).all()
     return cases
 
 
 def get_case_by_formatted_number(session, formatted_case_number):
     case = (
-        session.query(Case)
+        session.query(CourtCase)
         .filter_by(formatted_case_number=formatted_case_number)
         .first()
     )
@@ -103,8 +103,8 @@ def get_case_by_formatted_number(session, formatted_case_number):
 def get_cases_by_formatted_numbers(session, formatted_case_numbers):
     """Retrieve cases by a list of formatted numbers."""
     cases = (
-        session.query(Case)
-        .filter(Case.formatted_case_number.in_(formatted_case_numbers))
+        session.query(CourtCase)
+        .filter(CourtCase.formatted_case_number.in_(formatted_case_numbers))
         .all()
     )
     return cases
