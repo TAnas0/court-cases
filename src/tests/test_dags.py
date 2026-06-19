@@ -17,9 +17,13 @@ def test_dag_import_errors():
 
 
 def test_dag_exists():
-    """Verify that the expected DAG exists."""
+    """Verify that the expected DAGs exist."""
     dag_folder = os.path.join(os.path.dirname(__file__), "../../dags")
     dag_bag = DagBag(dag_folder=dag_folder, include_examples=False)
 
     assert "court_case_scraper_workflow" in dag_bag.dags
     assert dag_bag.dags["court_case_scraper_workflow"] is not None
+
+    assert "medallion_pipeline" in dag_bag.dags
+    assert dag_bag.dags["medallion_pipeline"] is not None
+
