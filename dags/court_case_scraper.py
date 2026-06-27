@@ -4,7 +4,7 @@ from airflow.sdk import task
 from datetime import datetime, timedelta
 from airflow.models.param import Param
 import pandas as pd
-import requests
+
 from src.main import scrape_day_court_cases
 from src.services.case import normalize_cases_dataframe, save_cases_dataframe_to_db
 from src.utils import accept_terms_and_conditions
@@ -35,13 +35,18 @@ def generate_dates(start_date_str: str, end_date_str: str) -> list:
 
 # @task(pool="court_website_pool") # Pool to be created and configured
 @task(max_active_tis_per_dag=10)
-def scrape_data(date_str: str, cookies: dict):
-    """Scrapes a single day of court cases using the pre-established session cookies."""
+def scrape_data(date_str: str):
+    """Scrapes a single day of court cases.
+
+    Each dynamic-mapped task instance creates its own RateLimitedCachedSession by
+    calling accept_terms_and_conditions(). This ensures rate limiting and caching are
+    active in every worker — passing only cookies via XCom would silently drop the
+    LimiterMixin from the session.
+    """
     current_date = datetime.strptime(date_str, "%Y-%m-%d").date()
     logger.info(f"Scraping {current_date}")
 
-    session = requests.Session()
-    session.cookies = requests.utils.cookiejar_from_dict(cookies)
+    session = accept_terms_and_conditions()
 
     path = scrape_day_court_cases(current_date, session)
 
@@ -70,16 +75,6 @@ def ingest_data(path: str):
         logger.error(f"Error processing {path}: {e}")
 
 
-@task
-def establish_session() -> dict:
-    """Runs once to authenticate and capture the session cookies."""
-    logger.info("Establishing master session and accepting terms...")
-    session = accept_terms_and_conditions()
-
-    # Extract cookies as a dictionary to pass via XCom
-    session_cookies = requests.utils.dict_from_cookiejar(session.cookies)
-    return session_cookies
-
 
 with DAG(
     "court_case_scraper_workflow",
@@ -96,8 +91,6 @@ with DAG(
     date_array = generate_dates(
         start_date_str="{{ params.start_date }}", end_date_str="{{ params.end_date }}"
     )
-
-    session_cookies = establish_session()
 
     scraped_files = scrape_data.override(task_id="dynamic_scrape").expand(
         date_str=date_array
