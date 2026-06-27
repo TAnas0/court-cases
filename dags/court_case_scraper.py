@@ -1,6 +1,6 @@
 import logging
 from airflow import DAG
-from airflow.decorators import task
+from airflow.sdk import task
 from datetime import datetime, timedelta
 from airflow.models.param import Param
 import pandas as pd
