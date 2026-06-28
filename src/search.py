@@ -2,6 +2,7 @@ import logging
 import requests
 
 from tenacity import (
+    before_sleep_log,
     retry,
     retry_if_exception_type,
     stop_after_attempt,
@@ -11,18 +12,11 @@ from tenacity import (
 logger = logging.getLogger(__name__)
 
 
-def _log_retry(retry_state):
-    logger.warning(
-        f"Retrying request (attempt {retry_state.attempt_number}): "
-        f"{retry_state.outcome.exception()}"
-    )
-
-
 @retry(
     stop=stop_after_attempt(3),
     wait=wait_exponential(multiplier=1, min=2, max=30),
     retry=retry_if_exception_type((requests.ConnectionError, requests.Timeout)),
-    before_sleep=_log_retry,
+    before_sleep=before_sleep_log(logger, logging.WARNING),
 )
 def get_search_page_by_hearing_date(session, date, last_index):
     url = "https://eapps.courts.state.va.us/ocis-rest/api/public/search"
@@ -74,7 +68,7 @@ def search_by_hearing_date(session, date):
     page = 1
     last_page = False
     last_index = 0
-    logger.debug(f"Starting search for date {date}")
+    logger.info(f"Starting search for date {date}")
     while not last_page:
         count += 1
         if count and count % 50 == 0:
@@ -88,7 +82,7 @@ def search_by_hearing_date(session, date):
             f"Page {page}: Found {len(results) if results else 0} results. Total so far: {len(all_results)}"
         )
         page += 1
-    logger.debug(
-        f"Getting all search results for date {date} required {count} network requests"
+    logger.info(
+        f"Search complete for date {date}: {len(all_results)} results across {count} requests"
     )
     return all_results

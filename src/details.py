@@ -3,6 +3,7 @@ import logging
 import requests
 
 from tenacity import (
+    before_sleep_log,
     retry,
     retry_if_exception_type,
     stop_after_attempt,
@@ -12,18 +13,11 @@ from tenacity import (
 logger = logging.getLogger(__name__)
 
 
-def _log_retry(retry_state):
-    logger.warning(
-        f"Retrying request (attempt {retry_state.attempt_number}): "
-        f"{retry_state.outcome.exception()}"
-    )
-
-
 @retry(
     stop=stop_after_attempt(3),
     wait=wait_exponential(multiplier=1, min=2, max=30),
     retry=retry_if_exception_type((requests.ConnectionError, requests.Timeout)),
-    before_sleep=_log_retry,
+    before_sleep=before_sleep_log(logger, logging.WARNING),
 )
 def get_case_details(session, fips, court_level, division_type, case_number):
     logger.debug(
@@ -46,11 +40,12 @@ def get_case_details(session, fips, court_level, division_type, case_number):
         if result["context"]["entity"]["status"] == "SUCCESS":
             return result["context"]["entity"]["payload"]
         else:
-            logger.debug(res)
-            logger.debug(res.status_code)
-            logger.debug(res.json())
+            logger.error(
+                f"Details response FAILURE for {case_number}: status={res.status_code} "
+                f"body={res.text[:500]}"
+            )
             raise Exception(
-                "Details response indicated as FAILURE. PLease inspect the above."
+                f"Details response indicated as FAILURE for {case_number}. Inspect logs above."
             )
     else:
         raise Exception(
