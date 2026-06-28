@@ -62,8 +62,9 @@ def search_and_batch(date_str: str, batch_size: int = BATCH_SIZE) -> list[dict]:
     """
     session = accept_terms_and_conditions()
     formatted = datetime.strptime(date_str, "%Y-%m-%d").strftime("%m/%d/%Y")
+    logger.info("Searching for hearing in date %s...", formatted)
     stubs = search_by_hearing_date(session, formatted)
-    logger.info("date=%s found=%d stubs", date_str, len(stubs))
+    logger.info("Hearing in date=%s found=%d stubs", date_str, len(stubs))
 
     if not stubs:
         return []

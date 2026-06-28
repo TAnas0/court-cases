@@ -71,7 +71,7 @@ def validate_data(json_glob_path: str, schema_path: str, sample_size: int = 5):
                         # Limit errors per file?
                         if errors > 10: break
                         
-            logger.debug(f"✅ {os.path.basename(file_path)} passed validation (checked first 1000 lines)")
+            logger.info(f"✅ {os.path.basename(file_path)} passed validation (checked first 1000 lines)")
             
         except Exception as e:
             logger.error(f"❌ Error reading {file_path}: {e}")

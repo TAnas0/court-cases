@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
     before_sleep=before_sleep_log(logger, logging.WARNING),
 )
 def get_case_details(session, fips, court_level, division_type, case_number):
-    logger.debug(
+    logger.info(
         f"Getting details for {fips}/{court_level}/{division_type}/{case_number}"
     )
     url = "https://eapps.courts.state.va.us/ocis-rest/api/public/getCaseDetails"

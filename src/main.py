@@ -50,7 +50,7 @@ def scrape_day_court_cases(date, session=None):
     details = []
     failure_count = 0
     for index, case in enumerate(results):
-        logger.debug(
+        logger.info(
             f"Processing case {index + 1}/{len(results)}: {case.get('caseNumber')}"
         )
         try:

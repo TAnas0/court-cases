@@ -32,7 +32,7 @@ def get_search_page_by_hearing_date(session, date, last_index):
         "searchBy": "HD",
         "endingIndex": last_index,
     }
-    logger.debug(f"Fetching search page for date {date}, last_index {last_index}")
+    logger.info(f"Fetching search page for date {date}, last_index {last_index}")
     try:
         res = session.post(url, headers=headers, json=data, timeout=30)
     except Exception as e:
@@ -72,13 +72,13 @@ def search_by_hearing_date(session, date):
     while not last_page:
         count += 1
         if count and count % 50 == 0:
-            logger.debug(f"Searching court cases after last index: {last_index}")
+            logger.info(f"Searching court cases after last index: {last_index}")
         results, last_page, last_index = get_search_page_by_hearing_date(
             session, date, last_index
         )
         if results:
             all_results += results
-        logger.debug(
+        logger.info(
             f"Page {page}: Found {len(results) if results else 0} results. Total so far: {len(all_results)}"
         )
         page += 1
