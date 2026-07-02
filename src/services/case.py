@@ -2,7 +2,7 @@ import logging
 import pandas as pd
 from src.utils import try_json_loads, to_snake_case
 from src.models.court_case import CourtCase
-from src.database.main import get_court_by_qualified_fips, upsert_cases
+from src.database.main import get_court_by_qualified_fips
 
 logger = logging.getLogger(__name__)
 
@@ -79,71 +79,9 @@ def normalize_cases_dataframe(df):
     )  # Replace NaN, NaT, and other nullable Pandas value to None
     return df
 
-
-def save_cases_dataframe_to_db(df):
-    from src.database.main import get_session
-
-    with get_session() as db_session:
-        df_cases = df[
-            [
-                "qualified_fips",
-                "case_number",
-                "formatted_case_number",
-                "charge_amended",
-                "code_section",
-                "case_type",
-                "offense_date",
-                "arrest_date",
-                "is_criminal",
-                "case_category_code",
-                "case_sub_category_code",
-                "is_appeal",
-                "appeal_date",
-                "is_active",
-                "commenced_by",
-                "case_tracking_id",
-            ]
-        ]
-
-        # Deduplicate based on composite unique constraint, while keeping the last
-        df_cases = df_cases.drop_duplicates(
-            subset=["case_number", "code_section", "is_appeal", "commenced_by"],
-            keep="last",
-        )
-
-        cases_models = []
-
-        for index, row in df_cases.iterrows():
-            try:
-                case_data = row.to_dict()
-                
-                court_id = get_court_by_qualified_fips(db_session, case_data["qualified_fips"]).id
-                case = CourtCase(
-                    case_number=case_data["case_number"],
-                    formatted_case_number=case_data["formatted_case_number"],
-                    charge_amended=case_data["charge_amended"],
-                    code_section=case_data["code_section"],
-                    case_type=case_data["case_type"],
-                    offense_date=case_data["offense_date"],
-                    arrest_date=case_data["arrest_date"],
-                    is_criminal=case_data["is_criminal"],
-                    category=case_data["case_category_code"],
-                    sub_category=case_data["case_sub_category_code"],
-                    # is_appeal=case_data["is_appeal"],
-                    appeal_date=case_data["appeal_date"],
-                    is_active=case_data["is_active"],
-                    commenced_by=case_data["commenced_by"],
-                    court_id=court_id,
-                )
-                cases_models.append(case)
-
-            except Exception as e:
-                logger.error(f"Error saving row {index}: {e}")
-
-        try:
-            upsert_cases(db_session, cases_models)
-        except Exception as commit_exception:
-            db_session.rollback()
-            logger.error(f"DB commit failed: {commit_exception}")
-            raise
-    return
+def save_cases_to_parquet(df, target_path):
+    # TODO docstring
+    # TODO explore options to to_parquet
+    df.to_parquet(target_path, index=False)
+    # TODO log more info
+    logger.info(f"Saved normalized data to {target_path}")

@@ -9,7 +9,7 @@ from airflow.sdk import task, Param
 
 from src.details import get_case_details
 from src.search import search_by_hearing_date
-from src.services.case import normalize_cases_dataframe, save_cases_dataframe_to_db
+from src.services.case import normalize_cases_dataframe, save_cases_to_parquet
 from src.utils import accept_terms_and_conditions, get_json_path
 
 logger = logging.getLogger(__name__)
@@ -195,13 +195,13 @@ def consolidate_all(tmp_paths: list[str]) -> list[str]:
 
 @task
 def ingest_data(path: str) -> None:
-    """Ingest a single finalised JSONL file into Postgres via services/case.py."""
+    # TODO docstring: normalize and save to parquet
     logger.info("ingesting path=%s", path)
     try:
         df = pd.read_json(path, lines=True)
         if not df.empty:
             df = normalize_cases_dataframe(df)
-            save_cases_dataframe_to_db(df)
+            save_cases_to_parquet(df) # TODO figure the path variable: adjust existing path for silver data
         else:
             logger.warning("empty file skipped path=%s", path)
     except ValueError as exc:
