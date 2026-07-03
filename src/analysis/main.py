@@ -8,6 +8,9 @@ from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from sklearn.pipeline import Pipeline
 from sklearn.impute import SimpleImputer
+from sklearn.model_selection import train_test_split
+from sklearn.dummy import DummyClassifier
+from sklearn.metrics import accuracy_score
 
 # Import utility
 from src.analysis.utils.data_loader import load_and_preprocess
@@ -152,15 +155,6 @@ def perform_multivariate_analysis(df, output_dir):
     print("\n" + "=" * 50)
     print("  MULTIVARIATE ANALYSIS (Logistic Regression)")
     print("=" * 50)
-
-    # Mathematical Concept: Logistic Regression
-    # Simple correlation (like Test 1) can be misleading due to "Confounding Variables".
-    # Example: Group A might have lower dismissal rates not because of bias, but because they face more serious charges.
-    # Logistic Regression allows us to estimate the probability of an event (Dismissal) based on multiple independent variables (X).
-    # Equation: ln(P / (1-P)) = β0 + β1*Race + β2*Gender + β3*Attorney + ...
-    # The coefficients (β) - or rather their exponentiated form (Odds Ratios) - tell us the effect of one variable
-    # *holding all other variables constant*.
-
     print("\n[Model] Predicting Probability of Dismissal")
 
     # 1. Prepare Data
@@ -170,8 +164,7 @@ def perform_multivariate_analysis(df, output_dir):
     # Filter data
     model_df = df[features + [target]].dropna()
 
-    # Keep only top categories to avoid "Curse of Dimensionality" (too many sparse columns)
-    # Group rare categories into "Other"
+    # Keep only top categories to avoid sparse features / dimensionality issues
     for col in ["race", "codeSection"]:
         top_n = model_df[col].value_counts().nlargest(5).index
         model_df[col] = model_df[col].apply(lambda x: x if x in top_n else "Other")
@@ -183,8 +176,12 @@ def perform_multivariate_analysis(df, output_dir):
         print("  >> Insufficient data for reliable regression model.")
         return
 
+    # Train/Test Split (R1.6 methodology fix)
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, random_state=42, stratify=y
+    )
+
     # 2. Pipeline: One-Hot Encoding -> Logistic Regression
-    # We use One-Hot Encoding to convert categorical text data into binary (0/1) columns.
     preprocessor = ColumnTransformer(
         transformers=[
             ("cat", OneHotEncoder(handle_unknown="ignore", drop="first"), features)
@@ -198,14 +195,27 @@ def perform_multivariate_analysis(df, output_dir):
         ]
     )
 
-    clf.fit(X, y)
+    clf.fit(X_train, y_train)
 
-    # 3. Interpret Results (Odds Ratios)
-    # Odds Ratio (OR) = exp(coefficient)
-    # OR > 1: Increases odds of dismissal
-    # OR < 1: Decreases odds of dismissal
-    # OR = 1: No effect
+    # 3. Baseline Model (Dummy Classifier)
+    dummy_clf = DummyClassifier(strategy="most_frequent")
+    dummy_clf.fit(X_train, y_train)
 
+    # 4. Evaluation
+    y_pred = clf.predict(X_test)
+    y_dummy_pred = dummy_clf.predict(X_test)
+
+    model_acc = accuracy_score(y_test, y_pred)
+    baseline_acc = accuracy_score(y_test, y_dummy_pred)
+    improvement = (model_acc - baseline_acc) / (baseline_acc + 1e-9) * 100
+
+    print("\n  --- Model Performance ---")
+    print(f"  Model Accuracy:    {model_acc * 100:.2f}%")
+    print(f"  Baseline Accuracy: {baseline_acc * 100:.2f}% (Majority Class Classifier)")
+    print(f"  Relative Improvement over Baseline: {improvement:+.2f}%")
+    print("-" * 70)
+
+    # 5. Interpret Results (Odds Ratios)
     feature_names = clf.named_steps["preprocessor"].get_feature_names_out()
     coefficients = clf.named_steps["classifier"].coef_[0]
 
@@ -218,7 +228,7 @@ def perform_multivariate_analysis(df, output_dir):
     print(
         "  (Values > 1.0 indicate HIGHER chance of dismissal, < 1.0 indicate LOWER chance)"
     )
-    print("  (Controlled for all other factors in the table)")
+    print("  (Controlled for all other factors in the table; see docs/statistical_methodology.md for details)")
     print("-" * 70)
     print(results.to_markdown(index=False, floatfmt=".2f"))
 
