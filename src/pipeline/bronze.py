@@ -14,7 +14,7 @@ def build_bronze_layer(json_glob_path: str, output_path: str):
     and implement incremental loading based on file modification times or run manifests.
     
     Args:
-        json_glob_path: Glob pattern for matching input JSON files (e.g., 'output/*/*/*.json')
+        json_glob_path: Glob pattern for matching input JSONL files (e.g., 'output/*/*/*.jsonl')
         output_path: Path to write the output Parquet file
     """
     logger.info(f"Starting Bronze Layer ingestion from {json_glob_path}")
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     # Default paths for testing/running directly
     # Assuming code run from project root
-    INPUT_GLOB = "output/*/*/*.json" 
+    INPUT_GLOB = "output/*/*/*.jsonl"
     OUTPUT_FILE = "output/bronze/cases.parquet"
     
     build_bronze_layer(INPUT_GLOB, OUTPUT_FILE)

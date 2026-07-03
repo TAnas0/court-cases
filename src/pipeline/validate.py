@@ -87,4 +87,4 @@ def validate_data(json_glob_path: str, schema_path: str, sample_size: int = 5):
 
 if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
-    validate_data("output/*/*/*.json", "src/pipeline/schema.json", sample_size=5)
+    validate_data("output/*/*/*.jsonl", "src/pipeline/schema.json", sample_size=5)

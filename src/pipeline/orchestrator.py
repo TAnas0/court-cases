@@ -7,7 +7,7 @@ from src.pipeline.gold import build_gold_layer
 from src.pipeline.validate import validate_data
 
 # Configuration
-INPUT_GLOB = "output/*/*/*.json"
+INPUT_GLOB = "output/*/*/*.jsonl"
 SCHEMA_PATH = "src/pipeline/schema.json"
 BRONZE_PATH = "output/bronze/cases.parquet"
 SILVER_PATH = "output/silver/cases.parquet"

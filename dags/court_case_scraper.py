@@ -1,3 +1,4 @@
+import json
 import logging
 from collections import defaultdict
 from datetime import datetime, timedelta
@@ -195,17 +196,37 @@ def consolidate_all(tmp_paths: list[str]) -> list[str]:
 
 @task
 def ingest_data(path: str) -> None:
-    # TODO docstring: normalize and save to parquet
+    """Ingest a single finalised JSONL file into Postgres via services/case.py.
+
+    Uses stdlib json.loads instead of pd.read_json to avoid the ujson
+    'cannot assemble with duplicate keys' error. The OCIS API response can
+    produce records where the same key appears at different nesting levels;
+    ujson hard-rejects these while stdlib json keeps the last value silently.
+    """
     logger.info("ingesting path=%s", path)
     try:
-        df = pd.read_json(path, lines=True)
-        if not df.empty:
-            df = normalize_cases_dataframe(df)
-            save_cases_to_parquet(df) # TODO figure the path variable: adjust existing path for silver data
-        else:
+        records = []
+        with open(path) as fh:
+            for lineno, line in enumerate(fh, start=1):
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    records.append(json.loads(line))
+                except json.JSONDecodeError as exc:
+                    logger.warning("skipping malformed line path=%s line=%d error=%s", path, lineno, exc)
+
+        if not records:
             logger.warning("empty file skipped path=%s", path)
-    except ValueError as exc:
+            return
+
+        df = pd.DataFrame(records)
+        df = normalize_cases_dataframe(df)
+        save_cases_to_parquet(df)
+
+    except Exception as exc:
         logger.error("ingest_error path=%s error=%s", path, exc)
+        raise
 
 
 # ── DAG wiring ────────────────────────────────────────────────────────

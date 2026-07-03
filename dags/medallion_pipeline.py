@@ -21,7 +21,7 @@ def validate_raw():
     """
     logger.info("--- Step 0: Schema Validation ---")
     from src.pipeline.validate import validate_data
-    validate_data("output/*/*/*.json", "src/pipeline/schema.json", sample_size=5)
+    validate_data("output/*/*/*.jsonl", "src/pipeline/schema.json", sample_size=5)
 
 @task
 def bronze_layer():
@@ -30,7 +30,7 @@ def bronze_layer():
     """
     logger.info("--- Step 1: Bronze Layer ---")
     from src.pipeline.bronze import build_bronze_layer
-    build_bronze_layer("output/*/*/*.json", "output/bronze/cases.parquet")
+    build_bronze_layer("output/*/*/*.jsonl", "output/bronze/cases.parquet")
 
 @task
 def silver_layer():

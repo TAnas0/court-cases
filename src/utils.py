@@ -75,7 +75,7 @@ def date_range(start_date, end_date):
 
 
 def get_json_path(d):
-    return f"output/{d.strftime('%Y')}/{d.strftime('%m')}/{d.strftime('%d')}.json"
+    return f"output/{d.strftime('%Y')}/{d.strftime('%m')}/{d.strftime('%d')}.jsonl"
 
 
 def get_court_case_url(case):
