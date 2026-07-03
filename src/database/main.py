@@ -56,8 +56,12 @@ def get_court_by_qualified_fips(session, qualified_fips):
     return court
 
 
-# TODO better handle the case for singular vs. multiple fetch. If argument passed is an array, treat as multiple.
-
+# """
+# TODO: Refactor into a Repository pattern (BaseRepository). 
+# These functions are currently maintained for legacy compatibility but are 
+# rarely used. They should be consolidated into a generic fetcher that 
+# handles both singular and bulk lookups to reduce boilerplate. 
+# """
 
 def get_case_by_id(session, id):
     case = session.query(CourtCase).filter_by(id=id).first()

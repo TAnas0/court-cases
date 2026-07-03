@@ -21,7 +21,7 @@ def parse_arguments():
     parser.add_argument(
         "file_path",
         nargs="?",
-        default="output/2024/05/01.json",
+        default="output/2024/05/01.jsonl",
         help="Path to the JSONL data file.",
     )
     parser.add_argument(
