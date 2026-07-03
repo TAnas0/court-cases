@@ -45,7 +45,17 @@ def normalize_cases_dataframe(df):
             "case_other_info_commenced_by_code": "commenced_by",
         }
     )
-    # df = df.drop(columns=["case_charge_offense_date"])
+
+    # After json_normalize + to_snake_case + rename, some columns collide:
+    # e.g. the search stub's top-level 'offenseDate' → 'offense_date', AND
+    # the case-details nested 'caseCharge.offenseDate' → 'case_charge_offense_date'
+    # renamed to 'offense_date'. PyArrow rejects duplicate column names.
+    # Keep the first occurrence (the directly-named stub field).
+    duplicated_mask = df.columns.duplicated(keep="first")
+    if duplicated_mask.any():
+        dupes = sorted(df.columns[df.columns.duplicated(keep=False)].unique().tolist())
+        logger.warning("Dropping %d duplicate columns after normalize+rename: %s", len(dupes), dupes)
+        df = df.loc[:, ~duplicated_mask]
 
     DATE_FORMATS = {
         "hearing_date": "%m/%d/%Y, %I:%M %p",
