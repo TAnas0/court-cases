@@ -33,7 +33,7 @@ def normalize_cases_dataframe(df):
             "locality_locality_code": "locality_code",
             "case_category_case_category_code": "case_category_code",
             "case_category_case_sub_category_code": "case_sub_category_code",
-            # "case_charge_offense_date": "offense_date",
+            "case_charge_offense_date": "offense_date",
             "disposition_disposition_info_disposition_date": "disposition_date",
             "financial_information_fines_paid_date_date": "fines_paid_date",
             "financial_information_costs_paid_date_date": "costs_paid_date",
@@ -45,38 +45,64 @@ def normalize_cases_dataframe(df):
             "case_other_info_commenced_by_code": "commenced_by",
         }
     )
-    df = df.drop(columns=["case_charge_offense_date"])
+    # df = df.drop(columns=["case_charge_offense_date"])
 
-    df["appeal_date"] = pd.to_datetime(df["appeal_date"], format="%m/%d/%Y").dt.date
-    df["filed_date"] = pd.to_datetime(df["filed_date"], format="%m/%d/%Y").dt.date
-    df["offense_date"] = pd.to_datetime(df["offense_date"], format="%m/%d/%Y").dt.date
-    df["arrest_date"] = pd.to_datetime(df["arrest_date"], format="%m/%d/%Y").dt.date
-    df["disposition_date"] = pd.to_datetime(
-        df["disposition_date"], format="%m/%d/%Y"
-    ).dt.date
-    df["fines_paid_date"] = pd.to_datetime(df["fines_paid_date"]).dt.date
-    df["hearing_date"] = pd.to_datetime(df["hearing_date"], format="%m/%d/%Y, %I:%M %p")
-    # TODO appeal_withdrawn_date
+    DATE_FORMATS = {
+        "hearing_date": "%m/%d/%Y, %I:%M %p",
+        "filed_date": "%m/%d/%Y",
+        "disposition_date": "%m/%d/%Y",
+        "appeal_date": "%m/%d/%Y",
+        "offense_date": "%m/%d/%Y",
+        "arrest_date": "%m/%d/%Y",
+        "fines_paid_date": "%m/%d/%Y",
+        "costs_paid_date": "%m/%d/%Y",
+        "dmv_license_restrictions_start_date": "%m/%d/%Y",
+    }
 
-    df["costs_paid_date"] = pd.to_datetime(df["costs_paid_date"], unit="ms")
-    df["dmv_license_restrictions_start_date"] = pd.to_datetime(
-        df["dmv_license_restrictions_start_date"], format="%m/%d/%Y"
-    )
+    def _safe_to_datetime(series: pd.Series, fmt: str) -> pd.Series:
+        """Parse a date Series defensively.
+
+        pandas 2.x errors='coerce' does not intercept ValueError from
+        _assemble_from_unit_mappings, which is triggered when column values are
+        dicts (e.g. nested OCIS API objects that were not fully flattened by
+        json_normalize). Coercing non-string values to None first ensures pandas
+        always takes the string-parse path where errors='coerce' works correctly.
+        """
+        safe = series.apply(lambda x: x if isinstance(x, str) else None)
+        return pd.to_datetime(safe, format=fmt, errors="coerce")
+
+    for col, fmt in DATE_FORMATS.items():
+        if col in df.columns:
+            df[col] = _safe_to_datetime(df[col], fmt)
+
+    # TODO: appeal_withdrawn_date — not yet in DATE_FORMATS; add when format confirmed.
+
 
     # Normalize nullable boolean values
-    df["is_active"] = df["is_active"].map({"Y": True, "N": False})
-    df["is_criminal"] = df["is_criminal"].map({"Y": True, "N": False})
-    df["is_traffic_fatality"] = df["is_traffic_fatality"].map({"Y": True, "N": False})
-    df["is_dmv_alcohol_safety_action_code"] = df[
-        "is_dmv_alcohol_safety_action_code"
-    ].map({"Y": True, "N": False})
+    BOOL_MAP = {"Y": True, "N": False}
+    BOOL_COLS = [
+        "is_active",
+        "is_criminal",
+        "is_traffic_fatality",
+        "is_dmv_alcohol_safety_action_code",
+    ]
+    # df["is_active"] = df["is_active"].map(BOOL_MAP)
+    # df["is_criminal"] = df["is_criminal"].map(BOOL_MAP)
+    # df["is_traffic_fatality"] = df["is_traffic_fatality"].map(BOOL_MAP)
+    # df["is_dmv_alcohol_safety_action_code"] = df[
+    #     "is_dmv_alcohol_safety_action_code"
+    # ].map(BOOL_MAP)
     # TODO normalize column is_appeal
+
+    for col in BOOL_COLS:
+        if col in df.columns:
+            df[col] = df[col].map(BOOL_MAP)
 
     # normalize_case_participants_df(df[["case_tracking_id", "formatted_case_number", "case_participant"]])
 
-    df = df.where(
-        pd.notnull(df), None
-    )  # Replace NaN, NaT, and other nullable Pandas value to None
+    # df = df.where(
+    #     pd.notnull(df), None
+    # )  # Replace NaN, NaT, and other nullable Pandas value to None
     return df
 
 def save_cases_to_parquet(df, target_path):

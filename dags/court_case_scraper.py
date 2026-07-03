@@ -222,7 +222,14 @@ def ingest_data(path: str) -> None:
 
         df = pd.DataFrame(records)
         df = normalize_cases_dataframe(df)
-        save_cases_to_parquet(df)
+
+        # Derive the Silver output path from the source JSONL path.
+        # e.g. output/2024/05/01.jsonl → output/silver/2024/05/01.parquet
+        silver_path = Path(path.replace("output/", "output/silver/", 1)).with_suffix(".parquet")
+        silver_path.parent.mkdir(parents=True, exist_ok=True)
+        save_cases_to_parquet(df, str(silver_path))
+        logger.info("saved silver path=%s rows=%d", silver_path, len(df))
+
 
     except Exception as exc:
         logger.error("ingest_error path=%s error=%s", path, exc)
