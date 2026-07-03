@@ -46,20 +46,16 @@ def generate_dates(start_date_str: str, end_date_str: str) -> list[str]:
 
 # ── Task A: Search + batch (one instance per date) ───────────────────
 
-@task
-def search_and_batch(date_str: str, batch_size: int = BATCH_SIZE) -> list[dict]:
+@task(
+    map_index_template="""
+    [{{ map_index }}] {{ task.op_kwargs['date_str'] | to_datetime | strftime('%a, %-d %b, %Y') }}
+    """
+)
+def search_and_batch(date_str: str, batch_size: int = BATCH_SIZE) -> list[str]:
     """Accept T&C, fetch all case stubs for the date, split into batch specs.
 
-    Returns a list of batch_spec dicts — one per chunk — each carrying the
-    date and its assigned slice of stubs. This list is collected by Airflow
-    across all dates; flatten_batches then merges them before the second expand().
-
-    Example return for 750 stubs at batch_size=300:
-        [
-            {"date_str": "2024-05-01", "batch_idx": 0, "cases": [stub_0 .. stub_299]},
-            {"date_str": "2024-05-01", "batch_idx": 1, "cases": [stub_300 .. stub_599]},
-            {"date_str": "2024-05-01", "batch_idx": 2, "cases": [stub_600 .. stub_749]},
-        ]
+    Saves each chunk of stubs to temporary storage and returns a list of file paths.
+    This avoids massive XCom serialization and database bloat.
     """
     session = accept_terms_and_conditions()
     formatted = datetime.strptime(date_str, "%Y-%m-%d").strftime("%m/%d/%Y")
@@ -70,28 +66,30 @@ def search_and_batch(date_str: str, batch_size: int = BATCH_SIZE) -> list[dict]:
     if not stubs:
         return []
 
-    return [
-        {"date_str": date_str, "batch_idx": i, "cases": stubs[i : i + batch_size]}
-        for i in range(0, len(stubs), batch_size)
-    ]
+    TMP_DIR.mkdir(parents=True, exist_ok=True)
+    paths = []
+    for i, start_idx in enumerate(range(0, len(stubs), batch_size)):
+        chunk = stubs[start_idx : start_idx + batch_size]
+        chunk_path = TMP_DIR / f"stubs_{date_str}_batch_{i}.json"
+        with open(chunk_path, "w") as f:
+            json.dump(chunk, f)
+        paths.append(str(chunk_path))
+
+    return paths
 
 
 # ── Shim: Flatten list-of-lists before second expand() ───────────────
 
 @task
-def flatten_batches(batched_per_date: list[list[dict]]) -> list[dict]:
-    """Merge the per-date batch spec lists into one flat list for expand().
+def flatten_batches(batched_per_date: list[list[str]]) -> list[str]:
+    """Merge the per-date batch file path lists into one flat list for expand().
 
-    Airflow collects the XCom outputs of search_and_batch (one list per date)
-    as a list-of-lists. expand() on that would create one worker per *date* —
-    not per *batch*. This shim flattens it so expand() creates one worker per batch.
-
-    Input:  [[spec_date0_b0, spec_date0_b1], [spec_date1_b0], ...]
-    Output: [spec_date0_b0, spec_date0_b1, spec_date1_b0, ...]
+    Input:  [[path_date0_b0, path_date0_b1], [path_date1_b0], ...]
+    Output: [path_date0_b0, path_date0_b1, path_date1_b0, ...]
     """
     flat = []
-    for date_specs in batched_per_date:
-        flat.extend(date_specs)
+    for paths in batched_per_date:
+        flat.extend(paths)
     logger.info("total_batches_across_all_dates=%d", len(flat))
     return flat
 
@@ -99,18 +97,27 @@ def flatten_batches(batched_per_date: list[list[dict]]) -> list[dict]:
 # ── Task B: Fetch details (one instance per batch) ───────────────────
 
 @task(max_active_tis_per_dag=10)
-def fetch_details(batch_spec: dict) -> str:
-    """Fetch full case details for every stub in the assigned batch.
+def fetch_details(file_path: str) -> str:
+    """Fetch full case details for every stub in the assigned batch file.
 
-    Writes results to a temporary JSONL file isolated to this batch.
-    Returns the temp file path so consolidate_all can locate it.
-    Returns an empty string if the entire batch fails.
-
-    Temp path pattern: output/tmp/{date_str}_batch_{batch_idx}.jsonl
+    Reads stubs from the temporary JSON file, processes them, and writes
+    results to a temporary JSONL file isolated to this batch. Deletes the
+    temporary stub file after processing.
     """
-    date_str: str = batch_spec["date_str"]
-    batch_idx: int = batch_spec["batch_idx"]
-    cases: list[dict] = batch_spec["cases"]
+    path_obj = Path(file_path)
+    if not path_obj.exists():
+        logger.error("Stub file not found: %s", file_path)
+        return ""
+
+    # Parse date_str and batch_idx from filename
+    # Pattern: stubs_{date_str}_batch_{batch_idx}.json
+    stem = path_obj.stem
+    parts = stem.split("_")
+    date_str = parts[1]
+    batch_idx = int(parts[3])
+
+    with open(path_obj) as f:
+        cases = json.load(f)
 
     session = accept_terms_and_conditions()
 
@@ -133,6 +140,9 @@ def fetch_details(batch_spec: dict) -> str:
         except Exception as exc:
             failures += 1
             logger.error("case=%s error=%s", stub.get("caseNumber"), exc)
+
+    # Delete the temporary stubs file to keep storage clean
+    path_obj.unlink(missing_ok=True)
 
     if enriched:
         pd.DataFrame(enriched).to_json(
@@ -265,16 +275,16 @@ with DAG(
     batched_per_date = search_and_batch.expand(date_str=date_array)
 
     #
-    # Step 3 — Flatten shim: collapse list[list[dict]] → list[dict].
+    # Step 3 — Flatten shim: collapse list[list[str]] → list[str].
     # This is what makes the second expand() work without cross-product mapping.
     #
-    all_batch_specs = flatten_batches(batched_per_date=batched_per_date)
+    all_batch_paths = flatten_batches(batched_per_date=batched_per_date)
 
     #
-    # Step 4 — Task B: one fetch_details instance per batch_spec.
+    # Step 4 — Task B: one fetch_details instance per batch file path.
     # Each worker writes its own temp file and returns its path.
     #
-    tmp_paths = fetch_details.expand(batch_spec=all_batch_specs)
+    tmp_paths = fetch_details.expand(file_path=all_batch_paths)
 
     #
     # Step 5 — Consolidate: merge temp files into per-date JSONL, delete temps.
