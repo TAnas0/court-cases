@@ -30,14 +30,12 @@ def build_silver_layer(bronze_path: str, output_path: str):
                 SELECT * FROM read_parquet('{bronze_path}')
             ),
             deduplicated AS (
-                -- WARNING: Non-Deterministic Deduplication.
-                -- Using DISTINCT ON (caseNumber, hearingDate) without an ORDER BY clause makes
-                -- this operation non-deterministic. DuckDB will arbitrarily pick whichever row
-                -- it reads first from the Parquet files.
-                -- TODO: Define a deterministic ordering key (e.g., a 'scraped_at' timestamp 
-                -- or file modification date) and append an ORDER BY to keep the latest record.
+                -- Deterministic Deduplication:
+                -- Keep the latest record for each caseNumber/hearingDate combination by
+                -- ordering by source_file DESC (since source_file contains the YYYY/MM/DD path).
                 SELECT DISTINCT ON (caseNumber, hearingDate) *
                 FROM raw_data
+                ORDER BY caseNumber, hearingDate, source_file DESC
             )
             SELECT 
                 qualifiedFips,

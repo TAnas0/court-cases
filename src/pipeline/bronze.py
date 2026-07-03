@@ -34,7 +34,8 @@ def build_bronze_layer(json_glob_path: str, output_path: str):
         # We preserve the structure exactly as is.
         query = f"""
         COPY (
-            SELECT * FROM read_json_auto('{json_glob_path}', union_by_name=true)
+            SELECT *, filename AS source_file 
+            FROM read_json_auto('{json_glob_path}', union_by_name=true, filename=true)
         ) TO '{output_path}' (FORMAT PARQUET, COMPRESSION 'ZSTD');
         """
         
